@@ -1,0 +1,110 @@
+{
+  "notificationsEnabled": true,
+  "pets": [
+    {
+      "id": "claude-dafeiyu",
+      "name": "Claude 工牌大肥鱼",
+      "size": 380,
+      "balanceEnabled": true,
+      "whisperEnabled": true,
+      "workStatusEnabled": true,
+      "fixedEnabled": false,
+      "display": "both",
+      "position": {
+        "corner": "bottom-right",
+        "marginX": 40,
+        "marginY": 24
+      }
+    }
+  ],
+  "animations": {
+    "idle": [
+      "idle"
+    ],
+    "turn": [
+      "idle"
+    ],
+    "drag": [
+      "drag"
+    ],
+    "clicks": [
+      "click"
+    ],
+    "moves": {
+      "default": {
+        "minDist": 60,
+        "maxDist": 240,
+        "margin": 20,
+        "leadSec": 2,
+        "tailSec": 2
+      },
+      "actions": [
+        {
+          "name": "walk"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "id": "小动作",
+        "weight": 30,
+        "actions": [
+          "stretch",
+          "squat",
+          "shake",
+          "wag",
+          "peek"
+        ]
+      },
+      {
+        "id": "玩耍",
+        "weight": 20,
+        "actions": [
+          "spin",
+          "jump",
+          "dance",
+          "dash"
+        ]
+      },
+      {
+        "id": "干饭",
+        "weight": 15,
+        "actions": [
+          "eat",
+          "eatHappy"
+        ]
+      },
+      {
+        "id": "休息",
+        "weight": 15,
+        "actions": [
+          "sleep",
+          "sleepDeep",
+          "lean",
+          "leanSway"
+        ]
+      }
+    ],
+    "events": {
+      "balance": [
+        "idle"
+      ],
+      "whisper": [
+        "idle"
+      ],
+      "workStatus": [
+        "idle",
+        "idle",
+        "idle",
+        "idle",
+        "idle",
+        "idle"
+      ]
+    }
+  },
+  "animationWeights": {
+    "idle": 10,
+    "turn": 5,
+    "move": 5
+  }
+}
