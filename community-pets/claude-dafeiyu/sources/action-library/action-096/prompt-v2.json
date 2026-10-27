@@ -1,0 +1,7 @@
+{
+  "mode": "builtin",
+  "prompt": "Edit this transparent 2x2 four-pose nearly-empty coin-purse sprite sheet. Preserve every pose, bag/coin, whole character/body/outfit/hair/tail/Claude badge and placement. Fix ONLY frame2 top-right: replace blank white circular eyes with her NORMAL large BLUE IRIS eyes and DARK pupils, matching the shocked but beautiful eyes of frame3 bottom-left. Keep surprised round mouth and expression. Absolutely no blank white eyes. Other three frames unchanged. Real transparent background with empty alpha, no labels/grid.",
+  "references": [
+    "D:/project/dsh-pet/community-pets/claude-dafeiyu/sources/action-library/action-096/sheet.png"
+  ]
+}

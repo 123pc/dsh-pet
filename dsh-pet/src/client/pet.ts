@@ -43,6 +43,7 @@ import {
   type PetFacing,
 } from '../shared/state';
 import { WORK_STATUS_INDEX, type WorkStatusSnapshot } from '../shared/work-status';
+import { advanceWorkSequence, isWorkSequenceAnim, type WorkPhase } from '../shared/work-sequence';
 import { makeBalanceBubble, makeWhisperBubble } from './bubble';
 import { clickScore, SCORE_MIN_SPEED, mountScorePopup, spawnScoreBurst } from '../shared/score-popup';
 import {
@@ -710,6 +711,24 @@ export function makePetUI(rt: {
     // 非终态（thinking/working/result/waiting）常驻并循环；终态（success/error）10s 收起并播一遍。
     // state 为 null 时收起气泡回待机。
     const prevWorkTickRef = useRef(0);
+    const workPhaseRef = useRef<WorkPhase>('closed');
+    function stepWorkSequence(state: string | null | undefined, ended = false): boolean {
+      const step = advanceWorkSequence(
+        petAnims.workSequence,
+        workPhaseRef.current,
+        cfg.workStatusEnabled ? state : null,
+        animRef.current,
+        ended,
+      );
+      workPhaseRef.current = step.phase;
+      if (step.name) {
+        stopMove();
+        setOnce(true);
+        setAnim(step.name);
+        setSeq((s) => s + 1);
+      }
+      return step.handled;
+    }
     // 调试日志：上一档位，null 表示空闲，undefined 表示启动后尚未触发。
     const prevWorkStateRef = useRef<string | null | undefined>(undefined);
     useEffect(() => {
@@ -719,6 +738,7 @@ export function makePetUI(rt: {
       // 占用锁：工作状态是自动来源，锁生效时不响应；解冻时由 applyFreeze 重新对齐当前状态。
       // 不挡宿主写入：sections.workStatus 是所有宠物共用一份，按宠物在渲染端忽略。
       if (frozenRef.current) return;
+      const sequenceHandled = stepWorkSequence(workStatus?.state);
       if (!workStatus || workStatus.state === null) {
         // 调试日志：状态回空闲，动画改成播完即停。
         console.log(
@@ -733,7 +753,7 @@ export function makePetUI(rt: {
         prevWorkStateRef.current = null;
         // 回空闲时把循环中的工作动画改成「播完即停」：否则 ended 永不触发，动画链拿不到
         // 推进信号，宠物会一直卡在工作动画上。
-        if (poolIncludes(petAnims.events?.workStatus ?? [], animRef.current)) {
+        if (!sequenceHandled && poolIncludes(petAnims.events?.workStatus ?? [], animRef.current)) {
           const front = frontRef.current === 0 ? videoARef.current : videoBRef.current;
           if (front) {
             front.loop = false;
@@ -792,6 +812,7 @@ export function makePetUI(rt: {
           : null; // 非终态常驻，不设自动收起。
       }
       // 循环语义：终态播一遍；非终态单候选无限循环，多候选播一遍后由 handleEnded 轮换。
+      if (sequenceHandled) return;
       const rotating = !terminal && Array.isArray(slot) && slot.length > 1;
       setOnce(terminal || rotating);
       setAnim(name);
@@ -977,6 +998,11 @@ export function makePetUI(rt: {
       if (frozenRef.current) return false;
       const ws = workStatusRef.current;
       if (!ws || !ws.state || ws.state === 'success' || ws.state === 'error') return false;
+      if (petAnims.workSequence) {
+        if (workPhaseRef.current === 'opening' && animRef.current !== petAnims.workSequence.enter)
+          workPhaseRef.current = 'closed';
+        return stepWorkSequence(ws.state);
+      }
       const pool = petAnims.events?.workStatus;
       if (!pool || pool.length === 0) return false;
       const idx = WORK_STATUS_INDEX[ws.state];
@@ -1009,6 +1035,16 @@ export function makePetUI(rt: {
       // 最容易撞上的是「事件动画播完 → 恢复工作状态档位」，持锁者每投一次气泡就会触发。
       // 回执已在上方上报，不受这一行影响。
       if (frozenRef.current) return;
+      if (
+        animations.workSequence &&
+        (workPhaseRef.current !== 'closed' || isWorkSequenceAnim(animations.workSequence, animRef.current))
+      ) {
+        if (stepWorkSequence(workStatusRef.current?.state, true)) return;
+        if (animations.idle.length) setAnim(pick(animations.idle));
+        setOnce(true);
+        setSeq((s) => s + 1);
+        return;
+      }
       // 事件动画播完回 idle，不进入随机链。
       const isEvent = isEventAnim(animations.events, animRef.current);
       // 非终态期间 workStatus 动画意外 ended 时续播或轮换，避免回 idle；其余事件动画仍回 idle。

@@ -1,0 +1,7 @@
+{
+  "mode": "builtin",
+  "prompt": "Remove the entire blue/brown blurry background, all floor glow, all cast shadows from this 4x2 eight-pose running sprite sheet. Output REAL TRANSPARENT ALPHA, with eight separate complete character cutouts in the exact same 4 columns 2 rows layout. Keep all character details, two-arm/two-leg running anatomy, poses, outfit, hair, tail and same sizes unchanged. Preserve 8% empty transparent margins on each cell. Only character pixels opaque; all empty space alpha ZERO. No blue haze, no gradient, no white/checkerboard backdrop, no outline box, no captions. Preserve near-arm forward/back phase differences between top and bottom rows. Correct badges to exact text Claude.",
+  "references": [
+    "D:/project/dsh-pet/community-pets/claude-dafeiyu/sources/action-library/action-011/sheet-v2.png"
+  ]
+}

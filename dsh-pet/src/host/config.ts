@@ -245,6 +245,18 @@ function animationsValid(a: unknown): boolean {
     }
   }
   const balance = evEntries.balance;
+  if (anims.workSequence !== undefined) {
+    const sequence = anims.workSequence as Record<string, unknown> | null;
+    if (!sequence || typeof sequence !== 'object' || Array.isArray(sequence)) return false;
+    if (typeof sequence.enter !== 'string' || !sequence.enter || typeof sequence.exit !== 'string' || !sequence.exit)
+      return false;
+    if (
+      !Array.isArray(sequence.loops) ||
+      !sequence.loops.length ||
+      sequence.loops.some((name) => typeof name !== 'string' || !name)
+    )
+      return false;
+  }
   return Array.isArray(balance) && balance.length > 0;
 }
 

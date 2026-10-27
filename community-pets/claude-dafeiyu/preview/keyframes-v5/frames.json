@@ -1,0 +1,38 @@
+{
+  "fps": 8,
+  "status": "pending",
+  "frames": [
+    {
+      "file": "frame-01.png",
+      "phase": "近侧脚落地"
+    },
+    {
+      "file": "frame-02.png",
+      "phase": "落地缓冲"
+    },
+    {
+      "file": "frame-03.png",
+      "phase": "近侧脚支撑"
+    },
+    {
+      "file": "frame-04.png",
+      "phase": "远侧脚向前摆"
+    },
+    {
+      "file": "frame-05.png",
+      "phase": "远侧脚落地"
+    },
+    {
+      "file": "frame-06.png",
+      "phase": "换脚缓冲"
+    },
+    {
+      "file": "frame-07.png",
+      "phase": "远侧脚支撑"
+    },
+    {
+      "file": "frame-08.png",
+      "phase": "近侧脚向前摆"
+    }
+  ]
+}

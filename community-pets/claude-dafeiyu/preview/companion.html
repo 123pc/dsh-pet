@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude · 安静陪伴与托腮办公</title>
+<style>
+:root{font:15px/1.7 system-ui,sans-serif;color:#29425a;background:#f5f2eb}*{box-sizing:border-box}body{max-width:1050px;margin:28px auto;padding:0 20px}h1{font-size:28px;margin:0}h2{font-size:16px;margin:0}p{color:#697d8b;margin:6px 0 18px}a{color:#526f89}.tag{font-size:12px;color:#ad7d48}.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}.panel{background:#fffdf8;border:1px solid #d6dfdb;border-radius:16px;overflow:hidden}.head,.body{padding:15px 18px}.stage{background:#e9ece8}.stage video{display:block;width:100%;aspect-ratio:16/9}.dark .stage{background:#28394b}.buttons{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:13px}button,select{font:inherit;color:inherit;border:1px solid #bbcdcf;border-radius:7px;padding:8px 12px;background:#fffdf8}button{cursor:pointer}button:hover{background:#e3edeb}button:focus-visible,select:focus-visible{outline:3px solid #d9ac74}button:disabled{opacity:.45}.primary{background:#dce9e6}#state{font-size:12px;color:#65806c}#log{margin:10px 0 0;padding-left:20px;font-size:12px;color:#6b7c87;max-height:130px;overflow:auto}.ratio{display:flex;height:12px;border-radius:9px;overflow:hidden;background:#d4dfe2;margin:12px 0}.ratio span{width:65%;background:#77958c}small{font-size:12px;color:#6d7e88}.note{padding:14px 0;font-size:12px;color:#7f898c}#error{color:#ad5544}@media(max-width:740px){.grid{grid-template-columns:1fr}h1{font-size:24px}}
+</style>
+<span class="tag">CLAUDE · DAFEIYU</span><h1>安静陪伴，也陪你开工</h1>
+<p>托腮时偶尔摇摇尾巴、拨弄头发、摇头哼歌；忙起来，拿出电脑一起办公。<a href="actions.html">返回完整动作库</a></p>
+<div class="grid"><article class="panel"><div class="head"><h2 id="name">托腮·安静陪伴</h2><span id="state">预览中 · 不控制真实桌宠</span></div><div class="stage"><video id="player" autoplay muted playsinline controls></video></div><div class="body"><div class="buttons"><button class="primary" id="start">开始办公</button><button id="finish">结束办公</button><button id="rest">安静陪伴</button><button id="background">切换背景</button></div><select id="action" aria-label="单独查看动作"><option value="">单独查看动作…</option></select> <select id="speed" aria-label="播放速度"><option value="1">正常速度</option><option value="0.5">半速</option><option value="0.25">四分之一速</option></select><div id="error" role="status"></div></div></article>
+<aside class="panel"><div class="head"><h2>这次的节奏</h2></div><div class="body"><strong>站立：主要待机约占 65% 时间</strong><div class="ratio"><span></span></div><p>主要待机连续约 16 秒，保持眨眼、呼吸；其余时间随机做小动作、转向或散步。</p><strong>托腮：轻微小动作</strong><p>安静陪伴时穿插摇尾、拨头发与哼歌。哼歌为无声的表情动作。</p><strong>办公：有开始，也有收尾</strong><p>拿出电脑 → 打字 / 托腮思考 / 揉眼伸肩 → 收起电脑。更新任务进度时会继续当前动作。</p><small>占比适用于未被打断的自主待机；点击、工作状态等事件优先响应。</small><ol id="log" aria-label="最近播放记录"></ol></div></aside></div>
+<div class="note">完整人物关键帧 · 透明动画。新增画面已完成制作自查，实际观感以你的体验为准。</div>
+<script src="work-sequence.js"></script>
+<script>
+const $=id=>document.getElementById(id),video=$('player');let rows=[],current,phase='closed',work=null,manual=false;
+const seq={enter:'laptop-open',loops:['laptop-type','laptop-think','laptop-stretch'],exit:'laptop-close'};
+function play(id){current=rows.find(r=>r.id===id);if(!current)return;video.src=current.preview;video.playbackRate=Number($('speed').value);video.play().catch(()=>{});$('name').textContent=current.name;const li=document.createElement('li');li.textContent=current.name;$('log').prepend(li);while($('log').children.length>8)$('log').lastChild.remove();$('start').disabled=!!work;$('finish').disabled=!work}
+function step(ended=false){const next=PetWorkSequence.advanceWorkSequence(seq,phase,work,current?.id||'',ended);phase=next.phase;if(next.name)play(next.name);return next.handled}
+video.onended=()=>{if(manual){video.play().catch(()=>{});return}if(PetWorkSequence.isWorkSequenceAnim(seq,current?.id)){if(step(true))return;play('lean-rest');return}if(work){step();return}const pool=['lean-tail','lean-hair','lean-hum'].filter(id=>id!==current?.id);play(Math.random()<.45?'lean-rest':pool[Math.floor(Math.random()*pool.length)])};
+$('start').onclick=()=>{$('action').value='';manual=false;work='working';step();$('start').disabled=true;$('finish').disabled=false};
+$('finish').onclick=()=>{$('action').value='';manual=false;work=null;step();$('start').disabled=false;$('finish').disabled=true};
+$('rest').onclick=()=>{$('action').value='';manual=false;work=null;if(!step())play('lean-rest')};
+$('action').onchange=e=>{if(!e.target.value)return;manual=true;work=null;phase='closed';play(e.target.value)};
+$('speed').onchange=()=>video.playbackRate=Number($('speed').value);$('background').onclick=()=>document.body.classList.toggle('dark');video.onerror=()=>$('error').textContent='动画加载失败，请刷新重试。';
+fetch('companion-index.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('预览素材仍在构建中。');return r.json()}).then(data=>{rows=data;for(const row of rows){const o=document.createElement('option');o.value=row.id;o.textContent=row.name;$('action').append(o)}play('lean-rest')}).catch(e=>$('error').textContent=e.message);
+</script></html>

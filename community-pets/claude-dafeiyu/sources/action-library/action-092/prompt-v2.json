@@ -1,0 +1,7 @@
+{
+  "mode": "builtin",
+  "prompt": "Edit this transparent 2x2 four-pose coin-purse sprite sheet. Preserve the four full character drawings and all poses/props/coins/hoodie/style. Fix ONLY frame3 (bottom-left back three-quarter view): REMOVE the white frilly maid headband and the little blue bow at the side of her head entirely. Draw uninterrupted normal blue hair there and her orange ASTERISK hair clip in the visible side location, matching the other three drawings. This character never wears any maid headband. Keep cream hoodie/tan skirt/white flower legwarmers/brown shoes/attached whale tail. No other changes, no new costume. Real transparent alpha, no background/grid/labels.",
+  "references": [
+    "D:/project/dsh-pet/community-pets/claude-dafeiyu/sources/action-library/action-092/sheet.png"
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "fps": 8,
+  "visualApproval": "user-approved",
+  "method": "whole-character-keyframes",
+  "registration": "translation of complete drawing; identical .21 scale for all frames",
+  "frames": [
+    {
+      "file": "A.png",
+      "phase": "近侧脚落地",
+      "scale": 0.21,
+      "offset": [
+        212,
+        28
+      ],
+      "anchor": [
+        376.7557559933539,
+        301.18324234512227
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "E.png",
+      "phase": "落地缓冲",
+      "scale": 0.21,
+      "offset": [
+        212,
+        28
+      ],
+      "anchor": [
+        376.96494992846925,
+        301.17262756318553
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "B.png",
+      "phase": "近侧脚支撑",
+      "scale": 0.21,
+      "offset": [
+        212,
+        28
+      ],
+      "anchor": [
+        377.43980052244126,
+        300.7539776775113
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "F.png",
+      "phase": "远侧脚向前摆",
+      "scale": 0.21,
+      "offset": [
+        210,
+        28
+      ],
+      "anchor": [
+        384.3490168539326,
+        300.3263108614232
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "C.png",
+      "phase": "远侧脚落地",
+      "scale": 0.21,
+      "offset": [
+        211,
+        28
+      ],
+      "anchor": [
+        383.6354190718079,
+        300.758254444701
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "G.png",
+      "phase": "换脚缓冲",
+      "scale": 0.21,
+      "offset": [
+        210,
+        28
+      ],
+      "anchor": [
+        384.41662774404483,
+        299.17982251284445
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "D.png",
+      "phase": "远侧脚支撑",
+      "scale": 0.21,
+      "offset": [
+        211,
+        28
+      ],
+      "anchor": [
+        382.63009478672984,
+        299.01943127962085
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "H.png",
+      "phase": "近侧脚向前摆",
+      "scale": 0.21,
+      "offset": [
+        209,
+        29
+      ],
+      "anchor": [
+        392.00740397963904,
+        298.10249884312816
+      ],
+      "wholeImageOnly": true
+    }
+  ],
+  "approval": {
+    "date": "2026-10-27",
+    "quote": "走路动作没问题了，继续去做其它剩余的动作"
+  }
+}

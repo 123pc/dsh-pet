@@ -51,3 +51,9 @@ dsh-pet/dist-app/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# 本机交接与实机诊断（不属于可分发素材，保留在本地）
+community-pets/claude-dafeiyu/CONTINUATION.md
+community-pets/claude-dafeiyu/preview/*live-validation.json
+community-pets/claude-dafeiyu/preview/*-proof.png
+community-pets/claude-dafeiyu/preview/**/*-proof.png

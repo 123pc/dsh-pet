@@ -1,0 +1,93 @@
+{
+  "completed": true,
+  "report": [
+    {
+      "form": "claude-dafeiyu",
+      "previousEntries": 108,
+      "uniqueActions": 108,
+      "removedDuplicateEntries": 0,
+      "groups": [
+        {
+          "name": "待机",
+          "count": 1
+        },
+        {
+          "name": "转向",
+          "count": 1
+        },
+        {
+          "name": "拖拽",
+          "count": 1
+        },
+        {
+          "name": "点击回应",
+          "count": 5
+        },
+        {
+          "name": "移动",
+          "count": 4
+        },
+        {
+          "name": "小动作",
+          "count": 18
+        },
+        {
+          "name": "玩耍",
+          "count": 27
+        },
+        {
+          "name": "吃什么",
+          "count": 12
+        },
+        {
+          "name": "时节",
+          "count": 21
+        },
+        {
+          "name": "文字",
+          "count": 2
+        },
+        {
+          "name": "日常短待机",
+          "count": 1
+        },
+        {
+          "name": "余额档位",
+          "count": 6
+        },
+        {
+          "name": "碎碎念",
+          "count": 3
+        },
+        {
+          "name": "工作状态",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "form": "claude-dafeiyu-lean",
+      "previousEntries": 31,
+      "uniqueActions": 10,
+      "removedDuplicateEntries": 21,
+      "groups": [
+        {
+          "name": "待机",
+          "count": 1
+        },
+        {
+          "name": "托腮小动作",
+          "count": 3
+        },
+        {
+          "name": "办公动作",
+          "count": 5
+        },
+        {
+          "name": "余额档位",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

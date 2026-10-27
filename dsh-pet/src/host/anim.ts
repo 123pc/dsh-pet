@@ -39,8 +39,8 @@ const petFacing = (v: unknown): PetFacing | null => (v === 'left' || v === 'righ
 
 /**
  * 该条目的 animations 配置 → 可点播的动画名（去重，保持首次出现顺序）。
- * 池子与顺序对齐 src/shared/menu.ts 的 buildMenuTree()：待机 → 转向 → 拖拽 → 点击回应 →
- * 移动 → 随机动作分类 → 事件（数组槽位展平）。
+ * 覆盖与 src/shared/menu.ts 的 buildMenuTree() 相同的池；菜单会合并重复入口并按用途归组，
+ * 本函数保留既有枚举顺序：待机 → 转向 → 拖拽 → 点击回应 → 移动 → 分类 → 事件。
  */
 export function animationNames(animations: unknown): string[] {
   const a = (animations && typeof animations === 'object' ? animations : {}) as Record<string, unknown>;

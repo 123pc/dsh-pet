@@ -95,6 +95,7 @@ class PetSprite {
     this.gen = 0;
     this.anim = this.animations.idle[0] ?? '';
     this.once = true;
+    this.workPhase = 'closed';
     // 播放回执：当前正在播的第三方点播编号（null = 自播动画，不上报）。单独一个字段是因为
     // 动画名分不出「这一段该不该上报」——菜单点播与第三方 /anim 可以播同名动画。
     this.playback = null;
@@ -707,6 +708,14 @@ class PetSprite {
     // 播放回执已在上面上报，不受这一行影响。
     if (this.frozen) return;
     const { animations } = { animations: this.animations };
+    if (
+      animations.workSequence &&
+      (this.workPhase !== 'closed' || S.isWorkSequenceAnim(animations.workSequence, this.anim))
+    ) {
+      if (this.stepWorkSequence(this.workState, true)) return;
+      if (animations.idle.length) this.playOnce(S.pick(animations.idle));
+      return;
+    }
     // 事件动画播完：回 idle（与 drag/clicks 同分支，不进随机链）；气泡由定时器自动消失，与动画解耦
     const isEvent = S.isEventAnim(animations.events, this.anim);
     if (isEvent) {
@@ -755,6 +764,11 @@ class PetSprite {
     if (this.frozen) return false;
     const state = this.workState;
     if (!state || state === 'success' || state === 'error') return false;
+    if (this.animations.workSequence) {
+      // 入场被用户互动打断时重播入场；已打开电脑则直接回到办公小动作。
+      if (this.workPhase === 'opening' && this.anim !== this.animations.workSequence.enter) this.workPhase = 'closed';
+      return this.stepWorkSequence(state);
+    }
     const pool = this.animations.events?.workStatus;
     if (!pool || pool.length === 0) return false;
     const idx = S.WORK_STATUS_INDEX[state];
@@ -769,6 +783,24 @@ class PetSprite {
       this.playOnce(name); // 多候选：播完由 handleEnded 轮换
     else this.switchTo(name, false); // 单候选：无限循环
     return true;
+  }
+
+  // 同一状态反复更新任务详情不会重新拿电脑，结束时也先完成当前衔接。
+  stepWorkSequence(state, ended = false) {
+    const step = S.advanceWorkSequence(
+      this.animations.workSequence,
+      this.workPhase,
+      this.pet.workStatusEnabled ? state : null,
+      this.anim,
+      ended,
+    );
+    this.workPhase = step.phase;
+    if (step.name) {
+      this.stopMove();
+      console.log('[dsh-pet] work-sequence pet=' + this.pet.id + ' phase=' + step.phase + ' anim=' + step.name);
+      this.playOnce(step.name);
+    }
+    return step.handled;
   }
 
   // 漫游（rAF 驱动，动画首尾各 leadSec/tailSec 秒原地不动；几何在 shared/planMove）。

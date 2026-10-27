@@ -1,0 +1,7 @@
+{
+  "mode": "builtin",
+  "prompt": "Edit this transparent 4x2 eight-frame juggling sprite sheet. Preserve all eight full character drawings and positions exactly. Correct ONLY ball continuity: EVERY CELL must contain exactly THREE balls, one red, one yellow, one blue. Top row second cell currently missing BLUE: add blue ball beside her upper-right hand at shoulder height, entirely inside that cell. Top row third cell currently missing RED: add red ball just above her open hand on screen-right at shoulder height, entirely inside that cell. Check all remaining cells have exactly red+yellow+blue, never add fourth ball. Correct every visible badge to exact text Claude. Keep all original art style/outfit/two hands, true transparent alpha. No captions/visible grid/background.",
+  "references": [
+    "D:/project/dsh-pet/community-pets/claude-dafeiyu/sources/action-library/action-053/sheet.png"
+  ]
+}

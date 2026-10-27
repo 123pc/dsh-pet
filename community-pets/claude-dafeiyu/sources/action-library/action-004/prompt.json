@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "undefinedAction 点击回应-开心跃动. Four complete poses following original reference: 1 neutral standing. 2 happy anticipation: knees flex, both fists come to chest, eyes close with smile. 3 small cheerful hop, knees tuck softly and fists lift, skirt/hair/tail follow upward, joyful open smile. 4 land with soft bent knees, arms lower, smile settles. Clear crouch-air-land anatomy, same head/body scale. No hearts or text needed, two hands only, safe modest fully clothed stance.",
+  "upstreamReference": "sources/upstream-reference/action-004.png"
+}

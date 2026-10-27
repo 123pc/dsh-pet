@@ -1,0 +1,26 @@
+<!doctype html>
+<meta http-equiv="refresh" content="0; url=gallery.html">
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude 工牌大肥鱼 · 0.2.0 动作预览</title>
+<style>
+  :root{color-scheme:light dark;font:15px/1.6 system-ui,sans-serif;background:#f3f1eb;color:#293044}
+  body{max-width:1100px;margin:42px auto;padding:0 24px}h1{font-size:28px;margin-bottom:6px}p{color:#626a79;margin-top:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin:26px 0}
+  article{background:#fff;border:1px solid #dcdedc;border-radius:16px;overflow:hidden}header{padding:14px 18px;border-bottom:1px solid #e5e6e3}
+  .stage{aspect-ratio:16/9;background-color:#e8ebed;background-image:linear-gradient(45deg,#d9dee1 25%,transparent 25%),linear-gradient(-45deg,#d9dee1 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d9dee1 75%),linear-gradient(-45deg,transparent 75%,#d9dee1 75%);background-size:24px 24px;background-position:0 0,0 12px,12px -12px,-12px 0}
+  video{width:100%;height:100%;object-fit:contain}small{display:block;padding:12px 18px;color:#626a79}button{background:#e6b67a;border:0;padding:9px 14px;border-radius:8px;color:#382b22;cursor:pointer}
+  footer{margin-top:28px;font-size:13px;color:#626a79}.dark .stage{background:#252932}
+</style>
+<h1>Claude 工牌大肥鱼</h1>
+<p>0.2.0 · 多帧走路、挥手与托腮。这里直接播放角色包里的 VP9 透明 WebM。</p>
+<button id="background">切换深色背景</button>
+<section class="grid">
+  <article><header>走路循环 · 8 帧</header><div class="stage"><video src="../animation/walk.webm" autoplay muted loop playsinline controls></video></div><small>逐帧换腿、摆尾，24fps 编码。</small></article>
+  <article><header>点击挥手 · 8 帧</header><div class="stage"><video src="../animation/click.webm" autoplay muted loop playsinline controls></video></div><small>抬手、挥手、眨眼、收手。</small></article>
+  <article><header>Claude·托腮 · 8 帧</header><div class="stage"><video src="../lean-animation/lean.webm" autoplay muted loop playsinline controls></video></div><small>独立固定形态，默认隐藏；在侧栏切换。</small></article>
+</section>
+<footer>这是离线素材预览，不连接 DSH。原有其余动作仍使用程序化动画；本页不能代替宿主和桌面端验收。</footer>
+<script>document.querySelector('#background').onclick=()=>document.body.classList.toggle('dark')</script>
+</html>

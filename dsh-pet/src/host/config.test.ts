@@ -196,6 +196,21 @@ function pathsWithUser(raw: string | null): { paths: ConfigPaths; dir: string } 
   return { paths, dir };
 }
 
+test('workSequence retains valid transitions and rejects an empty loop pool', () => {
+  for (const valid of [true, false]) {
+    const sequence = { enter: '拿电脑', loops: valid ? ['打字', '思考'] : [], exit: '收电脑' };
+    const { paths, dir } = pathsWithUser(
+      JSON.stringify({ animations: { ...BASE.animations, workSequence: sequence } }),
+    );
+    try {
+      const actual = readAllConfig(paths).main.animations as Record<string, unknown>;
+      assert.deepEqual(actual.workSequence, valid ? sequence : undefined);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  }
+});
+
 describe('migrateUserConfig —— 老用户 main-config.json → main-config.jsonc', () => {
   /** 只在旧路径写一份用户层（模拟升级前的老用户） */
   function legacyOnly(raw: string): { paths: ConfigPaths; dir: string } {

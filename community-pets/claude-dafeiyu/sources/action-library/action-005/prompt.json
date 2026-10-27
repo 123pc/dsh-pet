@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "undefinedAction 点击回应-害羞惊讶. 1 calm standing with hands low. 2 surprised wide eyes and small O mouth, both open hands rise toward cheeks, shoulders lift slightly. 3 cheeks blush softly, hands gather shyly just below chin, head tilts down a little and eyes close in bashful smile. 4 hands lower slowly, face relaxes with small lingering blush. Keep full body grounded, two connected arms/hands, natural hoodie folds. Expressive face but normal eyes, no blank white eye circles.",
+  "upstreamReference": "sources/upstream-reference/action-005.png"
+}

@@ -1,0 +1,869 @@
+{
+  "upstreamSha256": "b144a0ba83735c7e2f1916c3a1eb7f5ed5e40c005f8c983b709b73dee51a7f94",
+  "count": 106,
+  "actions": [
+    {
+      "name": "待机呼吸休闲",
+      "group": "idle",
+      "pose": "idle",
+      "prop": "none",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "东张西望",
+      "group": "turn",
+      "pose": "look",
+      "prop": "none",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "被鼠标拖拽悬空反馈",
+      "group": "drag",
+      "pose": "drag",
+      "prop": "none",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "点击回应-开心跃动",
+      "group": "clicks",
+      "pose": "jump",
+      "prop": "hearts",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "点击回应-害羞惊讶",
+      "group": "clicks",
+      "pose": "shy",
+      "prop": "blush",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "点击回应-傲娇生气",
+      "group": "clicks",
+      "pose": "angry",
+      "prop": "anger",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "点击回应-挠痒咯咯笑",
+      "group": "clicks",
+      "pose": "laugh",
+      "prop": "laugh",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "点击回应-元气挥手",
+      "group": "clicks",
+      "pose": "wave",
+      "prop": "hello",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "螃蟹走路",
+      "group": "moves",
+      "pose": "crab",
+      "prop": "none",
+      "duration": 5,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地漂浮踏步",
+      "group": "moves",
+      "pose": "float",
+      "prop": "bubbles",
+      "duration": 5,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地左转奔跑",
+      "group": "moves",
+      "pose": "run",
+      "prop": "speed",
+      "duration": 5,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "悠闲哼歌",
+      "group": "小动作",
+      "pose": "sway",
+      "prop": "music",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "超大伸懒腰",
+      "group": "小动作",
+      "pose": "stretch",
+      "prop": "stretch",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地敲击桌面互动",
+      "group": "小动作",
+      "pose": "tap",
+      "prop": "desk",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地重力下蹲压缩",
+      "group": "小动作",
+      "pose": "squat",
+      "prop": "squat",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "哈欠连天",
+      "group": "小动作",
+      "pose": "yawn",
+      "prop": "yawn",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地小憩沉眠",
+      "group": "小动作",
+      "pose": "sleep",
+      "prop": "pillow",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "女仆屈膝礼仪",
+      "group": "小动作",
+      "pose": "curtsy",
+      "prop": "sparkles",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "被吓一跳",
+      "group": "小动作",
+      "pose": "startle",
+      "prop": "surprise",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "小幅度原地360度旋转展示",
+      "group": "小动作",
+      "pose": "spin",
+      "prop": "sparkles",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "偷吃零食被抓住",
+      "group": "小动作",
+      "pose": "guilty",
+      "prop": "cookie",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "用鲸鱼尾巴拍打地面",
+      "group": "小动作",
+      "pose": "tail",
+      "prop": "splash",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "打瞌睡被惊醒",
+      "group": "小动作",
+      "pose": "wake",
+      "prop": "alarm",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "照镜子",
+      "group": "小动作",
+      "pose": "mirror",
+      "prop": "mirror",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "整体换装试色",
+      "group": "小动作",
+      "pose": "dress",
+      "prop": "palette",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "轻快记录",
+      "group": "小动作",
+      "pose": "write",
+      "prop": "notebook",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "写代码",
+      "group": "小动作",
+      "pose": "type",
+      "prop": "laptop",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "摇扇纳凉",
+      "group": "小动作",
+      "pose": "fan",
+      "prop": "fan",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "晨间刷牙",
+      "group": "小动作",
+      "pose": "brush",
+      "prop": "toothbrush",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地专心玩魔方",
+      "group": "玩耍",
+      "pose": "cube",
+      "prop": "cube",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地蹲下玩玩具汽车",
+      "group": "玩耍",
+      "pose": "toy",
+      "prop": "car",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "鲸鱼吐泡泡特效",
+      "group": "玩耍",
+      "pose": "blow",
+      "prop": "bubbles",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "原地跳跃抓碎头顶物品",
+      "group": "玩耍",
+      "pose": "reach",
+      "prop": "breakstar",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "玩游戏气急败坏",
+      "group": "玩耍",
+      "pose": "game",
+      "prop": "console",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "玩水枪",
+      "group": "玩耍",
+      "pose": "shoot",
+      "prop": "watergun",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "小提琴演奏",
+      "group": "玩耍",
+      "pose": "violin",
+      "prop": "violin",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "蓝鲸现世",
+      "group": "玩耍",
+      "pose": "summon",
+      "prop": "whale",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "优雅女仆舞",
+      "group": "玩耍",
+      "pose": "ballet",
+      "prop": "ribbon",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "轻快摇摆舞",
+      "group": "玩耍",
+      "pose": "dance",
+      "prop": "music",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "可爱宅舞",
+      "group": "玩耍",
+      "pose": "idol",
+      "prop": "hearts",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吹气球",
+      "group": "玩耍",
+      "pose": "blow",
+      "prop": "balloon",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "动物环绕",
+      "group": "玩耍",
+      "pose": "pet",
+      "prop": "animals",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "放风筝",
+      "group": "玩耍",
+      "pose": "kite",
+      "prop": "kite",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "拆礼物",
+      "group": "玩耍",
+      "pose": "gift",
+      "prop": "gift",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "变鸽子",
+      "group": "玩耍",
+      "pose": "magic",
+      "prop": "dove",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "扑克魔术",
+      "group": "玩耍",
+      "pose": "magic",
+      "prop": "cards",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "抽陀螺",
+      "group": "玩耍",
+      "pose": "whip",
+      "prop": "top",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吹笛子",
+      "group": "玩耍",
+      "pose": "flute",
+      "prop": "flute",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "蝴蝶蜜蜂环绕头顶开花",
+      "group": "玩耍",
+      "pose": "garden",
+      "prop": "butterflies",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "撸猫",
+      "group": "玩耍",
+      "pose": "pet",
+      "prop": "cat",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "凭空生花",
+      "group": "玩耍",
+      "pose": "magic",
+      "prop": "flower",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "骑木马",
+      "group": "玩耍",
+      "pose": "ride",
+      "prop": "rockinghorse",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "三球抛接",
+      "group": "玩耍",
+      "pose": "juggle",
+      "prop": "balls",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "踢毽子",
+      "group": "玩耍",
+      "pose": "kick",
+      "prop": "shuttlecock",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "下五子棋",
+      "group": "玩耍",
+      "pose": "board",
+      "prop": "gomoku",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "荡秋千",
+      "group": "玩耍",
+      "pose": "swing",
+      "prop": "swing",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃白饭",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "rice",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "大口吃零食",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "snacks",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃Token",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "tokens",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃早餐",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "breakfast",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃午餐",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "bento",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃晚餐",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "dinner",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃冰淇淋融化",
+      "group": "吃什么",
+      "pose": "lick",
+      "prop": "icecream",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃大闸蟹",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "crabfood",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃糖葫芦",
+      "group": "吃什么",
+      "pose": "lick",
+      "prop": "tanghulu",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃长寿面",
+      "group": "吃什么",
+      "pose": "noodles",
+      "prop": "noodles",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃西瓜",
+      "group": "吃什么",
+      "pose": "eat",
+      "prop": "watermelon",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "涮火锅",
+      "group": "吃什么",
+      "pose": "hotpot",
+      "prop": "hotpot",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "被落叶淹没",
+      "group": "时节",
+      "pose": "leaves",
+      "prop": "leaves",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "中秋赏月吃月饼",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "mooncake",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "堆雪人",
+      "group": "时节",
+      "pose": "build",
+      "prop": "snowman",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "放烟花",
+      "group": "时节",
+      "pose": "celebrate",
+      "prop": "fireworks",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃粽子",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "zongzi",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃年糕",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "ricecake",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃青团",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "qingtuan",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃腊八粥",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "porridge",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃重阳糕",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "osmanthus",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "收红包",
+      "group": "时节",
+      "pose": "gift",
+      "prop": "redpacket",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "写福字",
+      "group": "时节",
+      "pose": "write",
+      "prop": "fu",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "穿针乞巧",
+      "group": "时节",
+      "pose": "thread",
+      "prop": "needle",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "舞狮头",
+      "group": "时节",
+      "pose": "lion",
+      "prop": "lion",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "讨糖南瓜灯",
+      "group": "时节",
+      "pose": "gift",
+      "prop": "pumpkin",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "插茱萸赏菊",
+      "group": "时节",
+      "pose": "garden",
+      "prop": "chrysanthemum",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "放河灯",
+      "group": "时节",
+      "pose": "lantern",
+      "prop": "lotus",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "萌化小幽灵",
+      "group": "时节",
+      "pose": "ghost",
+      "prop": "ghost",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "装点圣诞树",
+      "group": "时节",
+      "pose": "tree",
+      "prop": "christmastree",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "放孔明灯",
+      "group": "时节",
+      "pose": "lantern",
+      "prop": "skylantern",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃汤圆",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "tangyuan",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "吃饺子",
+      "group": "时节",
+      "pose": "eat",
+      "prop": "dumplings",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "是啊，吃什么",
+      "group": "文字",
+      "pose": "shrug",
+      "prop": "foodquestion",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "深度思考碎碎念",
+      "group": "文字",
+      "pose": "think",
+      "prop": "thought",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "余额-钱袋满溢",
+      "group": "balance",
+      "slot": 0,
+      "pose": "money",
+      "prop": "money0",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "余额-金袋叮当",
+      "group": "balance",
+      "slot": 1,
+      "pose": "money",
+      "prop": "money1",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "余额-钱袋如常",
+      "group": "balance",
+      "slot": 2,
+      "pose": "money",
+      "prop": "money2",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "余额-数金皱眉",
+      "group": "balance",
+      "slot": 3,
+      "pose": "count",
+      "prop": "money3",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "余额-袋空如洗",
+      "group": "balance",
+      "slot": 4,
+      "pose": "sad",
+      "prop": "money4",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "余额-分文不剩",
+      "group": "balance",
+      "slot": 5,
+      "pose": "sad",
+      "prop": "money5",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "碎碎念-擦桌碎碎念",
+      "group": "whisper",
+      "slot": 0,
+      "pose": "wipe",
+      "prop": "wipedesk",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "碎碎念-发呆碎碎念",
+      "group": "whisper",
+      "slot": 1,
+      "pose": "look",
+      "prop": "chat",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "碎碎念-对屏碎碎念",
+      "group": "whisper",
+      "slot": 2,
+      "pose": "type",
+      "prop": "screenchat",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "工作状态-思考冒泡",
+      "group": "workStatus",
+      "slot": 0,
+      "pose": "think",
+      "prop": "thought",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "工作状态-忙碌点按",
+      "group": "workStatus",
+      "slot": 1,
+      "pose": "type",
+      "prop": "terminal",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "工作状态-清点归档",
+      "group": "workStatus",
+      "slot": 2,
+      "pose": "file",
+      "prop": "folder",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "工作状态-原地踱步张望",
+      "group": "workStatus",
+      "slot": 3,
+      "pose": "wait",
+      "prop": "clock",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "工作状态-雀跃庆祝",
+      "group": "workStatus",
+      "slot": 4,
+      "pose": "celebrate",
+      "prop": "confetti",
+      "duration": 3,
+      "technique": "layered-puppet"
+    },
+    {
+      "name": "工作状态-垂头叹气冒汗",
+      "group": "workStatus",
+      "slot": 5,
+      "pose": "sad",
+      "prop": "sweat",
+      "duration": 3,
+      "technique": "layered-puppet"
+    }
+  ]
+}

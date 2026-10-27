@@ -21,5 +21,6 @@ export * from './physics';
 export * from './score';
 export * from './score-popup';
 export * from './work-status';
+export * from './work-sequence';
 export * from './state';
 export * from './tooltip';

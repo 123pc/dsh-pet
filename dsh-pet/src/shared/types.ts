@@ -61,6 +61,15 @@ export interface Animations {
   moves: MovesConfig;
   categories: Category[];
   events: Events;
+  /** 可选的办公衔接：入场播一遍，进行中轮换小动作，离开时收起道具。 */
+  workSequence?: WorkSequence;
+}
+
+/** 工作状态的道具连续性；未配置时沿用事件档位播放。 */
+export interface WorkSequence {
+  enter: string;
+  loops: string[];
+  exit: string;
 }
 
 /** 一只宠物（与 config.jsonc 的 pets[i] 同形，position 嵌套）。

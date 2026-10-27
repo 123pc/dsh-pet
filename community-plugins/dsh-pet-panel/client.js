@@ -1,18 +1,8 @@
 /**
- * dsh-pet-panel —— 浏览器半侧：左侧栏「桌宠控制台」。
- *
- * 形态：sidebar.footer.action 里的一个图标按钮（宽栏时带文字）。
- * 点开是一个小浮层，能：
- *   - 逐只切换 dsh-pet 的显示位置：显示(web+desktop) / 仅网页 / 仅桌面 / 关
- *   - 开关 dsh-dafeiyu（若其接口可用）
- *   - 一键全部关掉 / 全部显示
- *
- * 数据来源是桌宠插件自己的本地 HTTP 接口（同源），不读写它们的配置文件：
- *   GET/POST /dsh-pet-7340/config、/dsh-pet-7340/pet-display
- *   GET/PATCH /plugins/dsh-dafeiyu/config
- *
- * 注意：本文件是「浏览器端副作用脚本」，不能有顶层 import/export；
- * 必须通过 DSH 注入的 window.__ModuleLoader__.load 注册 factory。
+ * 浏览器半侧：经同源接口控制桌宠，不直接写配置或 profile。
+ * 依赖 DSH 的模块加载器、React 与侧栏插槽；本文件是手写入口。
+ * 多步写入串行执行，业务失败回滚已完成的显示变更。
+ * @module dsh-pet-panel/client
  */
 ;(() => {
   function makeFactory() {
@@ -24,6 +14,11 @@
 
       const PET_API = '/dsh-pet-7340'
       const FEIYU_API = '/plugins/dsh-dafeiyu/config'
+      const FORMS = [
+        ['main', '大肥鱼'],
+        ['claude-dafeiyu', 'Claude·站立'],
+        ['claude-dafeiyu-lean', 'Claude·托腮'],
+      ]
       // dsh-whale-widget（小鲸鱼挂件）是往页面里注入的网页挂件，没有开关接口，
       // 只能按它自己的根节点做显隐——这是纯前端操作，不碰它的数据。
       const WIDGET_SELECTOR = '.dshwv-root'
@@ -66,8 +61,10 @@
       ]
 
       async function request(url, init) {
+        const controller = new AbortController()
+        const timer = setTimeout(() => controller.abort(), 10000)
         try {
-          const res = await fetch(url, init)
+          const res = await fetch(url, { ...init, signal: controller.signal })
           const text = await res.text()
           let data = text
           try {
@@ -75,9 +72,11 @@
           } catch {
             /* 保留原文 */
           }
-          return { ok: res.ok, status: res.status, data }
+          return { ok: res.ok && data !== null && typeof data === 'object' && data.ok !== false, status: res.status, data }
         } catch (error) {
           return { ok: false, status: 0, data: String(error) }
+        } finally {
+          clearTimeout(timer)
         }
       }
 
@@ -94,6 +93,7 @@
               id: pet.id,
               name: typeof pet.name === 'string' && pet.name ? pet.name : pet.id,
               display: typeof pet.display === 'string' ? pet.display : 'both',
+              animations: conf.animations,
             })
           }
         }
@@ -133,9 +133,13 @@
           width: 268,
           padding: 12,
           borderRadius: 12,
-          background: 'rgba(30,30,32,0.97)',
-          color: '#f2f2f2',
-          border: '1px solid rgba(255,255,255,0.14)',
+          maxWidth: 'calc(100vw - 16px)',
+          maxHeight: 'calc(100vh - 80px)',
+          overflowY: 'auto',
+          colorScheme: 'light dark',
+          background: 'Canvas',
+          color: 'CanvasText',
+          border: '1px solid color-mix(in srgb, CanvasText 18%, transparent)',
           boxShadow: '0 12px 32px rgba(0,0,0,0.45)',
           fontSize: 12,
           lineHeight: 1.5,
@@ -150,7 +154,7 @@
           marginBottom: 5,
         },
         label: { fontWeight: 600, fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' },
-        seg: { display: 'flex', gap: 3, background: 'rgba(255,255,255,0.07)', borderRadius: 8, padding: 2 },
+        seg: { display: 'flex', gap: 3, background: 'color-mix(in srgb, CanvasText 7%, transparent)', borderRadius: 8, padding: 2 },
         segBtn: {
           flex: 1,
           padding: '3px 0',
@@ -187,8 +191,11 @@
         const [busy, setBusy] = useState('')
         const [note, setNote] = useState('')
         const [pos, setPos] = useState({ left: 16, bottom: 64 })
+        const [actionGroup, setActionGroup] = useState('moves')
+        const [actionName, setActionName] = useState('自然走路')
         const containerRef = useRef(null)
         const buttonRef = useRef(null)
+        const busyRef = useRef(false)
 
         const refresh = useCallback(async () => {
           const cfg = await request(PET_API + '/config')
@@ -204,10 +211,55 @@
           setWidget({ available: !!el, hidden: readWhaleHidden() })
         }, [])
 
+        /** 互斥操作入口；无论业务失败或请求异常都解锁并重新读服务端状态。 */
+        const runOperation = useCallback(async (key, action, message) => {
+          if (busyRef.current) return false
+          busyRef.current = true
+          setBusy(key)
+          setNote('')
+          try {
+            await action()
+            setNote(message)
+            return true
+          } catch (error) {
+            setNote(error.message || String(error))
+            return false
+          } finally {
+            await refresh()
+            busyRef.current = false
+            setBusy('')
+          }
+        }, [refresh])
+
+        /** 多步变更失败时恢复先前显示模式；回滚失败也必须明确报告。 */
+        const changeDisplays = useCallback(async (changes) => {
+          const applied = []
+          const write = (id, display) => request(PET_API + '/pet-display', {
+            method: 'POST', headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ id, display }),
+          })
+          for (const [pet, display] of changes) {
+            if (pet.display === display) continue
+            const result = await write(pet.id, display)
+            if (!result.ok) {
+              // 超时可能发生在服务端写入后；失败的这一步也要尝试恢复。
+              const restored = await write(pet.id, pet.display)
+              let rollbackFailed = !restored.ok
+              for (const previous of applied.reverse()) {
+                if (!(await write(previous.id, previous.display)).ok) rollbackFailed = true
+              }
+              const detail = result.data?.message || result.data?.error || ('HTTP ' + result.status)
+              throw new Error('切换失败：' + detail + (rollbackFailed ? '；部分状态未恢复，请刷新后检查' : '；已恢复原显示设置'))
+            }
+            applied.push(pet)
+          }
+        }, [])
+
         // 页面刚加载时就把上次的隐藏状态补上（挂件脚本可能比本插件晚注入）
         useEffect(() => {
           applyWhaleHidden(readWhaleHidden())
-        }, [])
+          void refresh()
+        }, [refresh])
 
         useEffect(() => {
           if (!open) return undefined
@@ -238,25 +290,12 @@
 
         const setDisplay = useCallback(
           async (id, display) => {
-            setBusy('pet:' + id)
-            setNote('')
-            const result = await request(PET_API + '/pet-display', {
-              method: 'POST',
-              headers: { 'content-type': 'application/json' },
-              body: JSON.stringify({ id, display }),
-            })
-            setBusy('')
-            if (!result.ok) {
-              setNote('切换失败：HTTP ' + result.status)
-            } else if (result.data && result.data.ok === false) {
-              setNote(result.data.message || '切换失败')
-            } else {
-              const label = DISPLAY_MODES.find((m) => m[0] === display)
-              setNote('已切换为「' + (label ? label[1] : display) + '」')
-              await refresh()
-            }
+            const pet = pets.find(p => p.id === id)
+            if (!pet) return
+            const label = DISPLAY_MODES.find(m => m[0] === display)?.[1] || display
+            return runOperation('pet:' + id, () => changeDisplays([[pet, display]]), '已切换为「' + label + '」')
           },
-          [refresh],
+          [pets, changeDisplays, runOperation],
         )
 
         const swapTo = useCallback(
@@ -265,41 +304,27 @@
               setNote('没找到这只宠物：' + targetId)
               return
             }
-            setBusy('swap:' + targetId)
-            setNote('')
-            for (const pet of pets) {
-              const display = pet.id === targetId ? 'both' : 'none'
-              await request(PET_API + '/pet-display', {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ id: pet.id, display }),
-              })
-            }
-            setBusy('')
-            setNote(targetId === 'main' ? '已切换为「大肥鱼」' : '已切换为「Claude 工牌」')
-            await refresh()
+            const family = pets.filter(p => FORMS.some(([id]) => id === p.id))
+            const target = family.find(p => p.id === targetId)
+            const display = family.find(p => p.display !== 'none')?.display || 'both'
+            const changes = family.filter(p => p.id !== targetId).map(p => [p, 'none'])
+            changes.push([target, display])
+            return runOperation('swap:' + targetId, () => changeDisplays(changes),
+              '已切换为「' + FORMS.find(([id]) => id === targetId)[1] + '」')
           },
-          [pets, refresh],
+          [pets, runOperation, changeDisplays],
         )
 
         const setFeiyuEnabled = useCallback(
           async (enabled) => {
-            setBusy('feiyu')
-            setNote('')
-            const result = await request(FEIYU_API, {
-              method: 'PATCH',
-              headers: { 'content-type': 'application/json' },
-              body: JSON.stringify({ enabled }),
-            })
-            setBusy('')
-            if (!result.ok) {
-              setNote('大肥鱼接口不可用（插件未启用？）')
-              return
-            }
-            setFeiyu({ available: true, enabled })
-            setNote(enabled ? '已打开大肥鱼' : '已关闭大肥鱼')
+            return runOperation('feiyu', async () => {
+              const result = await request(FEIYU_API, {
+                method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ enabled }),
+              })
+              if (!result.ok) throw new Error('大肥鱼接口不可用或保存失败')
+            }, enabled ? '已打开大肥鱼' : '已关闭大肥鱼')
           },
-          [],
+          [runOperation],
         )
 
         const setWidgetHidden = useCallback((hidden) => {
@@ -317,26 +342,21 @@
 
         const allDisplay = useCallback(
           async (display) => {
-            setBusy('all')
-            setNote('')
-            for (const pet of pets) {
-              // 串行，避免同时触发多次桌面 helper 重启
-              await request(PET_API + '/pet-display', {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ id: pet.id, display }),
-              })
-            }
-            setBusy('')
-            setNote(display === 'none' ? '已全部关掉' : '已全部显示')
-            await refresh()
+            return runOperation('all', async () => {
+              await changeDisplays(pets.map(pet => [pet, display]))
+              if (feiyu.available) {
+                const result = await request(FEIYU_API, { method: 'PATCH', headers: { 'content-type': 'application/json' },
+                  body: JSON.stringify({ enabled: display !== 'none' }) })
+                if (!result.ok) throw new Error('dsh-pet 已更新；独立大肥鱼开关失败，请检查')
+              }
+            }, display === 'none' ? '已全部关掉' : '已全部显示')
           },
-          [pets, refresh],
+          [pets, feiyu.available, runOperation, changeDisplays],
         )
 
         const allToggle = useCallback(
           async (display) => {
-            await allDisplay(display)
+            if (!await allDisplay(display)) return
             applyWhaleHidden(display === 'none')
             setWidget((prev) => Object.assign({}, prev, { hidden: display === 'none' }))
           },
@@ -344,6 +364,32 @@
         )
 
         const active = pets.some((pet) => pet.display !== 'none') || feiyu.enabled || (widget.available && !widget.hidden)
+        const standing = pets.find(p => p.id === 'claude-dafeiyu')
+        const a = standing?.animations
+        const groups = a ? [
+          ['moves', '移动', (a.moves?.actions || []).map(item => item.name)],
+          ['clicks', '点击回应', a.clicks || []],
+          ['idle', '待机', a.idle || []],
+          ['turn', '转向', a.turn || []],
+          ['drag', '拖拽反馈', a.drag || []],
+          ...(a.categories || []).map(c => [c.id, c.id, c.actions]),
+          ...Object.entries(a.events || {}).map(([key, names]) => [key,
+            { balance: '余额六档', whisper: '碎碎念', workStatus: '工作状态六档' }[key] || key, names.flat()]),
+        ].filter(group => group[2].length > 0) : []
+        const selectedGroup = groups.find(g => g[0] === actionGroup) || groups[0]
+        const options = selectedGroup?.[2] || []
+        const selectedAction = options.includes(actionName) ? actionName : options[0]
+        const canPlay = !!standing && standing.display !== 'none'
+
+        /** 名称点播保留宿主的移动语义；不能改成裸素材 URL，否则只会原地播放。 */
+        const playAction = (name, facing) => runOperation('action', async () => {
+          if (!canPlay || !name) throw new Error('请先切换至 Claude·站立')
+          const result = await request(PET_API + '/anim?pet=' + encodeURIComponent(standing.id) + '&surface=any', {
+            method: 'POST', headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ name, ...(facing ? { facing } : {}) }),
+          })
+          if (!result.ok) throw new Error(result.data?.message || '动作请求失败')
+        }, '已请求「' + name + '」' + (facing ? '，到屏幕边缘会停止' : ''))
 
         return h(
           'div',
@@ -387,10 +433,7 @@
                   h(
                     'div',
                     { style: S.seg },
-                    [
-                      ['main', '大肥鱼'],
-                      ['claude-dafeiyu', 'Claude 工牌'],
-                    ].map(([id, label]) => {
+                    FORMS.map(([id, label]) => {
                       const pet = pets.find((p) => p.id === id)
                       const on = !!pet && pet.display !== 'none'
                       return h(
@@ -398,7 +441,7 @@
                         {
                           key: id,
                           type: 'button',
-                          disabled: !pet || busy === 'swap:' + id,
+                          disabled: !pet || !!busy,
                           onClick: () => void swapTo(id),
                           style: Object.assign({}, S.segBtn, on ? S.segBtnOn : null),
                         },
@@ -407,6 +450,28 @@
                     }),
                   ),
                 ),
+                standing ? h('div', { style: S.row },
+                  h('div', { style: S.rowHead }, h('span', { style: S.label }, 'Claude 动作')),
+                  h('div', { style: S.seg },
+                    h('button', { type: 'button', disabled: !!busy || !canPlay || !a?.moves?.actions?.length, style: S.segBtn,
+                      onClick: () => void playAction(a?.moves?.actions?.[0]?.name, 'left') }, '向左走'),
+                    h('button', { type: 'button', disabled: !!busy || !canPlay || !a?.moves?.actions?.length, style: S.segBtn,
+                      onClick: () => void playAction(a?.moves?.actions?.[0]?.name, 'right') }, '向右走')),
+                  groups.length ? h('div', { style: { display: 'flex', gap: 4, marginTop: 6 } },
+                    h('select', { 'aria-label': '动作分类', value: selectedGroup?.[0], disabled: !!busy,
+                      style: { width: 86, minWidth: 0, background: 'Canvas', color: 'CanvasText', borderRadius: 5 },
+                      onChange: event => { setActionGroup(event.target.value); setActionName('') } },
+                      groups.map(([key, label]) => h('option', { key, value: key }, label))),
+                    h('select', { 'aria-label': '动作名称', value: selectedAction, disabled: !!busy,
+                      style: { flex: 1, minWidth: 0, background: 'Canvas', color: 'CanvasText', borderRadius: 5 },
+                      onChange: event => setActionName(event.target.value) },
+                      options.map(name => h('option', { key: name, value: name }, name)))) : null,
+                  h('button', { type: 'button', disabled: !!busy || !canPlay || !selectedAction,
+                    style: { ...S.link, width: '100%', marginTop: 6 },
+                    onClick: () => void playAction(selectedAction) }, '播放选中动作'),
+                  !canPlay ? h('div', { style: S.unavailable }, '先切换至 Claude·站立以点播动作') : null,
+                  !a?.moves?.actions?.length ? h('div', { style: S.unavailable }, '走路正在重绘，样片验收后开放') : null,
+                ) : null,
                 pets.length === 0
                   ? h('div', { style: S.unavailable }, 'dsh-pet 未安装（当前用小鲸鱼挂件代替）')
                   : pets.map((pet) =>
@@ -428,7 +493,7 @@
                               {
                                 key: value,
                                 type: 'button',
-                                disabled: busy === 'pet:' + pet.id || busy === 'all',
+                                disabled: !!busy,
                                 onClick: () => void setDisplay(pet.id, value),
                                 style: Object.assign({}, S.segBtn, pet.display === value ? S.segBtnOn : null),
                               },
@@ -455,7 +520,7 @@
                             {
                               key: label,
                               type: 'button',
-                              disabled: busy === 'feiyu',
+                              disabled: !!busy,
                               onClick: () => void setFeiyuEnabled(value),
                               style: Object.assign({}, S.segBtn, feiyu.enabled === value ? S.segBtnOn : null),
                             },
@@ -465,7 +530,7 @@
                       )
                     : h('div', { style: S.unavailable }, '未启用（当前 profile 未加载该插件）'),
                 ),
-                h('div', { style: S.note }, busy ? '处理中…' : note),
+                h('div', { style: S.note, role: 'status', 'aria-live': 'polite' }, busy ? '处理中…' : note),
                 h(
                   'div',
                   { style: S.row },
@@ -487,6 +552,7 @@
                         {
                           key: label,
                           type: 'button',
+                          disabled: !!busy,
                           onClick: () => setWidgetHidden(value),
                           style: Object.assign({}, S.segBtn, widget.hidden === value ? S.segBtnOn : null),
                         },
@@ -500,15 +566,22 @@
                   { style: S.links },
                   h(
                     'button',
-                    { type: 'button', style: S.link, onClick: () => void allToggle('none') },
+                    { type: 'button', disabled: !!busy, style: S.link, onClick: () => void allToggle('none') },
                     '全部关掉',
                   ),
                   h(
                     'button',
-                    { type: 'button', style: S.link, onClick: () => void allToggle('both') },
+                    { type: 'button', disabled: !!busy, style: S.link, onClick: () => void allToggle('both') },
                     '全部显示',
                   ),
                 ),
+                h('button', {
+                  type: 'button', disabled: !!busy || pets.length === 0, style: { ...S.link, width: '100%', marginTop: 8 },
+                  onClick: () => void runOperation('reload', async () => {
+                    const result = await request(PET_API + '/reload', { method: 'POST' })
+                    if (!result.ok) throw new Error('重载请求失败')
+                  }, '已请求重载桌面；网页请刷新。若新角色仍缺失，请重启 DSH。'),
+                }, '重载角色包'),
               )
             : null,
         )

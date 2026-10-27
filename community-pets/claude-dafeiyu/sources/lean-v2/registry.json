@@ -1,0 +1,310 @@
+{
+  "mode": "builtin-imagegen",
+  "actions": [
+    {
+      "id": "lean-rest",
+      "name": "托腮·安静陪伴",
+      "sheet": "sources/lean-v2/lean-tail.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/lean-rest/clip.webm",
+        "gif": "actions/lean-rest/clip.gif",
+        "contact": "actions/lean-rest/contact.png",
+        "frames": 8,
+        "duration": 14.0,
+        "sheetSha256": "3fa732ed2ecd81bb9de3a96451d810e40a1c827027d36b6b2fd5c815da986c3f"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/requests.json"
+    },
+    {
+      "id": "lean-tail",
+      "name": "托腮·轻摇鲸尾",
+      "sheet": "sources/lean-v2/lean-tail.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/lean-tail/clip.webm",
+        "gif": "actions/lean-tail/clip.gif",
+        "contact": "actions/lean-tail/contact.png",
+        "frames": 8,
+        "duration": 4.0,
+        "sheetSha256": "3fa732ed2ecd81bb9de3a96451d810e40a1c827027d36b6b2fd5c815da986c3f"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/requests.json"
+    },
+    {
+      "id": "lean-hair",
+      "name": "托腮·指尖拨头发",
+      "sheet": "sources/lean-v2/lean-hair.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/lean-hair/clip.webm",
+        "gif": "actions/lean-hair/clip.gif",
+        "contact": "actions/lean-hair/contact.png",
+        "frames": 8,
+        "duration": 4.5,
+        "sheetSha256": "e297bcfa931581612eaf40df80cbc200cb2796b2fe789bc43f9807cf21609c01"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/requests.json"
+    },
+    {
+      "id": "lean-hum",
+      "name": "托腮·摇头哼歌",
+      "sheet": "sources/lean-v2/lean-hum-v2.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/lean-hum/clip.webm",
+        "gif": "actions/lean-hum/clip.gif",
+        "contact": "actions/lean-hum/contact.png",
+        "frames": 8,
+        "duration": 4.5,
+        "sheetSha256": "613e73a683400d1a581f2fb47befd4eb404a399a14da3637c9cbc51caba9418e"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/revisions.json"
+    },
+    {
+      "id": "laptop-open",
+      "name": "托腮办公·拿出并打开电脑",
+      "sheet": "sources/lean-v2/laptop-open-v2.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          18,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/laptop-open/clip.webm",
+        "gif": "actions/laptop-open/clip.gif",
+        "contact": "actions/laptop-open/contact.png",
+        "frames": 8,
+        "duration": 3.5,
+        "sheetSha256": "b088caacc3045ffd5d4e5c6e725db08755b68743ec4f9703ac2ba15ea16ebec2"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/revisions.json"
+    },
+    {
+      "id": "laptop-type",
+      "name": "托腮办公·轻敲键盘",
+      "sheet": "sources/lean-v2/laptop-type-v2.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/laptop-type/clip.webm",
+        "gif": "actions/laptop-type/clip.gif",
+        "contact": "actions/laptop-type/contact.png",
+        "frames": 8,
+        "duration": 7.5,
+        "sheetSha256": "43796e59ee92ba5b8e1e8215599b92d253431e0f107dc09d094ca4930320e588"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/revisions.json"
+    },
+    {
+      "id": "laptop-think",
+      "name": "托腮办公·停笔想一想",
+      "sheet": "sources/lean-v2/laptop-think-v2.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/laptop-think/clip.webm",
+        "gif": "actions/laptop-think/clip.gif",
+        "contact": "actions/laptop-think/contact.png",
+        "frames": 8,
+        "duration": 6.0,
+        "sheetSha256": "b5cc0cb74b38a2976f38b85da5df6a284cd92cc092131ea98a3ac211cdc8b7af"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/revisions.json"
+    },
+    {
+      "id": "laptop-stretch",
+      "name": "托腮办公·揉眼伸肩",
+      "sheet": "sources/lean-v2/laptop-stretch-v2.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/laptop-stretch/clip.webm",
+        "gif": "actions/laptop-stretch/clip.gif",
+        "contact": "actions/laptop-stretch/contact.png",
+        "frames": 8,
+        "duration": 4.5,
+        "sheetSha256": "97d931e40b7273724547207b0d6b160c208f223c2f30c975025476568f9506a6"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/revisions.json"
+    },
+    {
+      "id": "laptop-close",
+      "name": "托腮办公·收起电脑",
+      "sheet": "sources/lean-v2/laptop-close-v2.png",
+      "settings": {
+        "cols": 4,
+        "rows": 2,
+        "height": 290,
+        "baseline": 325,
+        "verticalOffsets": [
+          0,
+          0,
+          0,
+          0,
+          8,
+          20,
+          0,
+          0
+        ]
+      },
+      "status": "self-reviewed",
+      "rendered": {
+        "preview": "actions/laptop-close/clip.webm",
+        "gif": "actions/laptop-close/clip.gif",
+        "contact": "actions/laptop-close/contact.png",
+        "frames": 8,
+        "duration": 3.5,
+        "sheetSha256": "cb713a7db3070fe6ba2145831e781cb87851d5fe5270cfb08728f02a608ed202"
+      },
+      "review": {
+        "by": "codex-visual-review",
+        "note": "Reviewed complete rendered contact sheets: no neighbouring silhouettes, two continuous arms/hands, hair-release path, connected tail, fixed plain laptop design, actual opening/closing phases, clean composited transparency. Registered below-table reach without clipping. User has not yet approved these new assets."
+      },
+      "promptSet": "sources/lean-v2/revisions.json"
+    }
+  ]
+}

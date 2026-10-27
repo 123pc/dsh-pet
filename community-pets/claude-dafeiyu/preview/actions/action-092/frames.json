@@ -1,0 +1,27 @@
+{
+  "name": "余额-钱袋满溢",
+  "status": "self-reviewed",
+  "fps": 24,
+  "sequence": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "holds": [
+    0.5,
+    0.625,
+    0.75,
+    0.625
+  ],
+  "frames": [
+    "frame-01.png",
+    "frame-02.png",
+    "frame-03.png",
+    "frame-04.png"
+  ],
+  "review": {
+    "by": "codex-visual-review",
+    "note": "Rechecked all repaired full drawings and extracted contacts. Run now has near-arm forward/back differences across opposite phases; alpha compositing confirms empty background despite hidden RGB color. Breakfast mug remains in left hand and dough in right throughout. Removed stray maid headband from back view. Restored blue irises in near-empty purse surprise."
+  }
+}

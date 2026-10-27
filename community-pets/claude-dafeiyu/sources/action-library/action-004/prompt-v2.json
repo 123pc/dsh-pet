@@ -1,0 +1,5 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: background-extraction and precise-object-edit. Edit this four-pose character sheet. Keep exactly FOUR COMPLETE separate drawings in one horizontal row, same poses and outfit: standing, crouch anticipation, airborne happy hop, soft landing. REMOVE ALL colored glow, gray clouds, ground rings, floor shadows, orange impact strokes and any background haze. Each figure must have a clean genuinely transparent background and must NOT touch any other figure. Shrink each complete figure to 80% inside its own quarter of the sheet, leaving wide empty margins around hair, ahoge, tail, hands and shoes. Restore any tail/shoe tip at the edge fully. Preserve anatomy, face, clothing and exact \"Claude\" badge. No grid lines, no labels. This is cleanup of complete drawings, not a new scene.",
+  "upstreamReference": "sources/upstream-reference/action-004.png"
+}

@@ -1,0 +1,120 @@
+{
+  "fps": 8,
+  "visualApproval": "pending",
+  "method": "whole-character-keyframes",
+  "registration": "translation of complete drawing; identical .21 scale for all frames",
+  "frames": [
+    {
+      "file": "A.png",
+      "phase": "\u8fd1\u4fa7\u811a\u843d\u5730",
+      "scale": 0.21,
+      "offset": [
+        212,
+        28
+      ],
+      "anchor": [
+        376.1641791044776,
+        301.6313669746506
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "E.png",
+      "phase": "\u843d\u5730\u7f13\u51b2",
+      "scale": 0.21,
+      "offset": [
+        212,
+        28
+      ],
+      "anchor": [
+        376.96494992846925,
+        301.17262756318553
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "B.png",
+      "phase": "\u8fd1\u4fa7\u811a\u652f\u6491",
+      "scale": 0.21,
+      "offset": [
+        212,
+        28
+      ],
+      "anchor": [
+        376.932,
+        300.96070588235295
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "F.png",
+      "phase": "\u8fdc\u4fa7\u811a\u5411\u524d\u6446",
+      "scale": 0.21,
+      "offset": [
+        211,
+        28
+      ],
+      "anchor": [
+        383.17388251813713,
+        300.6899134097823
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "C.png",
+      "phase": "\u8fdc\u4fa7\u811a\u843d\u5730",
+      "scale": 0.21,
+      "offset": [
+        211,
+        28
+      ],
+      "anchor": [
+        382.7620721987811,
+        301.1207219878106
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "G.png",
+      "phase": "\u6362\u811a\u7f13\u51b2",
+      "scale": 0.21,
+      "offset": [
+        210,
+        28
+      ],
+      "anchor": [
+        383.69923416105826,
+        299.97563239730795
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "D.png",
+      "phase": "\u8fdc\u4fa7\u811a\u652f\u6491",
+      "scale": 0.21,
+      "offset": [
+        211,
+        29
+      ],
+      "anchor": [
+        382.12520477416336,
+        299.1694359934472
+      ],
+      "wholeImageOnly": true
+    },
+    {
+      "file": "H.png",
+      "phase": "\u8fd1\u4fa7\u811a\u5411\u524d\u6446",
+      "scale": 0.21,
+      "offset": [
+        209,
+        29
+      ],
+      "anchor": [
+        392.00740397963904,
+        298.10249884312816
+      ],
+      "wholeImageOnly": true
+    }
+  ]
+}

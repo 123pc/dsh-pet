@@ -1,0 +1,27 @@
+{
+  "name": "哈欠连天",
+  "status": "self-reviewed",
+  "fps": 24,
+  "sequence": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "holds": [
+    0.5,
+    0.625,
+    0.75,
+    0.625
+  ],
+  "frames": [
+    "frame-01.png",
+    "frame-02.png",
+    "frame-03.png",
+    "frame-04.png"
+  ],
+  "review": {
+    "by": "codex-visual-review",
+    "note": "Viewed full generated poses and extracted keyframes: two coherent arms/hands, intact hair/tail/shoes, readable head-turn, drag, wave, yawn/stretch and emotional gestures; rice spoon follows hand and bowl remains held; sleeping loop is gentle. Browser playback and speed/reference switching checked. This is Codex visual review, not user approval."
+  }
+}

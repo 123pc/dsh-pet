@@ -1,0 +1,27 @@
+{
+  "name": "收红包",
+  "status": "self-reviewed",
+  "fps": 24,
+  "sequence": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "holds": [
+    0.5,
+    0.625,
+    0.75,
+    0.625
+  ],
+  "frames": [
+    "frame-01.png",
+    "frame-02.png",
+    "frame-03.png",
+    "frame-04.png"
+  ],
+  "review": {
+    "by": "codex-visual-review",
+    "note": "Viewed original action reference and every extracted complete pose. Checked coherent limbs, held food/utensils, distinct seasonal props, readable Chinese bubbles and Fu, changing pouch contents and work gestures; source margins intact. Juggling corrected to exactly three balls in every frame. Jump/celebration whole-frame offsets match actual airborne pose. This is Codex visual inspection, not user approval."
+  }
+}

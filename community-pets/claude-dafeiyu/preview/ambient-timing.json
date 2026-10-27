@@ -1,0 +1,13 @@
+{
+  "targetTimeShare": 0.65,
+  "restDuration": 16.0,
+  "weights": {
+    "idle": 24.5,
+    "turn": 3,
+    "move": 4
+  },
+  "meanOtherActionDuration": 2.6806684733514,
+  "expectedTimeShare": 0.6499473347409853,
+  "expectedFixedTimeShare": 0.6594991339157381,
+  "scope": "Uninterrupted autonomous animation; explicit work, clicks and other events take priority."
+}

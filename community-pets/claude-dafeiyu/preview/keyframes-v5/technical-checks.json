@@ -1,0 +1,70 @@
+{
+  "revision": "v5",
+  "visualApproval": "pending",
+  "technicalChecksOnly": true,
+  "sourceDrawings": 8,
+  "sourceSha256": {
+    "A.png": "f9950ddc94f72a5f3b65df7371f44f5a7a3d62e05b4c10a01db196e1c096df8b",
+    "E.png": "7a9e1aaa98769b6d7c168c3e52d78d15f38a97db578cf9744ea0c792b3c26db7",
+    "B.png": "76c7dd8a4a715f3b9b7a378a8762f3d4b89fe21f42ba52c057f35ebd55ef481d",
+    "F.png": "2d7a570e7969b8d7dda2b75b69ccd324fbd4d161df82f578a0fb1cf44c2195c4",
+    "C.png": "dfc59f89d344be581e9b528247b1188fdabd6b90357d487e0ca3bafb148d1db6",
+    "G.png": "cc5ae16899dae0aba5eb214a7708a88d40064853e5c522142878079d0115e381",
+    "D.png": "60a7a66fd0a388eed4eb4da1c949856d5582e6adac19d72069fc0ca029431193",
+    "H.png": "9ef8b9f1e9aa655c3e194e95296d7520a7b8a847e8c4a0e7236e7c115aba542e"
+  },
+  "renderedBounds": [
+    [
+      214,
+      30,
+      424,
+      344
+    ],
+    [
+      220,
+      30,
+      424,
+      346
+    ],
+    [
+      232,
+      30,
+      426,
+      346
+    ],
+    [
+      219,
+      30,
+      424,
+      347
+    ],
+    [
+      226,
+      30,
+      425,
+      343
+    ],
+    [
+      210,
+      29,
+      424,
+      345
+    ],
+    [
+      211,
+      30,
+      424,
+      346
+    ],
+    [
+      212,
+      30,
+      423,
+      347
+    ]
+  ],
+  "decodedFrames": 96,
+  "encodingFps": 24,
+  "realAlphaOnEveryFrame": true,
+  "draftInstalled": false
+}

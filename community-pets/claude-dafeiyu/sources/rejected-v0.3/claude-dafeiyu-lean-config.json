@@ -1,0 +1,107 @@
+{
+  "notificationsEnabled": true,
+  "pets": [
+    {
+      "id": "claude-dafeiyu-lean",
+      "name": "Claude·托腮",
+      "size": 380,
+      "balanceEnabled": true,
+      "whisperEnabled": true,
+      "workStatusEnabled": true,
+      "fixedEnabled": true,
+      "display": "none",
+      "position": {
+        "corner": "bottom-right",
+        "marginX": 40,
+        "marginY": 24
+      }
+    }
+  ],
+  "animations": {
+    "idle": [
+      "lean"
+    ],
+    "turn": [
+      "turn"
+    ],
+    "drag": [
+      "drag"
+    ],
+    "clicks": [
+      "click"
+    ],
+    "moves": {
+      "default": {
+        "minDist": 60,
+        "maxDist": 240,
+        "margin": 20,
+        "leadSec": 2,
+        "tailSec": 2
+      },
+      "actions": [
+        {
+          "name": "leanSway"
+        }
+      ]
+    },
+    "categories": [
+      {
+        "id": "托腮",
+        "weight": 80,
+        "actions": [
+          "lean",
+          "leanSway"
+        ],
+        "noMirror": true
+      }
+    ],
+    "events": {
+      "balance": [
+        "eventIdle"
+      ],
+      "whisper": [
+        "eventIdle"
+      ],
+      "workStatus": [
+        "eventIdle",
+        "eventIdle",
+        "eventIdle",
+        "eventIdle",
+        "eventIdle",
+        "eventIdle"
+      ]
+    }
+  },
+  "animationWeights": {
+    "idle": 20,
+    "turn": 0,
+    "move": 0
+  },
+  "workStatusTexts": [
+    [
+      "工牌戴好了，让我想想。",
+      "大肥鱼正在深度思考…"
+    ],
+    [
+      "Claude 工装开工啦。",
+      "敲敲键盘，继续干活。"
+    ],
+    [
+      "这一页归档好了。",
+      "检查结果，接着来。"
+    ],
+    [
+      "这里等你点个头。",
+      "轮到你决定啦。"
+    ],
+    [
+      "搞定！奖励一碗白饭。",
+      "下班下班，摸鱼去。"
+    ],
+    [
+      "卡了一下，先看看原因。",
+      "工牌没掉，问题再找找。"
+    ]
+  ],
+  "whisperPrompt": "你是戴着Claude工牌的DeepSeek大肥鱼，蓝发鲸耳，穿奶油白卫衣。慵懒、爱干饭、偶尔吐槽但会认真陪用户工作。自然地说一句二十字以内的话，不解释系统或模型。"
+}

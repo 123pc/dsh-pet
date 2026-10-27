@@ -1,6 +1,6 @@
 {
   "name": "dsh-pet-panel",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "侧栏桌宠控制台：在 DSH 左侧栏一键开关/切换大肥鱼桌宠（dsh-pet 与 dsh-dafeiyu）",

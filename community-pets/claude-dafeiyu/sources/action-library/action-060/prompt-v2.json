@@ -1,0 +1,7 @@
+{
+  "mode": "builtin",
+  "prompt": "Edit this transparent 2x2 four-pose breakfast sprite sheet. Preserve frames1,2,4 and character identity/outfit/style/size. Fix ONLY frame3 bottom-left: the MUG must be held in the character's LEFT hand (on SCREEN RIGHT), lifted toward her lips from screen right; her RIGHT hand (SCREEN LEFT) continues holding the golden youtiao lowered by her left-side silhouette. Mug and fried dough may NEVER exchange hands across the four frames. Two coherent arms/hands only. Keep Claude badge intact, full hair/tail/shoes, true transparent background, no labels/gridlines. All four full figures inside original cells.",
+  "references": [
+    "D:/project/dsh-pet/community-pets/claude-dafeiyu/sources/action-library/action-060/sheet.png"
+  ]
+}

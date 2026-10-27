@@ -1,0 +1,27 @@
+{
+  "name": "原地敲击桌面互动",
+  "status": "self-reviewed",
+  "fps": 24,
+  "sequence": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "holds": [
+    0.5,
+    0.625,
+    0.75,
+    0.625
+  ],
+  "frames": [
+    "frame-01.png",
+    "frame-02.png",
+    "frame-03.png",
+    "frame-04.png"
+  ],
+  "review": {
+    "by": "codex-visual-review",
+    "note": "Viewed generated sheets and extracted contact sheets: coherent full bodies, two arms, intact hair/tail; curtsy bends knees, squat compresses by joint bending, cake remains held/hidden, tail contact and surprise clear. Jump frame extraction corrected to exclude neighbouring artwork; stray divider artifacts removed from shy response."
+  }
+}

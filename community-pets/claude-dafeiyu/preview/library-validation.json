@@ -1,0 +1,855 @@
+{
+  "reviewedActions": 106,
+  "wholeDrawings": 464,
+  "decodedFrames": 6876,
+  "results": [
+    {
+      "id": "idle",
+      "name": "待机呼吸休闲",
+      "drawings": 4,
+      "decodedFrames": 96,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-002",
+      "name": "东张西望",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-003",
+      "name": "被鼠标拖拽悬空反馈",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-004",
+      "name": "点击回应-开心跃动",
+      "drawings": 4,
+      "decodedFrames": 42,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-005",
+      "name": "点击回应-害羞惊讶",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-006",
+      "name": "点击回应-傲娇生气",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-007",
+      "name": "点击回应-挠痒咯咯笑",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "wave",
+      "name": "点击回应-元气挥手",
+      "drawings": 4,
+      "decodedFrames": 66,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-009",
+      "name": "螃蟹走路",
+      "drawings": 8,
+      "decodedFrames": 120,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-010",
+      "name": "原地漂浮踏步",
+      "drawings": 8,
+      "decodedFrames": 120,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-011",
+      "name": "原地左转奔跑",
+      "drawings": 8,
+      "decodedFrames": 120,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-012",
+      "name": "悠闲哼歌",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-013",
+      "name": "超大伸懒腰",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-014",
+      "name": "原地敲击桌面互动",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-015",
+      "name": "原地重力下蹲压缩",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-016",
+      "name": "哈欠连天",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "sleep",
+      "name": "原地小憩沉眠",
+      "drawings": 4,
+      "decodedFrames": 108,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-018",
+      "name": "女仆屈膝礼仪",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-019",
+      "name": "被吓一跳",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-020",
+      "name": "小幅度原地360度旋转展示",
+      "drawings": 8,
+      "decodedFrames": 66,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-021",
+      "name": "偷吃零食被抓住",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-022",
+      "name": "用鲸鱼尾巴拍打地面",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-023",
+      "name": "打瞌睡被惊醒",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-024",
+      "name": "照镜子",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-025",
+      "name": "整体换装试色",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-026",
+      "name": "轻快记录",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-027",
+      "name": "写代码",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-028",
+      "name": "摇扇纳凉",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-029",
+      "name": "晨间刷牙",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-030",
+      "name": "原地专心玩魔方",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-031",
+      "name": "原地蹲下玩玩具汽车",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-032",
+      "name": "鲸鱼吐泡泡特效",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-033",
+      "name": "原地跳跃抓碎头顶物品",
+      "drawings": 4,
+      "decodedFrames": 45,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-034",
+      "name": "玩游戏气急败坏",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-035",
+      "name": "玩水枪",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-036",
+      "name": "小提琴演奏",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-037",
+      "name": "蓝鲸现世",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-038",
+      "name": "优雅女仆舞",
+      "drawings": 8,
+      "decodedFrames": 108,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-039",
+      "name": "轻快摇摆舞",
+      "drawings": 8,
+      "decodedFrames": 108,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-040",
+      "name": "可爱宅舞",
+      "drawings": 8,
+      "decodedFrames": 108,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-041",
+      "name": "吹气球",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-042",
+      "name": "动物环绕",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-043",
+      "name": "放风筝",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-044",
+      "name": "拆礼物",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-045",
+      "name": "变鸽子",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-046",
+      "name": "扑克魔术",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-047",
+      "name": "抽陀螺",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-048",
+      "name": "吹笛子",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-049",
+      "name": "蝴蝶蜜蜂环绕头顶开花",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-050",
+      "name": "撸猫",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-051",
+      "name": "凭空生花",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-052",
+      "name": "骑木马",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-053",
+      "name": "三球抛接",
+      "drawings": 8,
+      "decodedFrames": 96,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-054",
+      "name": "踢毽子",
+      "drawings": 8,
+      "decodedFrames": 96,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-055",
+      "name": "下五子棋",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-056",
+      "name": "荡秋千",
+      "drawings": 8,
+      "decodedFrames": 96,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "rice",
+      "name": "吃白饭",
+      "drawings": 4,
+      "decodedFrames": 96,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-058",
+      "name": "大口吃零食",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-059",
+      "name": "吃Token",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-060",
+      "name": "吃早餐",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-061",
+      "name": "吃午餐",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-062",
+      "name": "吃晚餐",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-063",
+      "name": "吃冰淇淋融化",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-064",
+      "name": "吃大闸蟹",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-065",
+      "name": "吃糖葫芦",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-066",
+      "name": "吃长寿面",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-067",
+      "name": "吃西瓜",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-068",
+      "name": "涮火锅",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-069",
+      "name": "被落叶淹没",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-070",
+      "name": "中秋赏月吃月饼",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-071",
+      "name": "堆雪人",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-072",
+      "name": "放烟花",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-073",
+      "name": "吃粽子",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-074",
+      "name": "吃年糕",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-075",
+      "name": "吃青团",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-076",
+      "name": "吃腊八粥",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-077",
+      "name": "吃重阳糕",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-078",
+      "name": "收红包",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-079",
+      "name": "写福字",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-080",
+      "name": "穿针乞巧",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-081",
+      "name": "舞狮头",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-082",
+      "name": "讨糖南瓜灯",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-083",
+      "name": "插茱萸赏菊",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-084",
+      "name": "放河灯",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-085",
+      "name": "萌化小幽灵",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-086",
+      "name": "装点圣诞树",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-087",
+      "name": "放孔明灯",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-088",
+      "name": "吃汤圆",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-089",
+      "name": "吃饺子",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-090",
+      "name": "是啊，吃什么",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-091",
+      "name": "深度思考碎碎念",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-092",
+      "name": "余额-钱袋满溢",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-093",
+      "name": "余额-金袋叮当",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-094",
+      "name": "余额-钱袋如常",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-095",
+      "name": "余额-数金皱眉",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-096",
+      "name": "余额-袋空如洗",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-097",
+      "name": "余额-分文不剩",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-098",
+      "name": "碎碎念-擦桌碎碎念",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-099",
+      "name": "碎碎念-发呆碎碎念",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-100",
+      "name": "碎碎念-对屏碎碎念",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-101",
+      "name": "工作状态-思考冒泡",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-102",
+      "name": "工作状态-忙碌点按",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-103",
+      "name": "工作状态-清点归档",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-104",
+      "name": "工作状态-原地踱步张望",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-105",
+      "name": "工作状态-雀跃庆祝",
+      "drawings": 4,
+      "decodedFrames": 45,
+      "alpha": true,
+      "unclipped": true
+    },
+    {
+      "id": "action-106",
+      "name": "工作状态-垂头叹气冒汗",
+      "drawings": 4,
+      "decodedFrames": 60,
+      "alpha": true,
+      "unclipped": true
+    }
+  ]
+}

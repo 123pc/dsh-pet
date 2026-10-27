@@ -1,0 +1,74 @@
+{
+  "completed": true,
+  "newSheets": 8,
+  "newWholeDrawings": 64,
+  "videos": [
+    {
+      "id": "lean-rest",
+      "decodedFrames": 336,
+      "duration": 14.0
+    },
+    {
+      "id": "lean-tail",
+      "decodedFrames": 96,
+      "duration": 4.0
+    },
+    {
+      "id": "lean-hair",
+      "decodedFrames": 108,
+      "duration": 4.5
+    },
+    {
+      "id": "lean-hum",
+      "decodedFrames": 108,
+      "duration": 4.5
+    },
+    {
+      "id": "laptop-open",
+      "decodedFrames": 84,
+      "duration": 3.5
+    },
+    {
+      "id": "laptop-type",
+      "decodedFrames": 180,
+      "duration": 7.5
+    },
+    {
+      "id": "laptop-think",
+      "decodedFrames": 144,
+      "duration": 6.0
+    },
+    {
+      "id": "laptop-stretch",
+      "decodedFrames": 108,
+      "duration": 4.5
+    },
+    {
+      "id": "laptop-close",
+      "decodedFrames": 84,
+      "duration": 3.5
+    }
+  ],
+  "ambientTiming": {
+    "targetTimeShare": 0.65,
+    "restDuration": 16.0,
+    "weights": {
+      "idle": 24.5,
+      "turn": 3,
+      "move": 4
+    },
+    "meanOtherActionDuration": 2.6806684733514,
+    "expectedTimeShare": 0.6499473347409853,
+    "expectedFixedTimeShare": 0.6594991339157381,
+    "scope": "Uninterrupted autonomous animation; explicit work, clicks and other events take priority."
+  },
+  "checks": {
+    "stateTests": 140,
+    "communityTests": 13,
+    "stagedRuntimeTests": 2,
+    "focusedTypecheck": true,
+    "installerRegression": true,
+    "manifestFiles": 120,
+    "decodedActiveVideos": 118
+  }
+}

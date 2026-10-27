@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen",
+  "reason": "Intermediate forward arm should sit between neutral and full forward swing.",
+  "prompts": [
+    {
+      "key": "F2",
+      "prompt": "Use case: precise-object-edit. Image 1 is the exact complete character edit target. The foreground sleeve currently extends too far forward LEFT. REPLACE just that foreground arm/sleeve pose with a walking IN-BETWEEN arm at only 20 degrees forward from vertical, hand LOWER and CLOSER TO BODY. The near hand must be directly BELOW the hanging badge, at approximately x270,y1050, NOT out at x100,y960. Near elbow at x360,y870. Hand at skirt hem, wrist just below badge x250, arm slopes mostly DOWN with only small leftward tilt. This is halfway between a vertical arm and the full forward swing, not the full forward extreme. Remove the original far-left extended sleeve silhouette entirely when repositioning; do NOT retain an old sleeve or add a third arm. Redraw cloth folds naturally with shoulder connection and softly bent elbow.\nKeep the existing FAR arm behind the torso on RIGHT intact. Final figure has exactly TWO arms and TWO hands: new foreground hand below badge; existing far hand behind right hip. No hand sticking out far to left. Preserve all other pixels as closely as possible: head, face, hair, ear, badge, hoodie torso, skirt, both leg/foot poses, tail, linework, scale, camera, 1024x1536 framing. Transparent background, no labels/shadow. Single coherent full figure."
+    },
+    {
+      "key": "G2",
+      "prompt": "Use case: precise-object-edit. Image 1 is the exact complete character edit target. The foreground sleeve currently extends too far forward LEFT. REPLACE just that foreground arm/sleeve pose with a walking IN-BETWEEN arm at only 20 degrees forward from vertical, hand LOWER and CLOSER TO BODY. The near hand must be directly BELOW the hanging badge, at approximately x270,y1050, NOT out at x100,y960. Near elbow at x360,y870. Hand at skirt hem, wrist just below badge x250, arm slopes mostly DOWN with only small leftward tilt. This is halfway between a vertical arm and the full forward swing, not the full forward extreme. Remove the original far-left extended sleeve silhouette entirely when repositioning; do NOT retain an old sleeve or add a third arm. Redraw cloth folds naturally with shoulder connection and softly bent elbow.\nKeep the existing FAR arm behind the torso on RIGHT intact. Final figure has exactly TWO arms and TWO hands: new foreground hand below badge; existing far hand behind right hip. No hand sticking out far to left. Preserve all other pixels as closely as possible: head, face, hair, ear, badge, hoodie torso, skirt, both leg/foot poses, tail, linework, scale, camera, 1024x1536 framing. Transparent background, no labels/shadow. Single coherent full figure."
+    }
+  ]
+}
