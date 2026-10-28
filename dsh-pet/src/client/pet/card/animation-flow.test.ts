@@ -115,6 +115,7 @@ function setup(t: TestContext, office = false, legacy = false) {
   }
   render();
   return {
+    animations,
     card,
     history,
     get flow() {
@@ -234,3 +235,27 @@ test('browser hook rerenders keep the same random schedule and legacy pets keep 
   legacy.dispose();
   assert.equal(legacy.cleared(), 0);
 });
+
+for (const last of ['enter', 'typing']) {
+  test(`browser closes a partial autonomous office chain ending at ${last} before resting`, (t) => {
+    const f = setup(t, true);
+    f.animations.ambient!.chains[0].steps = (last === 'enter' ? ['enter'] : ['enter', 'typing']).map((name) => ({
+      name,
+    }));
+    f.setTime(19800);
+    f.flow.tickAmbient();
+    assert.equal(f.card.animRef.current, 'enter');
+    if (last === 'typing') f.flow.applyEndedCue({ kind: 'random' });
+    f.flow.applyEndedCue({ kind: 'random' });
+    assert.equal(f.card.animRef.current, 'exit');
+    f.flow.applyEndedCue({ kind: 'event-done' });
+    assert.equal(f.card.animRef.current, 'idle');
+    f.setTime(199800);
+    f.flow.tickAmbient();
+    assert.equal(
+      f.card.animRef.current,
+      'enter',
+      'the next clock event must not remain blocked by a stale office phase',
+    );
+  });
+}

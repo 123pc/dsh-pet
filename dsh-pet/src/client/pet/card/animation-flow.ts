@@ -104,6 +104,10 @@ export function createAnimationFlow(rt: AnimationFlowRuntime) {
         h.stopMotion();
         const office = h.anims().workSequence;
         if (office) {
+          // 活动没显式收起道具时，先播放办公退出段，避免过渡阶段永久阻塞时钟。
+          if (cue.rest && (state.phase === 'opening' || state.phase === 'open')) {
+            if (stepWorkSequence(workState(), true)) return;
+          }
           if (cue.name === office.enter) state.phase = 'opening';
           else if (cue.name === office.exit) state.phase = 'closing';
           else if (office.loops.includes(cue.name)) state.phase = 'open';

@@ -190,3 +190,23 @@ test('an unmodified legacy pet keeps work-status rotation and event return witho
     false,
   );
 });
+
+for (const last of ['enter', 'typing']) {
+  test(`desktop closes a partial autonomous office chain ending at ${last} before resting`, () => {
+    const { s, setTime } = setup(true);
+    s.animations.ambient.chains[0].steps = (last === 'enter' ? ['enter'] : ['enter', 'typing']).map((name) => ({
+      name,
+    }));
+    setTime(19800);
+    s.tickAmbient();
+    assert.equal(s.anim, 'enter');
+    if (last === 'typing') s.handleEnded();
+    s.handleEnded();
+    assert.equal(s.anim, 'exit');
+    s.handleEnded();
+    assert.equal(s.anim, 'idle');
+    setTime(199800);
+    s.tickAmbient();
+    assert.equal(s.anim, 'enter', 'the next clock event must not remain blocked by a stale office phase');
+  });
+}

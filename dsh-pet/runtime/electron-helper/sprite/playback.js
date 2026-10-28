@@ -374,6 +374,10 @@ Object.assign(PetSprite.prototype, {
       this.stopMove();
       const office = this.animations.workSequence;
       if (office) {
+        // 活动没显式收起道具时，先播放办公退出段，避免过渡阶段永久阻塞时钟。
+        if (cue.rest && (this.workPhase === 'opening' || this.workPhase === 'open')) {
+          if (this.stepWorkSequence(this.workState, true)) return;
+        }
         if (cue.name === office.enter) this.workPhase = 'opening';
         else if (cue.name === office.exit) this.workPhase = 'closing';
         else if (office.loops.includes(cue.name)) this.workPhase = 'open';
