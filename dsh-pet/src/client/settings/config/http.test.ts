@@ -18,6 +18,7 @@ import {
   loadMeta,
   loadModelCatalog,
   saveConfig,
+  savePetLayer,
   syncConfig,
   type SaveFields,
 } from './http.ts';
@@ -278,4 +279,38 @@ describe('buildSaveBody —— 请求体字段', () => {
     assert.deepEqual(body.physics, { gravity: 3 });
     assert.equal(body.notificationsEnabled, false);
   });
+});
+
+test('main and file-pet saves omit derived assetRoot and outfit menus without mutating the editor', async () => {
+  const pet = {
+    id: 'test',
+    name: 'Test',
+    size: 240,
+    display: 'web',
+    balanceEnabled: false,
+    position: { corner: 'top-right', marginX: 20, marginY: 20 },
+    assetRoot: 'pack',
+    outfits: [{ id: 'other', label: 'Other', current: false }],
+    whisperPrompt: 'keep persona',
+  };
+  const expected = {
+    id: 'test',
+    name: 'Test',
+    size: 240,
+    display: 'web',
+    balanceEnabled: false,
+    position: pet.position,
+    whisperPrompt: 'keep persona',
+  };
+  const body = buildSaveBody({ pets: [pet] } as unknown as SaveFields);
+  assert.deepEqual(body.pets, [expected]);
+  await withFetch(
+    () => json({ main: { pets: [] } }),
+    async (calls) => {
+      await savePetLayer('pack', [pet] as unknown as SaveFields['pets']);
+      assert.deepEqual(JSON.parse(String(calls[0].init?.body)), { entry: 'pack', pets: [expected] });
+    },
+  );
+  assert.equal(pet.assetRoot, 'pack');
+  assert.equal(pet.outfits.length, 1);
 });

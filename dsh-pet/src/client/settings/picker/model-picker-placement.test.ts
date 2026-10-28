@@ -59,3 +59,15 @@ describe('computePanelPlacement —— 浮层定位', () => {
     assert.equal(pos.left, 8);
   });
 });
+
+test('scrolling the anchor above or below the viewport keeps the open picker usable', () => {
+  const viewport = { width: 900, height: 700 };
+  const below = computePanelPlacement({ left: 31, top: 987, bottom: 1015, width: 337 }, viewport);
+  assert.equal(below.bottom, 12);
+  assert.equal(below.top, undefined);
+  assert.ok(below.maxHeight > 0 && below.maxHeight <= viewport.height - below.bottom!);
+  const above = computePanelPlacement({ left: 31, top: -200, bottom: -172, width: 337 }, viewport);
+  assert.equal(above.top, 12);
+  assert.equal(above.bottom, undefined);
+  assert.ok(above.maxHeight > 0 && above.top! + above.maxHeight < viewport.height);
+});

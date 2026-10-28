@@ -55,14 +55,18 @@ export interface PanelPosition {
  * @returns 浮层定位；上方空间更宽裕时给出 `bottom`，否则给出 `top`。
  */
 export function computePanelPlacement(anchor: AnchorRect, viewport: Viewport): PanelPosition {
-  const below = viewport.height - anchor.bottom - PANEL_GAP_PX;
-  const above = anchor.top - PANEL_GAP_PX;
+  // 滚动可把触发器带出视口；浮层仍须留在可操作的边缘，不能跟着滚出屏幕。
+  const clampY = (value: number): number => Math.max(EDGE_MARGIN_PX, Math.min(value, viewport.height - EDGE_MARGIN_PX));
+  const top = clampY(anchor.top);
+  const bottom = clampY(anchor.bottom);
+  const below = Math.max(0, viewport.height - bottom - PANEL_GAP_PX);
+  const above = Math.max(0, top - PANEL_GAP_PX);
   const available = Math.max(MIN_AVAILABLE_WIDTH_PX, Math.min(MAX_WIDTH_PX, viewport.width - VIEWPORT_INSET_PX));
   const width = Math.min(Math.max(anchor.width, MIN_WIDTH_PX), available);
   const left = Math.max(EDGE_MARGIN_PX, Math.min(anchor.left, viewport.width - width - EDGE_MARGIN_PX));
   // 下方窄到放不下且上方更宽裕才翻上去：靠近底部的触发器向下展开才不会盖住上面的字段。
   const openUp = below < FLIP_THRESHOLD_PX && above > below;
   return openUp
-    ? { left, bottom: viewport.height - anchor.top + PANEL_OFFSET_PX, width, maxHeight: Math.min(MAX_HEIGHT_PX, above) }
-    : { left, top: anchor.bottom + PANEL_OFFSET_PX, width, maxHeight: Math.min(MAX_HEIGHT_PX, below) };
+    ? { left, bottom: viewport.height - top + PANEL_OFFSET_PX, width, maxHeight: Math.min(MAX_HEIGHT_PX, above) }
+    : { left, top: bottom + PANEL_OFFSET_PX, width, maxHeight: Math.min(MAX_HEIGHT_PX, below) };
 }

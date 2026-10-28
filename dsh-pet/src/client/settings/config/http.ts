@@ -52,6 +52,16 @@ export type SaveOutcome =
   | { kind: 'invalid' }
   | { kind: 'error' };
 
+/** 仅移除宿主/编辑器派生字段；不修改表单对象或用户可编辑的实例字段。 */
+function writablePets(pets: readonly Pet[]): Pet[] {
+  return pets.map((pet) => {
+    const copy = { ...pet };
+    delete copy.assetRoot;
+    delete copy.outfits;
+    return copy;
+  });
+}
+
 /**
  * 把表单状态压成请求体。
  *
@@ -60,7 +70,7 @@ export type SaveOutcome =
  */
 export function buildSaveBody(fields: SaveFields): Record<string, unknown> {
   return {
-    pets: fields.pets,
+    pets: writablePets(fields.pets),
     notificationsEnabled: fields.notificationsEnabled,
     clickSoundEnabled: fields.clickSoundEnabled,
     whisperImageEnabled: fields.whisperImageEnabled,
@@ -197,7 +207,7 @@ export async function savePetLayer(entry: string, pets: readonly Pet[]): Promise
     const response = await fetch(ROUTE_PATH + '/pet-config', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ entry, pets }),
+      body: JSON.stringify({ entry, pets: writablePets(pets) }),
     });
     const payload = (await response.json().catch(() => null)) as {
       ok?: unknown;
