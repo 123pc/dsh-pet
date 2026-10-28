@@ -42,7 +42,8 @@ Object.assign(PetSprite.prototype, {
     // 第三方菜单项统一收在「更多」下：0 项不出现；某个 owner 只有 1 项时跳过 owner 那层直接平铺。
     // 放在整棵动作树之后——「更多」不插在工具项与动作之间。
     const more = S.buildMoreBranch(this.menuItems);
-    const tree = tools.concat(S.buildMenuTree(this.animations), more ? [more] : []);
+    const outfit = S.outfitMenuBranch(this.pet.outfits);
+    const tree = tools.concat(outfit ? [outfit] : [], S.buildMenuTree(this.animations), more ? [more] : []);
     if (!tree.length) return;
     this.menuOpen = true;
     this.setInteractive(true); // 菜单是窗口内 DOM：悬停期间整窗保持可交互，关闭后恢复命中区穿透
@@ -99,6 +100,13 @@ Object.assign(PetSprite.prototype, {
     }
     if (leaf.action === 'home') {
       this.goHome(); // 停漫游/移动，清会话位置，回配置角落
+      return;
+    }
+    if (leaf.action === 'set-outfit') {
+      if (leaf.outfit)
+        S.requestOutfitChange(BASE, this.pet.id, leaf.outfit).catch((error) =>
+          window.alert(error.message || '换装失败，请重试'),
+        );
       return;
     }
     if (leaf.action === 'set-display') {

@@ -19,6 +19,10 @@ Object.assign(PetSprite.prototype, {
     this.gen = 0;
     this.anim = this.animations.idle[0] ?? '';
     this.once = true;
+    this.workPhase = 'closed';
+    this.ambient = this.animations.ambient ? new S.AmbientDirector(this.animations, performance.now()) : null;
+    this.ambientDispatch = false;
+    this.ambientTimer = this.ambient ? window.setInterval(() => this.tickAmbient(), 250) : null;
     // 播放回执：当前正在播的第三方点播编号（null = 自播动画，不上报）。单独一个字段是因为
     // 动画名分不出「这一段该不该上报」——菜单点播与第三方 /anim 可以播同名动画。
     this.playback = null;

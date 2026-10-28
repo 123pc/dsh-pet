@@ -109,12 +109,14 @@ export function createCueEffects(rt: CueEffectsRuntime) {
       // 占用锁：工作状态是自动来源，锁生效时不响应；解冻时由冻结驱动重新对齐当前状态。
       // 不挡宿主写入：sections.workStatus 是所有宠物共用一份，按宠物在渲染端忽略。
       if (hub.ownAnim.isFrozen()) return;
+      const sequenceHandled = hub.stepWorkSequence?.(workStatus?.state) ?? false;
       if (!workStatus || workStatus.state === null) {
         log('pet=' + cfg.id + ' ' + (prevWorkStateRef.current ?? 'null') + '->null    播完即停（回待机，收起气泡）');
         prevWorkStateRef.current = null;
         // 回空闲时把循环中的工作动画改成「播完即停」：否则 ended 永不触发，动画链拿不到
         // 推进信号，宠物会一直卡在工作动画上。
-        if (poolIncludes(hub.anims().events?.workStatus ?? [], card.animRef.current)) hub.ownAnim.stopLoopingFront();
+        if (!sequenceHandled && poolIncludes(hub.anims().events?.workStatus ?? [], card.animRef.current))
+          hub.ownAnim.stopLoopingFront();
         hub.bubbles.resetWork();
         return;
       }
@@ -146,6 +148,7 @@ export function createCueEffects(rt: CueEffectsRuntime) {
       // 只在状态变化时点亮或收起气泡：同状态后续 tick 不重新点亮已自动收起的终态气泡。
       if (stateChanged) hub.bubbles.lightWork(terminal);
       // 循环语义：终态播一遍；非终态单候选无限循环，多候选播一遍后由播完判定轮换。
+      if (sequenceHandled) return;
       const rotating = !terminal && Array.isArray(slot) && slot.length > 1;
       card.actions.setOnce(terminal || rotating);
       card.actions.setAnim(name);

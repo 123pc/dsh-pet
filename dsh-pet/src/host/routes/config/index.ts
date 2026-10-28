@@ -19,6 +19,7 @@ import { failResult, okResult } from '../result.ts';
 import { saveConfigRoute } from './save.ts';
 import { setPetDisplay } from './display.ts';
 import { savePetLayer } from './entry.ts';
+import { setPetOutfit } from './outfit.ts';
 
 /** 内容配置领域：未命中返回 undefined，命中返回应答。 */
 export async function handleConfigRoutes(deps: PetRouteDeps, input: RouteInput): Promise<RouteResult | undefined> {
@@ -30,6 +31,7 @@ export async function handleConfigRoutes(deps: PetRouteDeps, input: RouteInput):
   if (input.rest === 'pet-display') return setPetDisplay(deps, input);
   // 整个种类层的实例写回（设置页改文件宠物的配置 → POST /pet-config）
   if (input.rest === 'pet-config') return savePetLayer(deps, input);
+  if (input.rest === 'pet-outfit') return setPetOutfit(deps, input);
   // 配置文件路径 + 存储位置清单（设置页「高级配置」与「卸载与存储」展示用）
   if (input.rest === 'config/meta') return getMeta(deps);
   return undefined;

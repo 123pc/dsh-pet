@@ -39,7 +39,11 @@ export interface CardHub {
   /** 抛掷指令：角度（度，0 为正右、逆时针为正）与力度倍率。 */
   applyThrow(angleDeg: number, power: number): void;
   /** 试发起一次自主走位：占用中返回 true，无法移动返回 false，成功返回动作名。 */
-  tryWalk(): boolean | string;
+  tryWalk(preferredName?: string): boolean | string;
+  /** 菜单、聊天或飞行占用。 */
+  isAutonomyBlocked?(): boolean;
+  /** 可选办公衔接，旧播放流无须提供。 */
+  stepWorkSequence?(state: string | null | undefined, ended?: boolean): boolean;
   /** 依据名点播。 */
   playByName: PlayByName;
   /** 说一句。 */

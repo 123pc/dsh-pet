@@ -23,11 +23,12 @@ PetSprite.prototype.onWorkTick = function onWorkTick(snapshot, tick) {
   this.workState = state; // 当前工作状态：互动/事件动画播完恢复档位循环用
   const stateChanged = this.prevWorkState !== state;
   this.prevWorkState = state;
+  const sequenceHandled = this.stepWorkSequence(state);
   if (!state) {
     // 回空闲：把正在循环播的进行中档位动画改成「播完即停」。进行中档位走 switchTo(name, false)
     // （loop=true、onended=null），ended 永不触发；这里不切动画，链就拿不到推进信号，
     // 宠物会卡在那段工作动画上。只改当前段：它结束后走 handleEnded → playIdle。
-    if (S.poolIncludes(this.animations.events?.workStatus ?? [], this.anim)) {
+    if (!sequenceHandled && S.poolIncludes(this.animations.events?.workStatus ?? [], this.anim)) {
       const frontEl = this.front === 0 ? this.videoA : this.videoB;
       if (frontEl) {
         frontEl.loop = false;
@@ -87,6 +88,7 @@ PetSprite.prototype.onWorkTick = function onWorkTick(snapshot, tick) {
       : null; // 非终态：常驻，不设自动收起
   }
   this.renderBubble();
+  if (sequenceHandled) return;
   // 循环语义：终态播一遍回 idle；非终态多候选档位播一遍 → ended 轮换到下一候选；
   // 非终态单候选档位无限循环。
   const rotating = !terminal && Array.isArray(slot) && slot.length > 1;

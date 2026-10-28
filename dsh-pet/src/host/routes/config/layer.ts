@@ -26,7 +26,10 @@ export type ConfigLayerLookup = { readonly ok: true; readonly layer: ConfigLayer
  * @param entry - 宠物所属条目名（合并后由宿主反查得出，不接受调用方指定）。
  * @returns 命中给出该层；条目配置文件不存在时给出 `ok: false`。
  */
-export function resolveConfigLayer(deps: PetRouteDeps, entry: string): ConfigLayerLookup {
+export function resolveConfigLayer(
+  deps: Pick<PetRouteDeps, 'userConfigPath' | 'userRoot' | 'configPaths' | 'petConfigDir'>,
+  entry: string,
+): ConfigLayerLookup {
   if (entry === 'main') {
     return {
       ok: true,

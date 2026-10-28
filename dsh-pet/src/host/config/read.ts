@@ -11,6 +11,7 @@ import { warnOnce } from './constants.ts';
 import type { ConfigPaths } from './constants.ts';
 import { effectiveUserFile, readJsonc } from './jsonc.ts';
 import { mergeEntry, packBase } from './merge.ts';
+import { listOutfits } from '../outfit-catalog.ts';
 
 /**
  * 老用户一次性迁移：main-config.json → main-config.jsonc（重命名，内容一字不动）。
@@ -94,6 +95,12 @@ export function readAllConfig(paths: ConfigPaths): Record<string, Record<string,
       continue;
     }
     out[file.prefix] = mergeEntry(filePetBase, parsed, file.prefix + '-config.json', basePets, seenIds);
+  }
+  for (const conf of Object.values(out)) {
+    for (const pet of conf.pets as Record<string, unknown>[]) {
+      const choices = listOutfits(out, String(pet.id));
+      if (choices.length > 1) pet.outfits = choices;
+    }
   }
   return out;
 }

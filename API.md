@@ -70,6 +70,7 @@ dsh-pet 的宿主半侧向 DSH 自己的 Web 服务注册了**一条前缀路由
 | --- | --- |
 | `PUT /dsh-pet-7340/config` | 保存用户层配置（白名单重建，用户手写的精调字段会保留） |
 | `POST /dsh-pet-7340/config` | 用内置默认整份覆盖用户配置，即「恢复默认」 |
+| `POST /dsh-pet-7340/pet-outfit` | 原生换装：传 `{id,target}`，在同组已安装形态间切换，返回成品配置 |
 | `POST /dsh-pet-7340/pet-display` | **改单只宠物的显示位置**（`web` / `desktop` / `both` / `none`），只传 `{ id, display }` |
 | `POST /dsh-pet-7340/pet-config` | **按种类写回全部实例**（`{ entry, pets }`，`entry` = `pet/<名>-config.json` 的前缀）；白名单重建，顶层动画池与人设保留 |
 | `POST /dsh-pet-7340/reload` | 重载桌面端（重启桌面宠物进程，按最新配置重建窗口） |
@@ -154,3 +155,11 @@ dsh-pet 的宿主半侧向 DSH 自己的 Web 服务注册了**一条前缀路由
 - [`openapi.yaml`](openapi.yaml) —— 完整契约（OpenAPI 3.1，可直接导入 Swagger UI / Postman）
 - [`tools/api-tester.html`](tools/api-tester.html) —— 桌宠控制台：扮演第三方消费方的示例页面，
   可直观试用上述接口（用 `node tools/api-tester.cjs` 启动，它会带上本地代理解决跨域）
+
+### 原生换装
+
+角色包顶层可声明 `"outfit": {"base":"main","label":"形态名称"}`。base 指向已有基础配置条目，宿主将同组已安装实例派生为 `pets[].outfits`；未安装关联形态时原生菜单不增加入口。右键 → 换装调用 `POST /pet-outfit`，不需要侧栏。
+
+切换复用各形态自己的完整动作库及记忆，不替换原版资源；隐藏目标沿用当前显示模式、尺寸与配置初始位置。目标已在另一端显示时合并为 both，保留其尺寸位置。其它实例不变。两层配置写入失败时回滚，成功后统一重载；协议错误为400/405，业务失败为200且 `ok:false`。
+
+可选动作链和办公衔接的配置、兼容性及边界见 [动画扩展](dsh-pet/docs/animation-extensions.md)，换装细节见 [原生换装](dsh-pet/docs/outfits.md)。

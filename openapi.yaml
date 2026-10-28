@@ -1278,7 +1278,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: '`POST /anim` 响应里的 `playbackId`。'
+          description: "`POST /anim` 响应里的 `playbackId`。"
           schema:
             type: string
           example: pb-mfh2k1-1
@@ -1345,7 +1345,7 @@ paths:
         - name: id
           in: path
           required: true
-          description: '`playbackId`。'
+          description: "`playbackId`。"
           schema:
             type: string
           example: pb-mfh2k1-1
@@ -1360,7 +1360,7 @@ paths:
                 status:
                   type: string
                   enum: [playing, ended, failed, cancelled]
-                  description: '只接受这四个——`accepted` 是宿主受理态，上报它回 400。'
+                  description: "只接受这四个——`accepted` 是宿主受理态，上报它回 400。"
                 reason:
                   type: string
                   description: |
@@ -1843,6 +1843,51 @@ paths:
                     additionalProperties:
                       $ref: "#/components/schemas/PetConfigEntry"
                   - $ref: "#/components/schemas/FailureResponse"
+        "405":
+          $ref: "#/components/responses/MethodNotAllowed"
+
+  /dsh-pet-7340/pet-outfit:
+    post:
+      tags: [Config]
+      operationId: changePetOutfit
+      summary: 在已安装的同组形态之间换装
+      description: |
+        原生右键菜单调用。角色包可声明 outfit.base 和 outfit.label，宿主在 pets[].outfits
+        下派生已安装候选；不扫描网络，不依赖侧栏插件。只切换指定源和目标实例，不修改动作池。
+        与 config/pet-display/pet-config 共用队列；两层配置准备完成后提交，正常写入异常时恢复原文。
+        源显示模式转移到目标，已可见目标合并显示端；隐藏目标沿用源尺寸和初始位置。
+        各形态名称、人设及记忆独立保留，成功后发配置变更信号并重载桌面一次。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id, target]
+              properties:
+                id:
+                  type: string
+                  description: 当前可见实例 id
+                target:
+                  type: string
+                  description: pets[].outfits 中同组已安装目标实例 id
+      responses:
+        "200":
+          description: 成功返回与 GET /config 同形的聚合，失败返回 ok=false、reason 和 message
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    additionalProperties:
+                      $ref: "#/components/schemas/PetConfigEntry"
+                  - $ref: "#/components/schemas/FailureResponse"
+        "400":
+          description: JSON 请求体无法解析
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
         "405":
           $ref: "#/components/responses/MethodNotAllowed"
 
@@ -2833,6 +2878,10 @@ components:
               pose-unavailable,
               unsupported,
               user-config-unparsable,
+              unknown-outfit,
+              config-changed,
+              config-unparsable,
+              rollback-error,
             ]
         cause:
           type: string
@@ -3748,6 +3797,32 @@ components:
         `workStatusTexts`、`physics`、`animations`、`eventsRefreshSec`、`animationWeights` 等。
         完整字段与默认值见包内 `assets/config.jsonc`（带注释，是默认值的唯一来源）。
       properties:
+        outfit:
+          type: object
+          description: 可选的一层换装关系；base 是已安装配置条目 key
+          required: [base, label]
+          properties:
+            base: { type: string, maxLength: 64 }
+            label: { type: string, maxLength: 80 }
+        pets:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/PetEntry"
+              - type: object
+                properties:
+                  outfits:
+                    type: array
+                    readOnly: true
+                    description: 宿主派生的同组已安装形态，不写回磁盘
+                    items:
+                      type: object
+                      required: [id, label, current]
+                      properties:
+                        id: { type: string }
+                        label: { type: string }
+                        current: { type: boolean }
+
         id:
           type: string
         name:

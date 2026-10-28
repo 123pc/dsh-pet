@@ -93,6 +93,7 @@ class PetSprite {
   }
 
   dispose() {
+    if (this.ambientTimer !== null) window.clearInterval(this.ambientTimer);
     this.ac.abort();
     this.inputRegionMutation.disconnect();
     this.inputRegionResize.disconnect();

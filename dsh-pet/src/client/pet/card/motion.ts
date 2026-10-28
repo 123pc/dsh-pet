@@ -143,6 +143,7 @@ export function createCardMotion(rt: CardMotionRuntime) {
 
     /** 停止自主走位与位置跟随。 */
     const stopMove = (): void => {
+      live.current.flow?.cancelAmbient();
       walkRef.current?.stop();
       // 位置跟随的弹簧也是自主移动，停走路时必须一并停掉，否则两套运动同时改 DOM 位置。
       posFollowRef.current?.stop();
@@ -195,6 +196,7 @@ export function createCardMotion(rt: CardMotionRuntime) {
       spring: () => cfgRef.current.physics.throwPower,
       isDragging: () => live.current.drag.isActive(),
       takeOver: () => {
+        live.current.flow?.cancelAmbient();
         flightRef.current?.stop();
         walkRef.current?.stop();
         posFollowRef.current?.stop();

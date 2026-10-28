@@ -5,7 +5,7 @@
  * 必须始终成立：同一份输入必得同一棵树，层级顺序稳定。
  * @module dsh-pet/src/shared/menu/tree
  */
-import { type Animations, type Category } from '../types.ts';
+import { type Animations, type Category, type OutfitChoice } from '../types.ts';
 import type { MenuBranch, MenuLeaf, MenuMoreItem, MenuNode } from './types.ts';
 
 /** 「显示位置」子菜单：两端注入同一份，文案与设置页的显示位置下拉框一致。
@@ -20,6 +20,20 @@ export const displayMenuBranch = (): MenuBranch => ({
     { label: '都不', action: 'set-display', display: 'none' },
   ],
 });
+
+/** 已安装形态的原生菜单。 */
+export function outfitMenuBranch(choices?: OutfitChoice[]): MenuBranch | null {
+  if (!choices || choices.length < 2) return null;
+  return {
+    label: '换装',
+    children: choices.map((choice) => ({
+      label: choice.label,
+      action: 'set-outfit',
+      outfit: choice.id,
+      ...(choice.current ? { hint: '当前' } : {}),
+    })),
+  };
+}
 
 /** 第三方菜单项统一收在这个一级菜单下（宿主自己的菜单项不进这里）。 */
 export const MORE_MENU_LABEL = '更多';
@@ -79,6 +93,7 @@ const EVENT_LABELS: Record<string, string> = {
   balance: '余额档位',
   whisper: '碎碎念',
   workStatus: '工作状态',
+  workTransition: '办公衔接',
 };
 
 /** 把动画名包成叶子。 */
@@ -86,7 +101,25 @@ export const leaf = (anim: string): MenuLeaf => ({ label: anim, anim });
 
 /** 由成品 animations 配置推导菜单树：一级「动作」→ 二级分类 → 三级动画名；空池与空分类自动省略。 */
 export function buildMenuTree(animations: Animations): MenuNode[] {
-  const groups: MenuNode[] = [];
+  const groups: MenuBranch[] = [];
+  const byLabel = new Map<string, MenuBranch>();
+  const seen = new Set<string>();
+  const addGroup = (label: string, names: string[]): void => {
+    const children: MenuLeaf[] = [];
+    for (const name of names) {
+      if (!name || seen.has(name)) continue;
+      seen.add(name);
+      children.push(leaf(name));
+    }
+    if (!children.length) return;
+    const existing = byLabel.get(label);
+    if (existing) existing.children.push(...children);
+    else {
+      const group = { label, children };
+      byLabel.set(label, group);
+      groups.push(group);
+    }
+  };
   const pools: Array<[string, string[]]> = [
     ['待机', animations.idle],
     ['转向', animations.turn],
@@ -94,16 +127,32 @@ export function buildMenuTree(animations: Animations): MenuNode[] {
     ['点击回应', animations.clicks],
     ['移动', animations.moves.actions.map((m) => m.name)],
   ];
-  for (const [label, pool] of pools) {
-    if (pool.length) groups.push({ label, children: pool.map(leaf) });
-  }
-  // 随机动作分类：noMirror 分类照样可点播，播放端朝右时强制朝左（见 isNoMirrorAnimation）
   const cats = (animations.categories ?? []).filter((c) => c.actions.length > 0);
-  for (const c of cats) {
-    groups.push({ label: c.id, children: c.actions.map(leaf) });
-  }
-  // 事件动画：每个事件一个分类，不来自随机链；数组槽位展平为逐个叶子，候选都可点播预览。
   const events = animations.events ?? {};
+  const eventNames = Object.values(events).flat(2);
+  const registered = new Set([
+    ...pools.flatMap(([, names]) => names),
+    ...cats.flatMap((c) => c.actions),
+    ...eventNames,
+  ]);
+  const sequence = animations.workSequence;
+  // 只整理既有可点播集合，不把未注册素材加入菜单或改变宿主点播校验。
+  const office = sequence
+    ? [sequence.enter, ...sequence.loops, sequence.exit].filter((name) => registered.has(name))
+    : [];
+  const officeNames = new Set(office);
+  const classified = new Set([...cats.flatMap((c) => c.actions), ...office]);
+  for (const [label, pool] of pools) {
+    addGroup(label, label === '待机' ? pool : pool.filter((name) => !classified.has(name)));
+  }
+  // 用途分类优先于点击／拖拽等触发方式；镜像限制仍由原 categories 决定。
+  for (const c of cats)
+    addGroup(
+      c.id,
+      c.actions.filter((name) => !officeNames.has(name)),
+    );
+  addGroup('办公动作', office);
+  // 多个事件档位可能复用同一片段，展平后只保留尚未展示的动作。
   for (const key of Object.keys(events)) {
     const pool = events[key] ?? [];
     const names: string[] = [];
@@ -111,7 +160,7 @@ export function buildMenuTree(animations: Animations): MenuNode[] {
       if (typeof slot === 'string') names.push(slot);
       else names.push(...slot);
     }
-    if (names.length) groups.push({ label: EVENT_LABELS[key] ?? key, children: names.map(leaf) });
+    addGroup(EVENT_LABELS[key] ?? key, names);
   }
   if (!groups.length) return [];
   return [{ label: '动作', children: groups }];

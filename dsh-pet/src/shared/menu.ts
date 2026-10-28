@@ -11,6 +11,7 @@ export {
   buildMenuTree,
   buildMoreBranch,
   displayMenuBranch,
+  outfitMenuBranch,
   isNoMirrorAnimation,
   readMenuItems,
 } from './menu/tree.ts';

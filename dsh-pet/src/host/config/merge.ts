@@ -6,6 +6,8 @@
  * @module dsh-pet/src/host/config/merge
  */
 import { CORNER_SET, GLOBAL_DEFAULT_KEYS, isValidPetId, PET_DISPLAY_SET, warnOnce } from './constants.ts';
+import { sanitizeAnimationExtensions } from '../animation-extensions.ts';
+import { outfitMetadata } from '../outfit-catalog.ts';
 import { topFieldValid } from './validate.ts';
 
 /**
@@ -54,8 +56,18 @@ export function mergeEntry(
       out[key] = base[key];
       continue;
     }
-    out[key] = own;
+    out[key] =
+      key === 'animations'
+        ? sanitizeAnimationExtensions(own as Record<string, unknown>, (extension) =>
+            warnOnce(
+              `${label}:animations:${extension}`,
+              `「${label}」的 animations.${extension} 非法，已单独停用该扩展`,
+            ),
+          )
+        : own;
   }
+  const outfit = outfitMetadata(overlay?.outfit);
+  if (outfit) out.outfit = outfit;
   return out;
 }
 

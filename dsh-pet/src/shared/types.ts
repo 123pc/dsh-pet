@@ -61,6 +61,43 @@ export interface Animations {
   moves: MovesConfig;
   categories: Category[];
   events: Events;
+  /** 可选办公衔接；缺省沿用事件档位。 */
+  workSequence?: WorkSequence;
+  /** 可选空闲时间表；缺省沿用权重随机链。 */
+  ambient?: AmbientConfig;
+}
+
+/** 有语义关联、按顺序完整播放的一次自主活动。 */
+export interface ActivityChain {
+  id: string;
+  label: string;
+  weight: number;
+  steps: Array<{ name: string; repeats?: number }>;
+}
+
+/** 自主活动只在空闲时开始；错过的时间点直接跳过，不积压补播。 */
+export interface AmbientConfig {
+  windowSec: number;
+  minEpisodes: number;
+  maxEpisodes: number;
+  minGapSec: number;
+  edgeSec: number;
+  chainChance: number;
+  chains: ActivityChain[];
+}
+
+/** 工作状态的道具连续性；未配置时沿用事件档位播放。 */
+export interface WorkSequence {
+  enter: string;
+  loops: string[];
+  exit: string;
+}
+
+/** 已安装形态的原生换装菜单候选，由宿主派生，不持久化。 */
+export interface OutfitChoice {
+  id: string;
+  label: string;
+  current: boolean;
 }
 
 /** 一只宠物（与 config.jsonc 的 pets[i] 同形，position 嵌套）。
@@ -97,6 +134,8 @@ export interface Pet {
   animationWeights?: Weights;
   extra?: boolean;
   assetRoot?: string;
+  /** 同组已安装形态的派生菜单数据，不持久化。 */
+  outfits?: OutfitChoice[];
   /** 全局默认：事件刷新周期（秒，事件名 → 间隔；整段替换，缺的键由消费端各自兜底）。
    *  .whisper 按所属条目读（种类可覆盖），.balance 只读 main 条目。 */
   eventsRefreshSec?: Record<string, number>;

@@ -14,6 +14,7 @@ import {
   mountContextMenu,
   type MenuNode,
 } from '../../../shared/menu.ts';
+import { outfitMenuBranch } from '../../../shared/menu.ts';
 import { ROUTE_PATH } from '../../../shared/constants.ts';
 import { TOOLTIP_GAP_RATIO, tooltipPlacement } from '../../../shared/tooltip.ts';
 import type { MenuMoreItem } from '../../../shared/menu.ts';
@@ -57,6 +58,8 @@ export interface CardEntryInput {
 
 /** 浮层入口对外的读写面。 */
 export interface CardEntry {
+  /** 菜单或对话是否占用。 */
+  isOpen(): boolean;
   /** 把提示框摆到光标右下，放不下时翻边并夹回视口。 */
   placeTip: (clientX: number, clientY: number) => void;
   /** 打开右键菜单。 */
@@ -173,7 +176,13 @@ export function createCardEntry(rt: CardEntryRuntime) {
         // 显示位置子菜单与桌面端同一份；改成不含 web 的值后本宠物会从页面消失。
         displayMenuBranch(),
       ];
-      const tree: MenuNode[] = [...tools, ...buildMenuTree(cfgRef.current.animations), ...(more ? [more] : [])];
+      const outfit = outfitMenuBranch(cfgRef.current.outfits);
+      const tree: MenuNode[] = [
+        ...tools,
+        ...(outfit ? [outfit] : []),
+        ...buildMenuTree(cfgRef.current.animations),
+        ...(more ? [more] : []),
+      ];
       if (!tree.length) return;
       e.preventDefault();
       e.stopPropagation(); // 不触碰 DSH 页面的菜单与右键处理。
@@ -194,6 +203,7 @@ export function createCardEntry(rt: CardEntryRuntime) {
     };
 
     return {
+      isOpen: () => !!(menuRef.current || chatRef.current),
       handleContextMenu,
       onPointerEnter: (e) => {
         hoverRef.current = true;

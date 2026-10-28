@@ -204,3 +204,71 @@ test('a rejected config operation does not prevent later updates', async () => {
   assert.equal(valid.status, 200);
   assert.equal(read().pets[0].display, 'none');
 });
+
+test('native outfit requests share the config queue and can return to the original shape', async () => {
+  writeFileSync(
+    packFile,
+    JSON.stringify({
+      pets: [{ ...pet('pack-a'), display: 'none' }],
+      outfit: { base: 'main', label: 'Costume' },
+      whisperPrompt: 'keep',
+    }),
+  );
+  const results = await Promise.all([
+    request('pet-outfit', 'POST', { id: 'alpha', target: 'pack-a' }),
+    request('pet-display', 'POST', { id: 'beta', display: 'both' }),
+  ]);
+  assert.ok(results.every((r) => r.status === 200 && r.body.main));
+  assert.deepEqual(displays(read()), { alpha: 'none', beta: 'both' });
+  assert.equal(read(packFile).pets[0].display, 'web');
+  assert.equal(read(packFile).whisperPrompt, 'keep');
+  const back = await request('pet-outfit', 'POST', { id: 'pack-a', target: 'alpha' });
+  assert.equal(back.status, 200);
+  assert.ok(back.body.main);
+  assert.deepEqual(displays(read()), { alpha: 'web', beta: 'both' });
+  assert.equal(read(packFile).pets[0].display, 'none');
+});
+
+test('unavailable native outfits return a business failure without touching any configuration', async () => {
+  const before = JSON.stringify(read());
+  const result = await request('pet-outfit', 'POST', { id: 'alpha', target: 'not-installed' });
+  assert.equal(result.status, 200);
+  assert.equal((result.body as { ok?: boolean }).ok, false);
+  assert.equal(JSON.stringify(read()), before);
+});
+
+test('outfit and native pet-config saves run in order without losing pack metadata', async () => {
+  writeFileSync(
+    packFile,
+    JSON.stringify({
+      pets: [{ ...pet('pack-a'), display: 'none' }],
+      outfit: { base: 'main', label: 'Costume' },
+      whisperPrompt: 'keep',
+    }),
+  );
+  // The second operation is a complete layer save: its explicit display choice wins.
+  const results = await Promise.all([
+    request('pet-outfit', 'POST', { id: 'alpha', target: 'pack-a' }),
+    request('pet-config', 'POST', { entry: 'pack', pets: [{ ...pet('pack-a'), size: 310 }, pet('pack-b')] }),
+    request('config'),
+  ]);
+  assert.ok(results.every((r) => r.status === 200 && r.body.main));
+  assert.equal(read().pets[0].display, 'none');
+  assert.equal(read(packFile).pets[0].size, 310);
+  assert.equal(read(packFile).pets[0].display, 'web');
+  assert.deepEqual(read(packFile).outfit, { base: 'main', label: 'Costume' });
+  assert.equal(read(packFile).whisperPrompt, 'keep');
+});
+
+test('outfit protocol rejects missing JSON and methods without changing configuration', async () => {
+  const before = JSON.stringify(read());
+  assert.equal((await request('pet-outfit')).status, 405);
+  assert.equal((await request('pet-outfit', 'POST', null)).status, 200);
+  const response = await fetch(base + 'pet-outfit', {
+    method: 'POST',
+    headers: { 'X-DSH-Pet-Token': token, 'content-type': 'application/json' },
+    body: '{',
+  });
+  assert.equal(response.status, 400);
+  assert.equal(JSON.stringify(read()), before);
+});

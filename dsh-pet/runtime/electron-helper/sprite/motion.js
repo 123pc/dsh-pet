@@ -40,6 +40,7 @@ Object.assign(PetSprite.prototype, {
   },
 
   stopMove() {
+    if (!this.ambientDispatch) this.ambient?.cancel(performance.now());
     this.pendingMove = null;
     this.moveToken++;
     if (this.moveRef !== null) {

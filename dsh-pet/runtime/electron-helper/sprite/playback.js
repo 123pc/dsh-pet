@@ -10,6 +10,7 @@
 Object.assign(PetSprite.prototype, {
   switchTo(next, nextOnce, playbackId, url) {
     if (!next) return;
+    if (!this.ambientDispatch) this.ambient?.cancel(performance.now());
     const pending = this.pending;
     if (pending && pending.anim === next && pending.once === nextOnce) {
       // 防重命中（单动画点击时目标=当前动画，不重播）：仍消费 Q 弹标记，压当前前台视频，
@@ -181,6 +182,10 @@ Object.assign(PetSprite.prototype, {
     // 占用锁：锁生效时不掷骰。这里是随机链的唯一入口（动画播完才会走到），一句判断就把随机动画、
     // 随机转向与自主走位一起停住——宠物停在最后一帧，等持锁者的下一条指令（走 /anim，不经这里）。
     if (this.frozen) return;
+    if (this.ambient) {
+      this.playAmbient({ name: this.animations.idle[0], rest: true, label: '安静待机' });
+      return;
+    }
     this.stopMove();
     const { animations, animationWeights } = { animations: this.animations, animationWeights: this.weights };
     const roll = Math.random();
@@ -226,6 +231,20 @@ Object.assign(PetSprite.prototype, {
     // 播放回执已在上面上报，不受这一行影响。
     if (this.frozen) return;
     const { animations } = { animations: this.animations };
+    const activity = this.ambient?.ended(this.anim, performance.now(), this.ambientBlocked());
+    if (activity) {
+      if (animations.turn.includes(this.anim)) this.facing = this.facing === 'left' ? 'right' : 'left';
+      this.playAmbient(activity);
+      return;
+    }
+    if (
+      animations.workSequence &&
+      (this.workPhase !== 'closed' || S.isWorkSequenceAnim(animations.workSequence, this.anim))
+    ) {
+      if (this.stepWorkSequence(this.workState, true)) return;
+      if (animations.idle.length) this.playOnce(S.pick(animations.idle));
+      return;
+    }
     // 事件动画播完：回 idle（与 drag/clicks 同分支，不进随机链）；气泡由定时器自动消失，与动画解耦
     const isEvent = S.isEventAnim(animations.events, this.anim);
     if (isEvent) {
@@ -274,6 +293,11 @@ Object.assign(PetSprite.prototype, {
     if (this.frozen) return false;
     const state = this.workState;
     if (!state || state === 'success' || state === 'error') return false;
+    if (this.animations.workSequence) {
+      // 入场被用户互动打断时重播入场；已打开电脑则直接回到办公小动作。
+      if (this.workPhase === 'opening' && this.anim !== this.animations.workSequence.enter) this.workPhase = 'closed';
+      return this.stepWorkSequence(state);
+    }
     const pool = this.animations.events?.workStatus;
     if (!pool || pool.length === 0) return false;
     const idx = S.WORK_STATUS_INDEX[state];
@@ -288,6 +312,84 @@ Object.assign(PetSprite.prototype, {
       this.playOnce(name); // 多候选：播完由 handleEnded 轮换
     else this.switchTo(name, false); // 单候选：无限循环
     return true;
+  },
+
+  // 同一状态反复更新任务详情不会重新拿电脑，结束时也先完成当前衔接。
+  stepWorkSequence(state, ended = false) {
+    const step = S.advanceWorkSequence(
+      this.animations.workSequence,
+      this.workPhase,
+      this.pet.workStatusEnabled ? state : null,
+      this.anim,
+      ended,
+    );
+    this.workPhase = step.phase;
+    if (step.name) {
+      this.stopMove();
+      console.log('[dsh-pet] work-sequence pet=' + this.pet.id + ' phase=' + step.phase + ' anim=' + step.name);
+      this.playOnce(step.name);
+    }
+    return step.handled;
+  },
+
+  // 工作、用户操作和菜单优先于自主活动；没有时间点补偿队列。
+  ambientBlocked() {
+    const working =
+      this.pet.workStatusEnabled && this.workState && this.workState !== 'success' && this.workState !== 'error';
+    const transition = (this.workPhase === 'opening' || this.workPhase === 'closing') && !this.ambient?.running;
+    return !!(
+      this.frozen ||
+      this.dragState.active ||
+      this.throwRef !== null ||
+      this.menuOpen ||
+      this.chatOpen ||
+      working ||
+      transition
+    );
+  },
+
+  tickAmbient() {
+    const blocked = this.ambientBlocked();
+    const cue = this.ambient.tick(performance.now(), {
+      current: this.anim,
+      blocked,
+      fixed: this.pet.fixedEnabled,
+      facing: this.facing,
+    });
+    if (cue) this.playAmbient(cue);
+    else if (
+      !blocked &&
+      !this.ambient.running &&
+      this.animations.idle.includes(this.anim) &&
+      this.once &&
+      !this.pending
+    ) {
+      this.playAmbient({ name: this.anim, rest: true, label: '安静待机' });
+    }
+  },
+
+  playAmbient(cue) {
+    this.ambientDispatch = true;
+    try {
+      this.stopMove();
+      const office = this.animations.workSequence;
+      if (office) {
+        if (cue.name === office.enter) this.workPhase = 'opening';
+        else if (cue.name === office.exit) this.workPhase = 'closing';
+        else if (office.loops.includes(cue.name)) this.workPhase = 'open';
+        else if (this.anim === office.exit) this.workPhase = 'closed';
+      }
+      if (S.isNoMirrorAnimation(this.animations.categories, cue.name)) this.facing = 'left';
+      if (!cue.rest && this.animations.moves.actions.some((m) => m.name === cue.name) && !this.pet.fixedEnabled) {
+        const moved = this.tryMove(cue.name);
+        if (moved !== false) return;
+      }
+      this.anim = cue.name;
+      this.once = !cue.rest;
+      this.switchTo(cue.name, !cue.rest);
+    } finally {
+      this.ambientDispatch = false;
+    }
   },
 
   // 漫游（rAF 驱动，动画首尾各 leadSec/tailSec 秒原地不动；几何在 shared/planMove）。

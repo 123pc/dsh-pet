@@ -6,6 +6,9 @@
  * @module dsh-pet/src/client/pet/card/animation-flow
  */
 import { pick, pickSlot, rollKind } from '../../../shared/pickers.ts';
+import { AmbientDirector, type AmbientCue } from '../../../shared/ambient.ts';
+import { advanceWorkSequence, isWorkSequenceAnim, type WorkPhase } from '../../../shared/work-sequence.ts';
+import { isNoMirrorAnimation } from '../../../shared/menu.ts';
 import { WORK_STATUS_INDEX } from '../../../shared/work-status.ts';
 import { decideNextAnimation } from '../animation/next-animation.ts';
 import type { CardHub } from './hub.ts';
@@ -15,6 +18,12 @@ import type * as ReactNS from 'react';
 
 /** 动画流对外的动作面。 */
 export interface AnimationFlow {
+  /** 推进可选办公衔接；返回是否接管。 */
+  stepWorkSequence(state: string | null | undefined, ended?: boolean): boolean;
+  /** 明确用户操作抢占，连点同名动作也要取消剩余步骤。 */
+  cancelAmbient(): void;
+  /** 独立时钟入口，不依赖视频 ended。 */
+  tickAmbient(): void;
   /** 按播完判定改状态；回执与门禁已在动画链里处理过。 */
   applyEndedCue(cue: EndedCue): void;
   /** 按权重掷骰选下一段自播动画。 */
@@ -27,6 +36,8 @@ export interface AnimationFlow {
 
 /** 注入的 react 能力。 */
 export interface AnimationFlowRuntime {
+  /** 安装时钟，卸载时清理。 */
+  useEffect: (effect: ReactNS.EffectCallback, deps?: ReactNS.DependencyList) => void;
   /** 引用；工作状态的镜像。 */
   useRef: <T>(initial: T) => ReactNS.MutableRefObject<T>;
 }
@@ -46,12 +57,115 @@ const log = (petId: string, message: string): void => {
  * @returns 接收运行时与工作状态的 hook；回调里读 ref，不会读到旧值。
  */
 export function createAnimationFlow(rt: AnimationFlowRuntime) {
-  const { useRef } = rt;
+  const { useRef, useEffect } = rt;
 
   return function useAnimationFlow(hub: CardHub, workStatus: WorkStatusSnapshot | null): AnimationFlow {
     // 播完回调晚于状态更新：镜像当前值，避免闭包读到注册那一刻的状态。
     const workStatusRef = useRef(workStatus);
     workStatusRef.current = workStatus;
+
+    const hubRef = useRef(hub);
+    hubRef.current = hub;
+    const animations = hub.anims();
+    const stateRef = useRef<{
+      animations: typeof animations;
+      phase: WorkPhase;
+      director: AmbientDirector | null;
+      dispatch: boolean;
+    } | null>(null);
+    if (!stateRef.current || stateRef.current.animations !== animations)
+      stateRef.current = {
+        animations,
+        phase: 'closed',
+        director: animations.ambient ? new AmbientDirector(animations, performance.now()) : null,
+        dispatch: false,
+      };
+    const state = stateRef.current;
+    const cancelAmbient = (): void => {
+      if (!state.dispatch) state.director?.cancel(performance.now());
+    };
+    const workState = (): string | null =>
+      hubRef.current.cfg().workStatusEnabled ? (workStatusRef.current?.state ?? null) : null;
+    const ambientBlocked = (): boolean => {
+      const h = hubRef.current;
+      const ws = workState();
+      return (
+        h.ownAnim.isFrozen() ||
+        h.isDragging() ||
+        !!h.isAutonomyBlocked?.() ||
+        (!!ws && ws !== 'success' && ws !== 'error') ||
+        ((state.phase === 'opening' || state.phase === 'closing') && !state.director?.running)
+      );
+    };
+    const playAmbient = (cue: AmbientCue): void => {
+      const h = hubRef.current;
+      state.dispatch = true;
+      try {
+        h.stopMotion();
+        const office = h.anims().workSequence;
+        if (office) {
+          if (cue.name === office.enter) state.phase = 'opening';
+          else if (cue.name === office.exit) state.phase = 'closing';
+          else if (office.loops.includes(cue.name)) state.phase = 'open';
+          else if (h.card.animRef.current === office.exit) state.phase = 'closed';
+        }
+        if (isNoMirrorAnimation(h.anims().categories, cue.name)) {
+          h.card.actions.setFacing('left');
+          h.card.facingRef.current = 'left';
+        }
+        if (!cue.rest && !h.cfg().fixedEnabled && h.anims().moves.actions.some((m) => m.name === cue.name)) {
+          if (h.tryWalk(cue.name) !== false) return;
+        }
+        h.card.animRef.current = cue.name;
+        h.card.actions.play(cue.name, { once: !cue.rest, replay: true, cue: null });
+      } finally {
+        state.dispatch = false;
+      }
+    };
+    const stepWorkSequence = (ws: string | null | undefined, ended = false): boolean => {
+      const h = hubRef.current;
+      const step = advanceWorkSequence(
+        h.anims().workSequence,
+        state.phase,
+        h.cfg().workStatusEnabled ? ws : null,
+        h.card.animRef.current,
+        ended,
+      );
+      state.phase = step.phase;
+      if (step.handled) cancelAmbient();
+      if (step.name) {
+        h.stopMotion();
+        h.card.animRef.current = step.name;
+        h.card.actions.play(step.name, { once: true, replay: true, cue: null });
+      }
+      return step.handled;
+    };
+    const tickAmbient = (): void => {
+      if (!state.director) return;
+      const h = hubRef.current;
+      const blocked = ambientBlocked();
+      const cue = state.director.tick(performance.now(), {
+        current: h.card.animRef.current,
+        blocked,
+        fixed: h.cfg().fixedEnabled,
+        facing: h.card.facingRef.current,
+      });
+      if (cue) playAmbient(cue);
+      else if (
+        !blocked &&
+        !state.director.running &&
+        h.anims().idle.includes(h.card.animRef.current) &&
+        h.card.state.once
+      )
+        playAmbient({ name: h.card.animRef.current, rest: true, label: '安静待机' });
+    };
+    const tickRef = useRef(tickAmbient);
+    tickRef.current = tickAmbient;
+    useEffect(() => {
+      if (!state.director) return;
+      const timer = window.setInterval(() => tickRef.current(), 250);
+      return () => window.clearInterval(timer);
+    }, [state]);
 
     /** 非终态工作状态回到档位循环；冻结、空闲与终态都返回 false。 */
     const resumeWorkStatusAnim = (): boolean => {
@@ -60,6 +174,7 @@ export function createAnimationFlow(rt: AnimationFlowRuntime) {
       if (hub.ownAnim.isFrozen()) return false;
       const ws = workStatusRef.current;
       if (!ws || !ws.state || ws.state === 'success' || ws.state === 'error') return false;
+      if (hub.anims().workSequence) return stepWorkSequence(ws.state);
       const pool = hub.anims().events?.workStatus;
       if (!pool || pool.length === 0) return false;
       const idx = WORK_STATUS_INDEX[ws.state];
@@ -78,6 +193,10 @@ export function createAnimationFlow(rt: AnimationFlowRuntime) {
       const card = hub.card;
       // 占用锁：随机链唯一入口不掷骰，随机动画、转向、走位一起停住。
       if (hub.ownAnim.isFrozen()) return;
+      if (state.director) {
+        playAmbient({ name: hub.anims().idle[0], rest: true, label: '安静待机' });
+        return;
+      }
       const roll = Math.random();
       // 宠物固定时，掷骰把「转向/移动」权重按 0 算；菜单点播与显式点播不走这里。
       const kind = rollKind(roll, hub.cfg().animationWeights, { fixed: hub.cfg().fixedEnabled });
@@ -110,6 +229,23 @@ export function createAnimationFlow(rt: AnimationFlowRuntime) {
     const applyEndedCue = (cue: EndedCue): void => {
       const card = hub.card;
       if (cue.kind === 'ignore') return;
+      const activity = state.director?.ended(card.animRef.current, performance.now(), ambientBlocked());
+      if (activity) {
+        if (hub.anims().turn.includes(card.animRef.current)) {
+          const facing = card.facingRef.current === 'left' ? 'right' : 'left';
+          card.facingRef.current = facing;
+          card.actions.setFacing(facing);
+        }
+        playAmbient(activity);
+        return;
+      }
+      const office = hub.anims().workSequence;
+      if (office && (state.phase !== 'closed' || isWorkSequenceAnim(office, card.animRef.current))) {
+        if (stepWorkSequence(workState(), true)) return;
+        if (state.director) playAmbient({ name: hub.anims().idle[0], rest: true, label: '安静待机' });
+        else card.actions.play(pick(hub.anims().idle), { replay: true });
+        return;
+      }
       if (cue.kind === 'work-rotate') {
         card.actions.setOnce(true); // 保持 once=true，下一段播完再轮换。
         card.actions.setAnim(cue.anim);
@@ -169,6 +305,6 @@ export function createAnimationFlow(rt: AnimationFlowRuntime) {
       hub.bubbles.showWhisper(text, { image, url }, duration);
     };
 
-    return { applyEndedCue, pickNext, resumeWorkStatusAnim, speak };
+    return { applyEndedCue, pickNext, resumeWorkStatusAnim, speak, stepWorkSequence, cancelAmbient, tickAmbient };
   };
 }

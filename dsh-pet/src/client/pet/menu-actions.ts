@@ -6,6 +6,7 @@
  */
 import { isNoMirrorAnimation } from '../../shared/menu.ts';
 import type { MenuLeaf } from '../../shared/menu.ts';
+import { requestOutfitChange } from '../../shared/outfits.ts';
 import { ROUTE_PATH } from '../../shared/constants.ts';
 import type { Animations } from '../../shared/types.ts';
 import { postAction } from '../../shared/state.ts';
@@ -120,6 +121,13 @@ export function createMenuActions(deps: MenuActionDeps): MenuActions {
     }
     if (leaf.action === 'chat') {
       deps.openChat();
+      return;
+    }
+    if (leaf.action === 'set-outfit') {
+      if (leaf.outfit)
+        void requestOutfitChange(ROUTE_PATH, petId, leaf.outfit)
+          .then(deps.applyMerged)
+          .catch((error: unknown) => deps.warn('[dsh-pet] 换装失败 ' + String(error)));
       return;
     }
     if (leaf.action === 'set-display') {

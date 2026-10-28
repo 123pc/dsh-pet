@@ -49,7 +49,7 @@ export function createCardRuntime(rt: PetRuntime) {
   const useCardState = createCardState({ useState, useRef });
   const useLockFreeze = createLockFreeze({ useEffect, useRef });
   const useCueEffects = createCueEffects({ useEffect, useRef });
-  const useAnimationFlow = createAnimationFlow({ useRef });
+  const useAnimationFlow = createAnimationFlow({ useRef, useEffect });
   const useCardAnimation = createCardAnimation({ useEffect, useRef });
   const useCardMotion = createCardMotion({ useEffect, useRef });
   const useCardDrag = createCardDrag({ useRef });
@@ -236,6 +236,8 @@ export function createCardRuntime(rt: PetRuntime) {
       card,
       cfg: () => cfgRef.current,
       isDragging: () => drag.isActive(),
+      isAutonomyBlocked: () => motion.flight.isFlying() || entry.isOpen(),
+      stepWorkSequence: (state, ended) => liveRef.current.flow?.stepWorkSequence(state, ended) ?? false,
       ownAnim,
       playByName: (anim, playbackId, keepFacing) => menuActions.run({ anim, label: anim }, playbackId, keepFacing),
       posFollow: motion.posFollow,
