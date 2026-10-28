@@ -119,6 +119,14 @@ async function open(t, { get = customized, put, post, viewport = { width: 900, h
   return { page, writes };
 }
 
+async function assertSaveDisabled(page) {
+  const disabled = await page
+    .getByRole('button', { name: 'Save', exact: true })
+    .evaluateAll((buttons) => buttons.map((button) => button.disabled));
+  assert.ok(disabled.length > 0, 'the page must expose a Save action');
+  assert.ok(disabled.every(Boolean), 'all Save entry points must be disabled until config is ready');
+}
+
 async function save(page) {
   await Promise.all([
     page.waitForResponse((response) => response.request().method() === 'PUT'),
@@ -154,7 +162,7 @@ test('config save errors: write failures keep edits visible and allow a retry', 
 
 test('config save errors: validation failures explain the rejected configuration', async (t) => {
   const { page } = await open(t, {
-    put: (route) => route.fulfill({ status: 400, json: { error: 'invalid pet config' } }),
+    put: (route) => route.fulfill({ json: { ok: false, reason: 'bad-request', message: 'invalid pet config' } }),
   });
   await save(page);
   await page
@@ -200,7 +208,7 @@ test('pending config prevents editing and saving placeholder defaults', async (t
     },
   });
   try {
-    assert.equal(await page.getByRole('button', { name: 'Save', exact: true }).isDisabled(), true);
+    await assertSaveDisabled(page);
     assert.equal(await page.locator('input[type=text]').first().isDisabled(), true);
     assert.deepEqual(writes, []);
   } finally {
@@ -222,7 +230,7 @@ for (const failure of ['http', 'network', 'malformed', 'null']) {
               ),
     });
     await page.getByRole('alert').waitFor();
-    assert.equal(await page.getByRole('button', { name: 'Save', exact: true }).isDisabled(), true);
+    await assertSaveDisabled(page);
     assert.deepEqual(writes, []);
     fail = false;
     await page.getByRole('button', { name: 'Retry', exact: true }).click();
@@ -274,14 +282,14 @@ for (const lang of ['en', 'zh']) {
 
 test('model picker remains anchored while the responsive settings panel is scrolled', async (t) => {
   const { page, writes } = await open(t, { viewport: { width: 900, height: 700 } });
-  const trigger = page.locator('.dsh-pet-mp__trigger').first();
+  const trigger = page.getByRole('button', { name: /^Select model, current / }).first();
   await trigger.click();
   const panel = page.getByRole('menu');
   await panel.waitFor();
   for (const scrollY of [0, 120]) {
     await page.evaluate((y) => window.scrollTo(0, y), scrollY);
     await page.waitForFunction(() => {
-      const trigger = document.querySelector('.dsh-pet-mp__trigger').getBoundingClientRect();
+      const trigger = document.querySelector('[aria-label^="Select model, current "]').getBoundingClientRect();
       const panel = document.querySelector('.dsh-pet-mp__panel').getBoundingClientRect();
       return Math.abs(panel.left - trigger.left) < 2 && panel.top >= 0 && panel.bottom <= innerHeight;
     });
