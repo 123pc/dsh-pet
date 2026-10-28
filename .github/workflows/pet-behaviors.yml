@@ -1,0 +1,42 @@
+name: Optional pet behavior compatibility
+on:
+  pull_request:
+    paths:
+      [
+        "dsh-pet/src/**",
+        "dsh-pet/runtime/electron-helper/**",
+        ".github/workflows/pet-behaviors.yml",
+      ]
+  push:
+    paths:
+      [
+        "dsh-pet/src/**",
+        "dsh-pet/runtime/electron-helper/**",
+        ".github/workflows/pet-behaviors.yml",
+      ]
+permissions:
+  contents: read
+jobs:
+  compatibility:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ["22", "24"]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: dsh-pet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      # Pure core and adapter tests use Node built-ins and the existing small default config.
+      # No community pack, generated video, Electron download or AI service is needed.
+      - run: >-
+          node --experimental-strip-types --import ./scripts/test-register.mjs --test
+          src/shared/work-sequence.test.ts src/shared/work-sequence-runtime.test.ts
+          src/shared/ambient.test.ts src/shared/ambient-runtime.test.ts
+          src/shared/outfits.test.ts src/shared/menu-dedup.test.ts
+          src/host/animation-extensions.test.ts src/host/outfit-switch.test.ts
+          src/client/pet/card/animation-flow.test.ts
