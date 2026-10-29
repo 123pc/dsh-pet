@@ -1,0 +1,54 @@
+{
+  "walk": {
+    "sources": [
+      "animation/自然走路.webm"
+    ],
+    "frames": 40,
+    "bytes": 721853
+  },
+  "wave": {
+    "sources": [
+      "animation/点击回应-元气挥手.webm"
+    ],
+    "frames": 22,
+    "bytes": 249121
+  },
+  "cube": {
+    "sources": [
+      "animation/原地专心玩魔方.webm"
+    ],
+    "frames": 20,
+    "bytes": 158582
+  },
+  "lean-tail": {
+    "sources": [
+      "lean-animation/托腮·轻摇鲸尾.webm"
+    ],
+    "frames": 32,
+    "bytes": 413265
+  },
+  "lean-hair": {
+    "sources": [
+      "lean-animation/托腮·指尖拨头发.webm"
+    ],
+    "frames": 36,
+    "bytes": 439337
+  },
+  "lean-hum": {
+    "sources": [
+      "lean-animation/托腮·摇头哼歌.webm"
+    ],
+    "frames": 36,
+    "bytes": 421513
+  },
+  "office": {
+    "sources": [
+      "lean-animation/托腮办公·拿出并打开电脑.webm",
+      "lean-animation/托腮办公·轻敲键盘.webm",
+      "lean-animation/托腮办公·揉眼伸肩.webm",
+      "lean-animation/托腮办公·收起电脑.webm"
+    ],
+    "frames": 152,
+    "bytes": 2629910
+  }
+}

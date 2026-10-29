@@ -1,0 +1,610 @@
+{
+  "version": "0.7.1-outfits",
+  "files": [
+    {
+      "source": "claude-dafeiyu-config.json",
+      "target": "claude-dafeiyu-config.json",
+      "sha256": "30d9ab3a53f2b1724633f772d35e0ed2ff34048dcf5716239f5714d216bd3abd"
+    },
+    {
+      "source": "animation/三球抛接.webm",
+      "target": "claude-dafeiyu-animation/三球抛接.webm",
+      "sha256": "7ae8a6c4df4299e6b49b8df3f0bb944b94584c0ea45213f22f076b8511ab7361"
+    },
+    {
+      "source": "animation/下五子棋.webm",
+      "target": "claude-dafeiyu-animation/下五子棋.webm",
+      "sha256": "1dd1d1d3499ec2e182efc3550c4a11296882fc8e96aca69896cbc9f3f3d39c96"
+    },
+    {
+      "source": "animation/东张西望.webm",
+      "target": "claude-dafeiyu-animation/东张西望.webm",
+      "sha256": "304890c556ccc2924f013feba43f2e153e415601c3ec8b880aeedd2798e6438a"
+    },
+    {
+      "source": "animation/中秋赏月吃月饼.webm",
+      "target": "claude-dafeiyu-animation/中秋赏月吃月饼.webm",
+      "sha256": "59979b362291a0944a4a5c8db37ebc755c252075af62a6ae8aa6831b76b129f1"
+    },
+    {
+      "source": "animation/优雅女仆舞.webm",
+      "target": "claude-dafeiyu-animation/优雅女仆舞.webm",
+      "sha256": "bf0b56c8399f8cb1eacfee512e0c913f380382ae52e5ea904a6f6456f29004ca"
+    },
+    {
+      "source": "animation/余额-分文不剩.webm",
+      "target": "claude-dafeiyu-animation/余额-分文不剩.webm",
+      "sha256": "2c2afa8966c1dcf8f5c0005c3e502bb233564fe6d17990e3f1bef1052ee1186d"
+    },
+    {
+      "source": "animation/余额-数金皱眉.webm",
+      "target": "claude-dafeiyu-animation/余额-数金皱眉.webm",
+      "sha256": "6d22897fff3d1c492665ef90f87434759c99da5c7acfefaf637d7a33c5e2ecdc"
+    },
+    {
+      "source": "animation/余额-袋空如洗.webm",
+      "target": "claude-dafeiyu-animation/余额-袋空如洗.webm",
+      "sha256": "4580ebf8abcfaee22d6880b340c6d258cc2b771e6bdaa7cb581dc877934b667e"
+    },
+    {
+      "source": "animation/余额-金袋叮当.webm",
+      "target": "claude-dafeiyu-animation/余额-金袋叮当.webm",
+      "sha256": "2a93c2478e7ae58cfc3e248aec68382d93d455ee4a63a129c3905327ef014ca8"
+    },
+    {
+      "source": "animation/余额-钱袋如常.webm",
+      "target": "claude-dafeiyu-animation/余额-钱袋如常.webm",
+      "sha256": "fc5328de5216445743c2ad7f6046f5c4ff267e0c4651b66586c8702b1f2193cd"
+    },
+    {
+      "source": "animation/余额-钱袋满溢.webm",
+      "target": "claude-dafeiyu-animation/余额-钱袋满溢.webm",
+      "sha256": "22c1a44c48812fe8be94814a08b397af390a7352da1d7f5318c85fe50e300d54"
+    },
+    {
+      "source": "animation/偷吃零食被抓住.webm",
+      "target": "claude-dafeiyu-animation/偷吃零食被抓住.webm",
+      "sha256": "c0b24c6a6366105b9505bd846e4ea21732a4f92c6425e12d0341760699e09c1e"
+    },
+    {
+      "source": "animation/写代码.webm",
+      "target": "claude-dafeiyu-animation/写代码.webm",
+      "sha256": "a7d73bd8b08d51d0fff825568d8f898c8e5fc47411b663f77176c4ef7561237b"
+    },
+    {
+      "source": "animation/写福字.webm",
+      "target": "claude-dafeiyu-animation/写福字.webm",
+      "sha256": "e1a92547e16d067da5df971844ad5e8948a7234213e7d7a86fe7276cba414fdc"
+    },
+    {
+      "source": "animation/凭空生花.webm",
+      "target": "claude-dafeiyu-animation/凭空生花.webm",
+      "sha256": "0918e33459b9c83daf5fee8530c35944bde4a8dd800352b15675ae6e29d391d8"
+    },
+    {
+      "source": "animation/动物环绕.webm",
+      "target": "claude-dafeiyu-animation/动物环绕.webm",
+      "sha256": "b9fe0c9b95fecfeab93a8c165438e2bf3d0fd6cc0818afe43fba2936db9d1c49"
+    },
+    {
+      "source": "animation/原地专心玩魔方.webm",
+      "target": "claude-dafeiyu-animation/原地专心玩魔方.webm",
+      "sha256": "3eedf4673cb63a59a66353f9cddbf9068c93c97ee57423113e3f72f2b6eb90db"
+    },
+    {
+      "source": "animation/原地小憩沉眠.webm",
+      "target": "claude-dafeiyu-animation/原地小憩沉眠.webm",
+      "sha256": "6c0774109202a542530f3b5a7db2558b4850f2b5c5dc6f94cc66629edbb04731"
+    },
+    {
+      "source": "animation/原地左转奔跑.webm",
+      "target": "claude-dafeiyu-animation/原地左转奔跑.webm",
+      "sha256": "a613bfc0468b3fb36e9b948a0ff13f907cd0dd7933a377854284dbfec2fe5577"
+    },
+    {
+      "source": "animation/原地敲击桌面互动.webm",
+      "target": "claude-dafeiyu-animation/原地敲击桌面互动.webm",
+      "sha256": "d656fe41406e762efcc78d7dfe45b2c893a4c4965fd86f0de44877a5cdd32419"
+    },
+    {
+      "source": "animation/原地漂浮踏步.webm",
+      "target": "claude-dafeiyu-animation/原地漂浮踏步.webm",
+      "sha256": "b6576c2e7d346fc94c0f34ddee28d8abbceba8ee7d5c99750d9a322f34bc8b4e"
+    },
+    {
+      "source": "animation/原地跳跃抓碎头顶物品.webm",
+      "target": "claude-dafeiyu-animation/原地跳跃抓碎头顶物品.webm",
+      "sha256": "735b7bf7281a85cc78b3930932fefc98c6ed2435522ea2e5168d255bb4d3022d"
+    },
+    {
+      "source": "animation/原地蹲下玩玩具汽车.webm",
+      "target": "claude-dafeiyu-animation/原地蹲下玩玩具汽车.webm",
+      "sha256": "8fb32e40ea875f6d3cc6986eec8898965c4a81e5b8f09409efd3c63353e1c5cc"
+    },
+    {
+      "source": "animation/原地重力下蹲压缩.webm",
+      "target": "claude-dafeiyu-animation/原地重力下蹲压缩.webm",
+      "sha256": "8b807282d6fb91f597c7498a21f3fe5ce6f99bd873375a4f7e5538c410d21ffd"
+    },
+    {
+      "source": "animation/变鸽子.webm",
+      "target": "claude-dafeiyu-animation/变鸽子.webm",
+      "sha256": "59c2207517f78f85f18b69a0a733ea04dbf8e8b1e93da0502c17d70e3a64abe0"
+    },
+    {
+      "source": "animation/可爱宅舞.webm",
+      "target": "claude-dafeiyu-animation/可爱宅舞.webm",
+      "sha256": "513069293eb3b964ce2fad377c70bcb8286cf540601cf37c7965dba464683dee"
+    },
+    {
+      "source": "animation/吃Token.webm",
+      "target": "claude-dafeiyu-animation/吃Token.webm",
+      "sha256": "055888994066f6a5bf33ee7edb47bed6ea12c9c087a129fa1ed3a8fa91965f3a"
+    },
+    {
+      "source": "animation/吃冰淇淋融化.webm",
+      "target": "claude-dafeiyu-animation/吃冰淇淋融化.webm",
+      "sha256": "be05ff5f6d0dc65d9d0af514c4da0a497aea137642cd23782c9a23eb078c1e31"
+    },
+    {
+      "source": "animation/吃午餐.webm",
+      "target": "claude-dafeiyu-animation/吃午餐.webm",
+      "sha256": "caac5f275868423d7cb7aa85752e2c6b1d2a21f81bd43934151c101553d8bac7"
+    },
+    {
+      "source": "animation/吃大闸蟹.webm",
+      "target": "claude-dafeiyu-animation/吃大闸蟹.webm",
+      "sha256": "35d15a6140b2bb7ee91e4122a1d23cd3511bce3a064f71c9b053ec227169bd04"
+    },
+    {
+      "source": "animation/吃年糕.webm",
+      "target": "claude-dafeiyu-animation/吃年糕.webm",
+      "sha256": "90b288a61c43d86c967e7ec9f6d650b4d4b4ed9d59df6a07220f151d9c3f3463"
+    },
+    {
+      "source": "animation/吃早餐.webm",
+      "target": "claude-dafeiyu-animation/吃早餐.webm",
+      "sha256": "2f80b95afd624ddb25e943d287c52e0acf00be0bed5879f03684c3d016973c5b"
+    },
+    {
+      "source": "animation/吃晚餐.webm",
+      "target": "claude-dafeiyu-animation/吃晚餐.webm",
+      "sha256": "5f7e342539015f2853fac79e44d53b9b91d43e18433582e85cbd19481df133b8"
+    },
+    {
+      "source": "animation/吃汤圆.webm",
+      "target": "claude-dafeiyu-animation/吃汤圆.webm",
+      "sha256": "4b50d157d642ad44f3c3e42387cfb035cb45b80558a6b7748eb83c59b5eb8b72"
+    },
+    {
+      "source": "animation/吃白饭.webm",
+      "target": "claude-dafeiyu-animation/吃白饭.webm",
+      "sha256": "d94d348d5d23371fca344592cfb62ea1ff47fbc001ea20fb19eb98d484e92610"
+    },
+    {
+      "source": "animation/吃粽子.webm",
+      "target": "claude-dafeiyu-animation/吃粽子.webm",
+      "sha256": "02fd69a62b40f57d7f413a1c0bc2a6e638978644d611246cbb24076e0b2d8968"
+    },
+    {
+      "source": "animation/吃糖葫芦.webm",
+      "target": "claude-dafeiyu-animation/吃糖葫芦.webm",
+      "sha256": "6e57f16a6168ec0dd9e1bec13ed841eb079cd75019e74e49c83882ea76726507"
+    },
+    {
+      "source": "animation/吃腊八粥.webm",
+      "target": "claude-dafeiyu-animation/吃腊八粥.webm",
+      "sha256": "66d50132fff6d56e09bf39137a5538254b4d525452d316eca07800e60024d7da"
+    },
+    {
+      "source": "animation/吃西瓜.webm",
+      "target": "claude-dafeiyu-animation/吃西瓜.webm",
+      "sha256": "d6c5e8ac28b5d13982810e59ab4fdfe3f3c1c55fc1ae0cc617ae93ada7035ce5"
+    },
+    {
+      "source": "animation/吃重阳糕.webm",
+      "target": "claude-dafeiyu-animation/吃重阳糕.webm",
+      "sha256": "e3524862fe06e4be62b51257c17cb5a9cd4100ec11a4af67fe445e6d3ec3323d"
+    },
+    {
+      "source": "animation/吃长寿面.webm",
+      "target": "claude-dafeiyu-animation/吃长寿面.webm",
+      "sha256": "0f1b1704c9f26a57f136c1c848f0511adeead8f088ca3e77a37cfdcc2451acc1"
+    },
+    {
+      "source": "animation/吃青团.webm",
+      "target": "claude-dafeiyu-animation/吃青团.webm",
+      "sha256": "8565a889d48e1f6b26df92709215da11ad47b6f1c86d8361e85d7fca233e2e2c"
+    },
+    {
+      "source": "animation/吃饺子.webm",
+      "target": "claude-dafeiyu-animation/吃饺子.webm",
+      "sha256": "630392a8e1b2a90a099c53e46dc7b2ada6c5e89b874fd75144c88c19a4c3b182"
+    },
+    {
+      "source": "animation/吹气球.webm",
+      "target": "claude-dafeiyu-animation/吹气球.webm",
+      "sha256": "54c4059c0423a1a5c29d9f04ea3f86601dd4ed5b89ee1075f5689bb0a1541616"
+    },
+    {
+      "source": "animation/吹笛子.webm",
+      "target": "claude-dafeiyu-animation/吹笛子.webm",
+      "sha256": "06943737dcfd74708ddd229b42b7d131eede95f11b8c7e7a05a9813a1ce7380d"
+    },
+    {
+      "source": "animation/哈欠连天.webm",
+      "target": "claude-dafeiyu-animation/哈欠连天.webm",
+      "sha256": "c0edab205573eb8e29960a7e94512a305b329bfdc0cc066db9f8cb44985082ca"
+    },
+    {
+      "source": "animation/堆雪人.webm",
+      "target": "claude-dafeiyu-animation/堆雪人.webm",
+      "sha256": "969ef5e8b1b777e5347dc67cb24015516bc3b06cf99428d45a7c86fa14a94e0a"
+    },
+    {
+      "source": "animation/大口吃零食.webm",
+      "target": "claude-dafeiyu-animation/大口吃零食.webm",
+      "sha256": "6a8406ea0bcb987a2e0e237d3f1c3850c4e6b9304985dac69b6115d8845afb8e"
+    },
+    {
+      "source": "animation/女仆屈膝礼仪.webm",
+      "target": "claude-dafeiyu-animation/女仆屈膝礼仪.webm",
+      "sha256": "3b038265ce978c00116e7dde548db1a4136b55f33cf7a839adc87211489f8411"
+    },
+    {
+      "source": "animation/安静站立·眨眼呼吸.webm",
+      "target": "claude-dafeiyu-animation/安静站立·眨眼呼吸.webm",
+      "sha256": "9938db021b73e72f452db4736567c1f10c45182f7a40794197f3374a6ee60b7b"
+    },
+    {
+      "source": "animation/小幅度原地360度旋转展示.webm",
+      "target": "claude-dafeiyu-animation/小幅度原地360度旋转展示.webm",
+      "sha256": "bfaa42b864c85113dfe05b1b606f31638a29cba46d0e20ce2a81068ff3427058"
+    },
+    {
+      "source": "animation/小提琴演奏.webm",
+      "target": "claude-dafeiyu-animation/小提琴演奏.webm",
+      "sha256": "51b7c15fe2d226427ad2657d3e88cc8f2debdd8575dd1054957b5a3909af7592"
+    },
+    {
+      "source": "animation/工作状态-原地踱步张望.webm",
+      "target": "claude-dafeiyu-animation/工作状态-原地踱步张望.webm",
+      "sha256": "2ee726a9d871e9129b05b334e8cf9f16491a6cc21b7fd3bff4489ee7a7384431"
+    },
+    {
+      "source": "animation/工作状态-垂头叹气冒汗.webm",
+      "target": "claude-dafeiyu-animation/工作状态-垂头叹气冒汗.webm",
+      "sha256": "059ac754c1664f14101d17a765cf2e4eb2c0e13b75da29537dc78a9e239b0d03"
+    },
+    {
+      "source": "animation/工作状态-忙碌点按.webm",
+      "target": "claude-dafeiyu-animation/工作状态-忙碌点按.webm",
+      "sha256": "5458af27eab65be7fd46b89c6fc3b7cb915a812bfecb2e1143f3504509de1729"
+    },
+    {
+      "source": "animation/工作状态-思考冒泡.webm",
+      "target": "claude-dafeiyu-animation/工作状态-思考冒泡.webm",
+      "sha256": "0b657a577041094db6a9fbf796be66f20bc2671de85f6e66f8a00b122623788d"
+    },
+    {
+      "source": "animation/工作状态-清点归档.webm",
+      "target": "claude-dafeiyu-animation/工作状态-清点归档.webm",
+      "sha256": "839224ac58bdbe6d8692cd669abc832ec89bf3157a2b835f796d6383f17e2b99"
+    },
+    {
+      "source": "animation/工作状态-雀跃庆祝.webm",
+      "target": "claude-dafeiyu-animation/工作状态-雀跃庆祝.webm",
+      "sha256": "9550a11d77990e8a9930591d5e32c11bbfcf29292a6d5b6a7719c30ed9d105c6"
+    },
+    {
+      "source": "animation/待机呼吸休闲.webm",
+      "target": "claude-dafeiyu-animation/待机呼吸休闲.webm",
+      "sha256": "fcdb216c87b14ae012c8263ed1f0c9c34f05a24fc34c5f6e0cede198397497b0"
+    },
+    {
+      "source": "animation/悠闲哼歌.webm",
+      "target": "claude-dafeiyu-animation/悠闲哼歌.webm",
+      "sha256": "24ad40ddfa9aeefc2afa7b062f5ae6fa07e22cb160d70c89c5c0f1c247c62ed0"
+    },
+    {
+      "source": "animation/扑克魔术.webm",
+      "target": "claude-dafeiyu-animation/扑克魔术.webm",
+      "sha256": "05e5c459a4dd1ea112ec0bc7ee11ca01dbac81601c67fa52af21ecff138720e6"
+    },
+    {
+      "source": "animation/打瞌睡被惊醒.webm",
+      "target": "claude-dafeiyu-animation/打瞌睡被惊醒.webm",
+      "sha256": "47ed1bbe5a0393b411abdfd51455f0ddbbdb146044d470771fb540e374c24747"
+    },
+    {
+      "source": "animation/抽陀螺.webm",
+      "target": "claude-dafeiyu-animation/抽陀螺.webm",
+      "sha256": "9830f44c4df4f4397458907373f241937c117e069c82a98168676f1d68d261dd"
+    },
+    {
+      "source": "animation/拆礼物.webm",
+      "target": "claude-dafeiyu-animation/拆礼物.webm",
+      "sha256": "9b0ea836333f43efaf2ec72a93d1edb4cfe6d1dcb0c263371162970a24572284"
+    },
+    {
+      "source": "animation/插茱萸赏菊.webm",
+      "target": "claude-dafeiyu-animation/插茱萸赏菊.webm",
+      "sha256": "1b34057b82e4e0be13c36269411cc0ff4ea4cbf2d29ca6dca5ed96e5e18909f7"
+    },
+    {
+      "source": "animation/摇扇纳凉.webm",
+      "target": "claude-dafeiyu-animation/摇扇纳凉.webm",
+      "sha256": "9666ea4b6d013e4e7e0415b1b30268dc319e85d4b1d5682029d306465b90e0d8"
+    },
+    {
+      "source": "animation/撸猫.webm",
+      "target": "claude-dafeiyu-animation/撸猫.webm",
+      "sha256": "c5520d2207796beeaf7662e071dce65bd85be865111fc81bed456c231895aaea"
+    },
+    {
+      "source": "animation/收红包.webm",
+      "target": "claude-dafeiyu-animation/收红包.webm",
+      "sha256": "f63d16b185ba98e90c305db3ff4f9ea96cf19f49f99f87b578b3b974c167db6a"
+    },
+    {
+      "source": "animation/放孔明灯.webm",
+      "target": "claude-dafeiyu-animation/放孔明灯.webm",
+      "sha256": "765bfe4ba6b79597e7b657107e6891908e351e51aa4aaba98fb579bab8210284"
+    },
+    {
+      "source": "animation/放河灯.webm",
+      "target": "claude-dafeiyu-animation/放河灯.webm",
+      "sha256": "20ee0bfc6d53c939b7960ed8f53cf2206d5313577f75080d81430a82d496e08c"
+    },
+    {
+      "source": "animation/放烟花.webm",
+      "target": "claude-dafeiyu-animation/放烟花.webm",
+      "sha256": "36167ed447a8069c4caae8e03897a04370f8877f1205eb00b0504dca933e70eb"
+    },
+    {
+      "source": "animation/放风筝.webm",
+      "target": "claude-dafeiyu-animation/放风筝.webm",
+      "sha256": "9dc0c8fb78f75577661a0de24fcfffc09fcd308b914499e70d8d3de4504177dd"
+    },
+    {
+      "source": "animation/整体换装试色.webm",
+      "target": "claude-dafeiyu-animation/整体换装试色.webm",
+      "sha256": "2608187c56d448137e82dadcc26b295f9353ac6796675f9b5f992d184ca4216e"
+    },
+    {
+      "source": "animation/是啊，吃什么.webm",
+      "target": "claude-dafeiyu-animation/是啊，吃什么.webm",
+      "sha256": "044c2e19bcbcff3686f312ac1884aba7a2422f2b2ac4563903512bd115200144"
+    },
+    {
+      "source": "animation/晨间刷牙.webm",
+      "target": "claude-dafeiyu-animation/晨间刷牙.webm",
+      "sha256": "322da92f2169e285d3b288d484444c7ea6e000cc0cc60b36c95d5a9b894836e6"
+    },
+    {
+      "source": "animation/涮火锅.webm",
+      "target": "claude-dafeiyu-animation/涮火锅.webm",
+      "sha256": "2ae788f0ddbd12ef44cfe5c9774438abdc6dfcc8cab7f89cd16f1d04165e3d4c"
+    },
+    {
+      "source": "animation/深度思考碎碎念.webm",
+      "target": "claude-dafeiyu-animation/深度思考碎碎念.webm",
+      "sha256": "62cc9adcfec072a5c61caf1e8ad754974911b608fd8e1b6f4b8580f75f8e50c0"
+    },
+    {
+      "source": "animation/点击回应-傲娇生气.webm",
+      "target": "claude-dafeiyu-animation/点击回应-傲娇生气.webm",
+      "sha256": "0fd69c1fa7a9f69a31f322ad4d15a8cf65b5a70a15a1c8c9e500c6cec94f877f"
+    },
+    {
+      "source": "animation/点击回应-元气挥手.webm",
+      "target": "claude-dafeiyu-animation/点击回应-元气挥手.webm",
+      "sha256": "fb9ef063c790ad53087cfbe9e5314a6660b60f600308b288e3b91f4139223a85"
+    },
+    {
+      "source": "animation/点击回应-害羞惊讶.webm",
+      "target": "claude-dafeiyu-animation/点击回应-害羞惊讶.webm",
+      "sha256": "05e9bfdca26033c3a1e77ae46400adfc65ec47a986eae2be898e7b332a75ba4e"
+    },
+    {
+      "source": "animation/点击回应-开心跃动.webm",
+      "target": "claude-dafeiyu-animation/点击回应-开心跃动.webm",
+      "sha256": "96ec1ed30c1f22a58e648097ce0568d037d3970bf5a5fe8731da1fbb189a9d51"
+    },
+    {
+      "source": "animation/点击回应-挠痒咯咯笑.webm",
+      "target": "claude-dafeiyu-animation/点击回应-挠痒咯咯笑.webm",
+      "sha256": "6a60392a97a406165b804e8bd361367a92ad99a8f0fb440f44a039c3dbb16ca9"
+    },
+    {
+      "source": "animation/照镜子.webm",
+      "target": "claude-dafeiyu-animation/照镜子.webm",
+      "sha256": "ee85374c63535de5b7924e740ce60783684d267fb73c6e3807c4ce89cca4c3ec"
+    },
+    {
+      "source": "animation/玩水枪.webm",
+      "target": "claude-dafeiyu-animation/玩水枪.webm",
+      "sha256": "cc6baa46abf6997b63217e9f5721bb500a38d78343e6fc2b807ece0987ab0c96"
+    },
+    {
+      "source": "animation/玩游戏气急败坏.webm",
+      "target": "claude-dafeiyu-animation/玩游戏气急败坏.webm",
+      "sha256": "9434e869fd3f188a4d2615b9f3a1382c35ff4afd30839bc3029e7bb54007572a"
+    },
+    {
+      "source": "animation/用鲸鱼尾巴拍打地面.webm",
+      "target": "claude-dafeiyu-animation/用鲸鱼尾巴拍打地面.webm",
+      "sha256": "ab4096cf7f4ed613f46e61810157ae1b3864755d703936274e946f77606e638e"
+    },
+    {
+      "source": "animation/碎碎念-发呆碎碎念.webm",
+      "target": "claude-dafeiyu-animation/碎碎念-发呆碎碎念.webm",
+      "sha256": "1b0666cc2894c67b38b0da17260bdcfa9d0399e72ece28a6001a437f8f8707bc"
+    },
+    {
+      "source": "animation/碎碎念-对屏碎碎念.webm",
+      "target": "claude-dafeiyu-animation/碎碎念-对屏碎碎念.webm",
+      "sha256": "95f14a041aa0ccec91f15459da6fe1ef5992674c3fd7a5f51e6f7da9885ab9b5"
+    },
+    {
+      "source": "animation/碎碎念-擦桌碎碎念.webm",
+      "target": "claude-dafeiyu-animation/碎碎念-擦桌碎碎念.webm",
+      "sha256": "42dae64be7f6a28aabae1c27b4654bf936ff0dbba619591b5a16bf431bf9eb2b"
+    },
+    {
+      "source": "animation/穿针乞巧.webm",
+      "target": "claude-dafeiyu-animation/穿针乞巧.webm",
+      "sha256": "d333f210f9a7a6147c05895e8373ef6762922e3f74eabd3e03fea691d9dc9745"
+    },
+    {
+      "source": "animation/自然走路.webm",
+      "target": "claude-dafeiyu-animation/自然走路.webm",
+      "sha256": "75bae0011e218cfa0d48c19077d11c8d0be7b5905c62734d1b47aa3fccefa656"
+    },
+    {
+      "source": "animation/舞狮头.webm",
+      "target": "claude-dafeiyu-animation/舞狮头.webm",
+      "sha256": "d9476364cac0fb38f7bb9c0b612b00645a8c0813dcf7476d8c5d3499d4d997a1"
+    },
+    {
+      "source": "animation/荡秋千.webm",
+      "target": "claude-dafeiyu-animation/荡秋千.webm",
+      "sha256": "4c3518e595f75f60a0b47da851a0211a1b3d57442df9407d587f41027e127a76"
+    },
+    {
+      "source": "animation/萌化小幽灵.webm",
+      "target": "claude-dafeiyu-animation/萌化小幽灵.webm",
+      "sha256": "93403f08d69324c52e43c2ecde7efc41fa7f0b8dd727102b32e88b64bc3f65be"
+    },
+    {
+      "source": "animation/蓝鲸现世.webm",
+      "target": "claude-dafeiyu-animation/蓝鲸现世.webm",
+      "sha256": "0ba00573364ed15d5be60b4e0bfa635920d5e0c51c63dfef33371303b0fd8f12"
+    },
+    {
+      "source": "animation/蝴蝶蜜蜂环绕头顶开花.webm",
+      "target": "claude-dafeiyu-animation/蝴蝶蜜蜂环绕头顶开花.webm",
+      "sha256": "0a79aa7c82c2d8b9f088ad1fc4c92385eb00fa0c4e61e0a818507fe84078cf6b"
+    },
+    {
+      "source": "animation/螃蟹走路.webm",
+      "target": "claude-dafeiyu-animation/螃蟹走路.webm",
+      "sha256": "064d3ec2e0cd28d4f279a9aa8477aecc7bf42dc4b06926b5c25ab9262da5b7da"
+    },
+    {
+      "source": "animation/被吓一跳.webm",
+      "target": "claude-dafeiyu-animation/被吓一跳.webm",
+      "sha256": "b5680cf698d189bd5c01872bb5c31bfd954a340f65ee594383c78d7a3ab8a7cb"
+    },
+    {
+      "source": "animation/被落叶淹没.webm",
+      "target": "claude-dafeiyu-animation/被落叶淹没.webm",
+      "sha256": "c594993a91266d3be4a129e53e38d2de7a8f73a30f46ad69fc8b4e55a6eaffb0"
+    },
+    {
+      "source": "animation/被鼠标拖拽悬空反馈.webm",
+      "target": "claude-dafeiyu-animation/被鼠标拖拽悬空反馈.webm",
+      "sha256": "2c840a51891d23db829c2b64bab0b907a85d26813ade284cabce2bbb9c4db390"
+    },
+    {
+      "source": "animation/装点圣诞树.webm",
+      "target": "claude-dafeiyu-animation/装点圣诞树.webm",
+      "sha256": "ae9090f952f748b89c49598e0f99b34c9333ec675da89261120d2e0616d302cd"
+    },
+    {
+      "source": "animation/讨糖南瓜灯.webm",
+      "target": "claude-dafeiyu-animation/讨糖南瓜灯.webm",
+      "sha256": "9d62b696df979a92816240c92f2007943a0527a10819d42a2fe3ca36738ef7bf"
+    },
+    {
+      "source": "animation/超大伸懒腰.webm",
+      "target": "claude-dafeiyu-animation/超大伸懒腰.webm",
+      "sha256": "42111cb5a7778f39bf090fe92f03e6597899231f76123aa5917bcedc1b734fba"
+    },
+    {
+      "source": "animation/踢毽子.webm",
+      "target": "claude-dafeiyu-animation/踢毽子.webm",
+      "sha256": "6116d6b3d6a0bb24b845f6eedbf640caa8c73f8a302857518902c858e3386efd"
+    },
+    {
+      "source": "animation/轻快摇摆舞.webm",
+      "target": "claude-dafeiyu-animation/轻快摇摆舞.webm",
+      "sha256": "8843b8216a7110e5d4d3c1e6d40e941fa00817150315e5e7f49cee87ad453551"
+    },
+    {
+      "source": "animation/轻快记录.webm",
+      "target": "claude-dafeiyu-animation/轻快记录.webm",
+      "sha256": "bf5dd7ae550f3184fc0a605e4ee606e9b6198389f3426ad7cef6d4d98ba28bc9"
+    },
+    {
+      "source": "animation/骑木马.webm",
+      "target": "claude-dafeiyu-animation/骑木马.webm",
+      "sha256": "7c6e04d7899367fef8a14dedeb5935ff6c41085ae1c4f166e0b74cb95cbd657f"
+    },
+    {
+      "source": "animation/鲸鱼吐泡泡特效.webm",
+      "target": "claude-dafeiyu-animation/鲸鱼吐泡泡特效.webm",
+      "sha256": "b454cba960f0a1d5b43fa30ac56fa6ec6bd11c5a19012a9d947d1b22da67467a"
+    },
+    {
+      "source": "claude-dafeiyu-lean-config.json",
+      "target": "claude-dafeiyu-lean-config.json",
+      "sha256": "c8ebbfd48874f8344c3974e088434f5a5cb46ceb777ec882b168a5a03db3e81c"
+    },
+    {
+      "source": "lean-animation/托腮·安静陪伴.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮·安静陪伴.webm",
+      "sha256": "abeac3112e066f66e95eb9ba83b2b89e0528ce5bfa58b7ba75587e66f4217346"
+    },
+    {
+      "source": "lean-animation/托腮·指尖拨头发.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮·指尖拨头发.webm",
+      "sha256": "491256e1ccfe5d7c39a3e9485f8e9c5b7cf42368088cca23d7e8c9df0909eac6"
+    },
+    {
+      "source": "lean-animation/托腮·摇头哼歌.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮·摇头哼歌.webm",
+      "sha256": "870507774544b9ed190ef34005d46ff49f68c3360d02da116ab32c19c5daf143"
+    },
+    {
+      "source": "lean-animation/托腮·眯眼小憩.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮·眯眼小憩.webm",
+      "sha256": "03aa2883a5523b266678efe1d7a88f1eb8b5f44a879f1c36b4844037e9161666"
+    },
+    {
+      "source": "lean-animation/托腮·轻声回应.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮·轻声回应.webm",
+      "sha256": "870507774544b9ed190ef34005d46ff49f68c3360d02da116ab32c19c5daf143"
+    },
+    {
+      "source": "lean-animation/托腮·轻摇鲸尾.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮·轻摇鲸尾.webm",
+      "sha256": "1783b8abd7e459b0c25fb4cd4fe6fa40945457476f344893606903247193f1f5"
+    },
+    {
+      "source": "lean-animation/托腮办公·停笔想一想.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮办公·停笔想一想.webm",
+      "sha256": "a8355fc22c8cfd9f20c4a479eaac6d611a5da5f71991d8f03359b5b0639b965c"
+    },
+    {
+      "source": "lean-animation/托腮办公·拿出并打开电脑.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮办公·拿出并打开电脑.webm",
+      "sha256": "5a67a139f7bbd9c5144102514e69994db800b505c6292c1fb75415d81eabe0f9"
+    },
+    {
+      "source": "lean-animation/托腮办公·揉眼伸肩.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮办公·揉眼伸肩.webm",
+      "sha256": "31ac327f60f03a4145c6652f06c03fa52903b1f7eeac7dd76ad6f9468be2d775"
+    },
+    {
+      "source": "lean-animation/托腮办公·收起电脑.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮办公·收起电脑.webm",
+      "sha256": "10436fba9b310474877d79ce56d79505f1199fb6bb83a6f6aec58cef569cb9e2"
+    },
+    {
+      "source": "lean-animation/托腮办公·轻敲键盘.webm",
+      "target": "claude-dafeiyu-lean-animation/托腮办公·轻敲键盘.webm",
+      "sha256": "2d9e7f05a449682f49874330281a5e453eaa8eb0ed14ebe76dbd282fd4299820"
+    }
+  ]
+}

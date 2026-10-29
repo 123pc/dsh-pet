@@ -1,0 +1,4 @@
+# Only needed to rebuild/verify artwork, never by the pet runtime.
+Pillow>=10
+numpy>=1.24
+imageio-ffmpeg>=0.5

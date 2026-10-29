@@ -1,0 +1,117 @@
+[
+  {
+    "name": "@andresaya/edge-tts",
+    "version": "1.9.1",
+    "license": "GPL-3.0-only",
+    "repository": null,
+    "notices": ["edge-tts-LICENSE.txt"]
+  },
+  {
+    "name": "commander",
+    "version": "12.1.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/tj/commander.js.git"
+    },
+    "notices": ["commander-LICENSE.txt"]
+  },
+  {
+    "name": "ws",
+    "version": "8.22.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/websockets/ws.git"
+    },
+    "notices": ["ws-LICENSE.txt"]
+  },
+  {
+    "name": "openai",
+    "version": "7.39.0",
+    "license": "Apache-2.0",
+    "repository": "github:openai/openai-node",
+    "notices": ["openai-LICENSE.txt"]
+  },
+  {
+    "name": "@anthropic-ai/sdk",
+    "version": "0.135.0",
+    "license": "MIT",
+    "repository": "github:anthropics/anthropic-sdk-typescript",
+    "notices": ["@anthropic-ai-sdk-LICENSE.txt"]
+  },
+  {
+    "name": "@opentelemetry/api",
+    "version": "1.10.0",
+    "license": "Apache-2.0",
+    "repository": "open-telemetry/opentelemetry-js",
+    "notices": ["@opentelemetry-api-LICENSE.txt"]
+  },
+  {
+    "name": "standardwebhooks",
+    "version": "1.1.1",
+    "license": "MIT",
+    "repository": "https://github.com/standard-webhooks/standard-webhooks",
+    "notices": []
+  },
+  {
+    "name": "@stablelib/base64",
+    "version": "1.0.1",
+    "license": "MIT",
+    "repository": {
+      "url": "https://github.com/StableLib/stablelib"
+    },
+    "notices": ["@stablelib-base64-LICENSE.txt"]
+  },
+  {
+    "name": "fast-sha256",
+    "version": "1.3.0",
+    "license": "Unlicense",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/dchest/fast-sha256-js"
+    },
+    "notices": ["fast-sha256-LICENSE.txt"]
+  },
+  {
+    "name": "json-schema-to-ts",
+    "version": "3.1.1",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ThomasAribart/json-schema-to-ts.git"
+    },
+    "notices": ["json-schema-to-ts-LICENSE.txt"]
+  },
+  {
+    "name": "@babel/runtime",
+    "version": "7.29.10",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/babel/babel.git",
+      "directory": "packages/babel-runtime"
+    },
+    "notices": ["@babel-runtime-LICENSE.txt"]
+  },
+  {
+    "name": "ts-algebra",
+    "version": "2.0.0",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ThomasAribart/ts-algebra.git"
+    },
+    "notices": ["ts-algebra-LICENSE.txt"]
+  },
+  {
+    "name": "zod",
+    "version": "4.6.7",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/colinhacks/zod.git"
+    },
+    "notices": ["zod-LICENSE.txt"]
+  }
+]

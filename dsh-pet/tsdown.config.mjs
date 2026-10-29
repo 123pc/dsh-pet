@@ -100,6 +100,8 @@ export default defineConfig([
       /^zod$/,
       /^openai$/,
       /^@anthropic-ai\/sdk$/,
+      // 宿主语音模块静态导入；解压版没有 node_modules，必须随独立应用一起打包。
+      /^@andresaya\/edge-tts$/,
     ],
     external: ['electron', /^@electron\//, /^node:/, /^@deepseek-ai\/(?!dsh-home-paths$|dsh-credentials$|dsh-llm$)/],
     alias: {
