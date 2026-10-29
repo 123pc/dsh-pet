@@ -42,6 +42,7 @@ for name in ['@andresaya/edge-tts', 'openai', '@anthropic-ai/sdk', 'zod']:
 commit = '93f6dbc5905293402ebf4b6dc162d31f7e61136e'
 url = 'https://codeload.github.com/andresayac/edge-tts/zip/' + commit
 target = ROOT / '.tools/THIRD-PARTY-SOURCE.zip'
+target.parent.mkdir(parents=True, exist_ok=True)
 request = urllib.request.Request(url, headers={'User-Agent': 'claude-dafeiyu-release'})
 with urllib.request.urlopen(request, timeout=60) as response:
     assert response.status == 200
