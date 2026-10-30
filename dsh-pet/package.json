@@ -1,7 +1,7 @@
 {
   "name": "dsh-pet",
   "version": "0.3.8-claude.1",
-  "description": "Claude 大肥鱼桌宠：站立、托腮与办公陪伴，基于 dsh-pet 独立维护。",
+  "description": "dsh-pet-claude：Claude 大肥鱼桌宠，站立、托腮与办公陪伴。基于 dsh-pet 独立维护。",
   "icon": "assets/logo.png",
   "keywords": [
     "dsh",
@@ -14,13 +14,13 @@
     "cordis",
     "react"
   ],
-  "homepage": "https://github.com/123pc/dsh-pet#readme",
+  "homepage": "https://github.com/123pc/dsh-pet-claude#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/123pc/dsh-pet.git"
+    "url": "git+https://github.com/123pc/dsh-pet-claude.git"
   },
   "bugs": {
-    "url": "https://github.com/123pc/dsh-pet/issues"
+    "url": "https://github.com/123pc/dsh-pet-claude/issues"
   },
   "_comment": [
     "=============== dsh-pet 包清单说明 ===============",

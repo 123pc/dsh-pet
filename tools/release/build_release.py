@@ -144,7 +144,7 @@ def package(electron, plugin, out):
         'Claude 大肥鱼桌宠\n\n双击 启动桌宠.cmd，无需安装 DSH 或 Node.js。\n'
         '右键 → 换装；托盘 → 退出。设置保存在本目录 data/，升级时保留。\n'
         '请保留完整目录，不要只复制内部 EXE。\n\n'
-        '项目：https://github.com/123pc/dsh-pet\n'
+        '项目：https://github.com/123pc/dsh-pet-claude\n'
         '基于 PC2005-cloud/dsh-pet，保留 MIT 版权声明。\n', encoding='utf-8-sig')
     zip_tree(stage, out / 'claude-dafeiyu-windows-x64.zip')
     zip_tree(stage / 'pet-pack', out / 'claude-dafeiyu-pet-pack.zip')

@@ -1,4 +1,4 @@
-# Claude 大肥鱼桌宠
+# dsh-pet-claude
 
 穿着 Claude 工牌的蓝发大肥鱼，站在桌边陪你，或者托着腮看看你。
 
@@ -6,7 +6,7 @@
 
 ![Claude-大肥鱼-站立与Claude-大肥鱼-托腮](docs/media/hero.png)
 
-**[下载 Windows 解压即用版](https://github.com/123pc/dsh-pet/releases/download/claude-v0.7.1/claude-dafeiyu-windows-x64.zip)** · [全部下载](https://github.com/123pc/dsh-pet/releases) · [安装说明](docs/INSTALL.md)
+**[下载 Windows 解压即用版](https://github.com/123pc/dsh-pet-claude/releases/download/claude-v0.7.1/claude-dafeiyu-windows-x64.zip)** · [全部下载](https://github.com/123pc/dsh-pet-claude/releases) · [安装说明](docs/INSTALL.md)
 
 ## 站起来，活动一下
 
@@ -42,4 +42,4 @@
 
 引擎与原版大肥鱼来自 [PC2005-cloud/dsh-pet](https://github.com/PC2005-cloud/dsh-pet)，保留原作者版权与 [MIT 许可证](LICENSE)。本分支制作了 Claude 打扮的站立、托腮形态及动作素材，并加入换装、随机日常与办公衔接。
 
-[上游使用文档](UPSTREAM-README.md) · [配置说明](CONFIG.md) · [第三方组件许可](THIRD-PARTY.md) · [反馈问题](https://github.com/123pc/dsh-pet/issues)
+[上游使用文档](UPSTREAM-README.md) · [配置说明](CONFIG.md) · [第三方组件许可](THIRD-PARTY.md) · [反馈问题](https://github.com/123pc/dsh-pet-claude/issues)

@@ -17,4 +17,4 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 
 **Windows 解压即用版的用户不需要手动运行安装器**，直接使用上级文件夹的 `启动桌宠.cmd`。
 
-完整说明和引擎下载：https://github.com/123pc/dsh-pet
+完整说明和引擎下载：https://github.com/123pc/dsh-pet-claude

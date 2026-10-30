@@ -2,7 +2,7 @@
 
 ## Windows 解压即用
 
-1. 在[发布页](https://github.com/123pc/dsh-pet/releases/tag/claude-v0.7.1)下载 `claude-dafeiyu-windows-x64.zip`。
+1. 在[发布页](https://github.com/123pc/dsh-pet-claude/releases/tag/claude-v0.7.1)下载 `claude-dafeiyu-windows-x64.zip`。
 2. 解压到自己可写的文件夹，双击 `启动桌宠.cmd`。第一次启动会在该文件夹的 `data/` 安装角色与配置。
 3. 右键桌宠 → 换装，选择站立或托腮；右键可点播动作，托盘菜单可以退出。
 
@@ -43,11 +43,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
 ## 从源码构建
 
 ```powershell
-git clone https://github.com/123pc/dsh-pet.git
-cd dsh-pet/dsh-pet
+git clone https://github.com/123pc/dsh-pet-claude.git
+cd dsh-pet-claude/dsh-pet
 npm install
 npm run build
-dsh plugin --profile web add file:D:/你的路径/dsh-pet/dsh-pet
+dsh plugin --profile web add file:D:/你的路径/dsh-pet-claude/dsh-pet
 ```
 
 随后运行仓库 `community-pets/claude-dafeiyu/install.ps1` 安装角色包。开发与接口资料见[上游文档](../UPSTREAM-README.md)、[换装](../dsh-pet/docs/outfits.md)、[动作扩展](../dsh-pet/docs/animation-extensions.md)。

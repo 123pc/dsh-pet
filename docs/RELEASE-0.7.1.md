@@ -1,10 +1,10 @@
-# Claude 大肥鱼 0.7.1
+# dsh-pet-claude 0.7.1
 
 Claude-大肥鱼-站立 / Claude-大肥鱼-托腮：两种形态，119 段透明动画，16 条随机日常动作链。
 
-![两种形态](https://raw.githubusercontent.com/123pc/dsh-pet/claude-v0.7.1/docs/media/hero.png)
+![两种形态](https://raw.githubusercontent.com/123pc/dsh-pet-claude/claude-v0.7.1/docs/media/hero.png)
 
-[在首页看动作动图](https://github.com/123pc/dsh-pet#readme) · [安装说明](https://github.com/123pc/dsh-pet/blob/claude-v0.7.1/docs/INSTALL.md)
+[在首页看动作动图](https://github.com/123pc/dsh-pet-claude#readme) · [安装说明](https://github.com/123pc/dsh-pet-claude/blob/claude-v0.7.1/docs/INSTALL.md)
 
 ## 下载哪个
 
