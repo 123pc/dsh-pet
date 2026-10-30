@@ -59,4 +59,4 @@ python tools/release/collect_notices.py
 python tools/release/build_release.py --electron '本机 Electron 解压目录' --plugin 'dsh-pet/dsh-pet-0.3.8-claude.1.tgz'
 ```
 
-Python 依赖为 Pillow 与 imageio-ffmpeg；`collect_notices.py` 下载固定提交的第三方源码，打包脚本不会下载 Electron。README 动图可用 `python tools/release/build_release.py --media-only` 从已发布视频重新生成。
+Python 依赖为 Pillow 与 imageio-ffmpeg；`collect_notices.py` 下载固定提交的第三方源码，打包脚本不会下载 Electron。主图与办公动图可用 `python tools/release/build_release.py --media-only` 重建；完整动作图鉴、首页动作预览与动作链使用 `python tools/release/build_gallery.py` 从已发布视频重新生成。

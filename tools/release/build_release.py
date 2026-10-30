@@ -31,6 +31,30 @@ def frames(name):
     return [Image.frombytes('RGBA', (640, 360), raw[i:i+stride]) for i in range(0, len(raw), stride)]
 
 
+def make_gif(images, output, size=(336, 304)):
+    """Keep a fixed crop, scale and palette throughout the original animation."""
+    bounds = [frame.getchannel('A').getbbox() for frame in images]
+    assert all(bounds), output
+    box = (max(0, min(b[0] for b in bounds)-12), max(0, min(b[1] for b in bounds)-12),
+           min(640, max(b[2] for b in bounds)+12), min(360, max(b[3] for b in bounds)+12))
+    rendered = []
+    for frame in images:
+        sprite = ImageOps.contain(frame.crop(box), (size[0]-24, size[1]-24), Image.Resampling.LANCZOS)
+        canvas = Image.new('RGB', size, '#f4f3f0')
+        canvas.paste(sprite, ((size[0]-sprite.width)//2, size[1]-sprite.height-12), sprite)
+        rendered.append(canvas)
+    samples = [rendered[i] for i in range(0, len(rendered), max(1, len(rendered)//12))][:12]
+    atlas = Image.new('RGB', (size[0], size[1]*len(samples)))
+    for i, sample in enumerate(samples):
+        atlas.paste(sample, (0, i*size[1]))
+    palette = atlas.quantize(colors=192)
+    quantized = [im.quantize(palette=palette, dither=Image.Dither.NONE) for im in rendered]
+    output.parent.mkdir(parents=True, exist_ok=True)
+    quantized[0].save(output, save_all=True, append_images=quantized[1:],
+                      duration=[120 if i % 2 == 0 else 130 for i in range(len(quantized))],
+                      loop=0, optimize=True, disposal=1)
+
+
 def previews():
     MEDIA.mkdir(parents=True, exist_ok=True)
     clips = {
@@ -49,27 +73,10 @@ def previews():
         images = []
         for name in names:
             images.extend(frames(name))
-        bounds = [frame.getchannel('A').getbbox() for frame in images]
-        box = (max(0, min(b[0] for b in bounds)-12), max(0, min(b[1] for b in bounds)-12),
-               min(640, max(b[2] for b in bounds)+12), min(360, max(b[3] for b in bounds)+12))
         size = (640, 360) if key == 'office' else (336, 304)
-        rendered = []
-        for frame in images:
-            sprite = ImageOps.contain(frame.crop(box), (size[0]-24, size[1]-24), Image.Resampling.LANCZOS)
-            canvas = Image.new('RGB', size, '#f4f3f0')
-            canvas.paste(sprite, ((size[0]-sprite.width)//2, size[1]-sprite.height-12), sprite)
-            rendered.append(canvas)
-        samples = [rendered[i] for i in range(0, len(rendered), max(1, len(rendered)//12))][:12]
-        atlas = Image.new('RGB', (size[0], size[1]*len(samples)))
-        for i, sample in enumerate(samples):
-            atlas.paste(sample, (0, i*size[1]))
-        palette = atlas.quantize(colors=192)
-        quantized = [im.quantize(palette=palette, dither=Image.Dither.NONE) for im in rendered]
         output = MEDIA / (key + '.gif')
-        quantized[0].save(output, save_all=True, append_images=quantized[1:],
-                          duration=[120 if i % 2 == 0 else 130 for i in range(len(quantized))],
-                          loop=0, optimize=True, disposal=1)
-        record[key] = {'sources': names, 'frames': len(quantized), 'bytes': output.stat().st_size}
+        make_gif(images, output, size)
+        record[key] = {'sources': names, 'frames': len(images), 'bytes': output.stat().st_size}
         print(f'preview {key}: {output.stat().st_size:,} bytes', flush=True)
 
     hero = Image.new('RGB', (1120, 640), '#f2eee7')
