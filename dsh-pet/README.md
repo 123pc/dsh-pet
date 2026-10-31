@@ -1,7 +1,11 @@
-# dsh-pet 🐾
+# dsh-pet-claude
 
-一只住在 DeepSeek Harness 里的桌面宠物，一百余个透明动画，可多开、能上桌面。
+Claude 打扮的大肥鱼桌宠，包含站立、托腮两种形态和 119 段透明动画。完整动作预览见[项目首页](https://github.com/123pc/dsh-pet-claude)。
 
-安装与完整文档：**<https://github.com/PC2005-cloud/dsh-pet>**
+安装本分支的预构建 TGZ 后重启 DSH，即会自动准备角色素材，不需要再下载角色 ZIP 或运行 PowerShell 安装器。新目录默认显示站立形态，右键 → **换装** 可切换托腮；新安装默认关闭自动碎碎念和余额查询，可在设置中自行开启。
 
-许可：代码 MIT；素材禁止商用；二创在公开渠道须署名（同上链接）。
+已有用户的配置和视频不会被覆盖。升级时若之前没有安装 Claude 形态，新形态保持隐藏，可从原桌宠的换装菜单中选择。卸载插件不会自动删除用户目录中的角色文件和偏好；清理存储请使用设置页说明或角色包卸载器。
+
+本分支使用原版的 `dsh-pet` 插件 ID，作为原版替代安装，请勿同时安装两者。配置和文件宠物仍位于 `$DSH_HOME/dsh-pet/`，原版形态和其他已安装宠物继续可用。
+
+源码基于 [PC2005-cloud/dsh-pet](https://github.com/PC2005-cloud/dsh-pet)，保留原作者版权；组合发行许可见 [THIRD-PARTY.md](THIRD-PARTY.md)。

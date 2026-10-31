@@ -15,6 +15,11 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const PKG = join(ROOT, 'package.json');
+const petPack = spawnSync(process.execPath, [join(ROOT, 'scripts', 'prepare-pet-pack.mjs')], {
+  cwd: ROOT,
+  stdio: 'inherit',
+});
+if (petPack.status !== 0) process.exit(petPack.status || 1);
 
 // 用 cmd /c 跑整条 npm 命令：Windows 下 npm 是 npm.cmd，spawnSync 无法直接执行 .cmd
 // （命令行固定、无用户输入，没有注入风险）。
@@ -61,6 +66,8 @@ const keep = [
   'assets/config.jsonc',
   // 插件图标：package.json 顶层 icon 指向这张图；缺图时读取方 dsh-app-boot 的 iconOf 会抛错、退回默认插画。
   'assets/logo.png',
+  'assets/claude-icon.png',
+  'assets/bundled-claude',
   'scripts/ensure-electron.mjs',
   'cordis.patch.yml',
   'licenses',

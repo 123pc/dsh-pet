@@ -1,8 +1,8 @@
 {
   "name": "dsh-pet",
-  "version": "0.3.8-claude.1",
+  "version": "0.3.8-claude.2",
   "description": "dsh-pet-claude：Claude 大肥鱼桌宠，站立、托腮与办公陪伴。基于 dsh-pet 独立维护。",
-  "icon": "assets/logo.png",
+  "icon": "assets/claude-icon.png",
   "keywords": [
     "dsh",
     "dsh-plugin",
@@ -17,7 +17,8 @@
   "homepage": "https://github.com/123pc/dsh-pet-claude#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/123pc/dsh-pet-claude.git"
+    "url": "git+https://github.com/123pc/dsh-pet-claude.git",
+    "directory": "dsh-pet"
   },
   "bugs": {
     "url": "https://github.com/123pc/dsh-pet-claude/issues"
@@ -69,6 +70,8 @@
     "assets/sound",
     "assets/config.jsonc",
     "assets/logo.png",
+    "assets/claude-icon.png",
+    "assets/bundled-claude",
     "scripts/ensure-electron.mjs",
     "cordis.patch.yml",
     "licenses",
@@ -118,7 +121,8 @@
         "0.1.7-rc.2": "incompatible",
         "0.2.0-rc.1": "compatible",
         "0.2.0-rc.2": "compatible",
-        "0.2.1-rc.2": "compatible"
+        "0.2.1-rc.2": "compatible",
+        "0.2.1-rc.3": "compatible"
       }
     },
     "client": {
@@ -130,15 +134,15 @@
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.4",
-    "@deepseek-ai/dsh-agent-default-model": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-client-connection": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-client-ui-primitives": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-client-ui-slots": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-commands": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-credentials": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-home-paths": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-host-webserver": "^0.2.0-rc.1",
-    "@deepseek-ai/dsh-llm": "^0.2.0-rc.1",
+    "@deepseek-ai/dsh-agent-default-model": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-client-connection": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-client-ui-primitives": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-client-ui-slots": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-commands": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-credentials": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-home-paths": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-host-webserver": "^0.2.0-rc.1 || ^0.2.1-rc.1",
+    "@deepseek-ai/dsh-llm": "^0.2.0-rc.1 || ^0.2.1-rc.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -6,7 +6,7 @@
 
 ![Claude-大肥鱼-站立与Claude-大肥鱼-托腮](docs/media/hero.png)
 
-**[下载 Windows 解压即用版](https://github.com/123pc/dsh-pet-claude/releases/download/claude-v0.7.1/claude-dafeiyu-windows-x64.zip)** · [全部下载](https://github.com/123pc/dsh-pet-claude/releases) · [安装说明](docs/INSTALL.md)
+**[下载 Windows 解压即用版](https://github.com/123pc/dsh-pet-claude/releases/download/claude-v0.7.2/claude-dafeiyu-windows-x64.zip)** · [全部下载](https://github.com/123pc/dsh-pet-claude/releases) · [安装说明](docs/INSTALL.md)
 
 ## 动作一览
 
@@ -116,7 +116,7 @@
 
 **Windows x64：** 下载上面的 ZIP，解压到可写文件夹，双击 **`启动桌宠.cmd`**。无需安装 Node.js 或 DSH。右键桌宠 → **换装**，选择「Claude-大肥鱼-站立」或「Claude-大肥鱼-托腮」；退出使用托盘菜单。
 
-已使用 DSH 的用户，可安装发布页的插件包与角色包。[插件安装与源码构建 →](docs/INSTALL.md)
+已使用 DSH 的用户，安装发布页的 dsh-pet-claude.tgz 后即可自动准备角色。[插件安装与源码构建 →](docs/INSTALL.md)
 
 解压版的设置保存在它自己的 `data/`，与已有 DSH 配置分开。DSH 任务状态联动需要插件模式；解压版仍会自行播放日常活动。当前发行包在 Windows 验证，macOS / Linux 可从源码构建，尚未完成对应实机验收。
 

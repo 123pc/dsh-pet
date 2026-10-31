@@ -1,7 +1,7 @@
 /**
  * 宿主环境装配：日志出口、用户目录、配置路径与进程内 store。
  *
- * 只创建对象、算路径、注册可选服务，不启动任何循环，也不碰网络；
+ * 准备缺失的内置角色并创建对象、注册可选服务，不启动循环，也不碰网络；
  * 需要 ctx 的两处（日志收尾 effect、petApi7340 服务）一并在这里注册。
  * 必须始终成立：日志只创建一次——复用到 standalone 挂上的 logger 时不得再建第二个。
  * @module dsh-pet/src/host/plugin/setup
@@ -12,6 +12,7 @@ import { resolveDshHome } from '@deepseek-ai/dsh-home-paths';
 import { listBalanceProviders, registerBalanceProvider } from '../balance/index.ts';
 import { listVoiceProviders, registerVoiceProvider } from '../voice/registry.ts';
 import { migrateUserConfig, type ConfigPaths } from '../config.ts';
+import { ensureBundledPets } from '../bundled-pets.ts';
 import { createFileLogger, isFileLogger, setDefaultLogger, type FileLogger, type LoggerLike } from '../log-file.ts';
 import { MenuRegistry } from '../menu.ts';
 import { PACKAGE_MEMES_DIR, PACKAGE_ROOT } from '../paths.ts';
@@ -143,6 +144,12 @@ export function createHostSetup(ctx: HostSetupContext): HostSetup {
   // 老用户一次性迁移：main-config.json → main-config.jsonc（重命名，内容一字不动；
   // 新文件已存在则不动旧文件）。失败不影响运行——读取侧对旧路径有回落。
   migrateUserConfig(configPaths, (msg) => log.info('[dsh-pet] ' + msg));
+  try {
+    const seeded = ensureBundledPets(configPaths, join(PACKAGE_ROOT, 'assets', 'bundled-claude'));
+    if (seeded.added) log.info(`[dsh-pet-claude] 内置角色已准备：新增 ${seeded.added}，保留 ${seeded.preserved}`);
+  } catch (error) {
+    log.warn('[dsh-pet-claude] 内置角色初始化失败：' + String(error));
+  }
 
   // 用户动画目录（thumb 播放时优先于包内素材；webm 放 main-animation/webm/，mov（macOS 定制）放 main-animation/mov/）
   const thumbUserRoot = join(userRoot, 'main-animation');
